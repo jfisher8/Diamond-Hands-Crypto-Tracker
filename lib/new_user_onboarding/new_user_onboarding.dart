@@ -1,9 +1,10 @@
+import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/new_user_onboarding/sign_up_onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
+//import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 
 class NewUserOnboarding extends StatelessWidget {
   NewUserOnboarding({super.key});
@@ -35,7 +36,7 @@ class NewUserOnboarding extends StatelessWidget {
               elevation: 30,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(90)),
-              child: Image.asset('assets/diamond_hands_logo.png')),
+              child: Image.asset('assets/material_upwards_trend_arrow_black.png')),
         ),
         title: 'Track the prices of your favourite crypto',
         body:
@@ -55,7 +56,7 @@ class NewUserOnboarding extends StatelessWidget {
               elevation: 30,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(90)),
-              child: Image.asset('assets/diamond_hands_logo.png')),
+              child: Image.asset('assets/material_exchanges_black.png')),
         ),
         title: 'Research the best crypto exchanges',
         body:
@@ -74,8 +75,8 @@ class NewUserOnboarding extends StatelessWidget {
           child: Card(
               elevation: 30,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(90)),
-              child: Image.asset('assets/diamond_hands_logo.png')),
+                  borderRadius: BorderRadius.circular(50)),
+              child: Image.asset('assets/material_newspaper_black.png')),
         ),
         title: "All the latest news",
         body: "Read the latest news on all things cryptocurrency",
@@ -105,7 +106,7 @@ class NewUserOnboarding extends StatelessWidget {
           ),
           showDoneButton: true,
           done: ElevatedButton(
-            child: Text('Next', style: GoogleFonts.mavenPro(fontSize: 16)),
+            child: Text('Next', style: GoogleFonts.mavenPro(fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold)),
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -122,13 +123,13 @@ class NewUserOnboarding extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       // TODO: Create LatestCryptoPrices page
-                        builder: (context) => const LatestCryptoPrices()));
+                        builder: (context) => const HomeScreen()));
               },
               child: Text('Skip',
                   style: GoogleFonts.mavenPro(
-                      fontSize: 20, fontWeight: FontWeight.bold))),
+                      fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue))),
           showNextButton: true,
-          next: const Icon(Icons.arrow_forward, size: 40),
+          next: const Icon(Icons.arrow_forward, size: 40, color: Colors.blue,),
           onDone: () => onDone(context),
           curve: Curves.bounceOut,
         ),
