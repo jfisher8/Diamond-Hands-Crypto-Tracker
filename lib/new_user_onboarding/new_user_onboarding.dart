@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:developer' as developer;
 //import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 
 class NewUserOnboarding extends StatelessWidget {
@@ -140,5 +141,6 @@ class NewUserOnboarding extends StatelessWidget {
   void onDone(context) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('onboarding', false);
+    developer.log("onboarding status set FALSE");
   }
 }

@@ -1,4 +1,6 @@
+import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:flutter/material.dart';
+//import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromRGBO(56, 182, 255, 1.0),
         centerTitle: true,
         title: const Text('Diamond Hands Crypto Tracker'),
         actions: const <Widget>[
@@ -24,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
               )),
         ],
       ),
-      drawer: const Placeholder(), //TODO: add navigation drawer here
+      drawer: const NavigationMenu(),
     );
   }
 }
