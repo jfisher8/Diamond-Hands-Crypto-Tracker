@@ -35,7 +35,7 @@ void main() async {
       //   backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
       //   ),
       textTheme: TextTheme(
-        titleSmall: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.red),
+        titleSmall: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 16, color: const Color.fromRGBO(56, 182, 255, 1.0),),
         titleMedium: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
         titleLarge: GoogleFonts.anton(fontSize: 20, color: Colors.white),
         bodySmall: GoogleFonts.mavenPro(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
