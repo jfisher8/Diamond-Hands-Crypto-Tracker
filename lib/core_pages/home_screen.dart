@@ -1,9 +1,8 @@
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
-import 'package:diamond_hands_crypto_tracker/home_screen_carousel/crypto_news_carousel.dart';
-import 'package:diamond_hands_crypto_tracker/home_screen_carousel/crypto_prices_carousel.dart';
+import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_news_carousel.dart';
+import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_prices_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:flutter/material.dart';
-//import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
