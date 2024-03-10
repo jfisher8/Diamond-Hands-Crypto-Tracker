@@ -1,5 +1,7 @@
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges.dart';
 import 'package:flutter/material.dart';
 
 Widget buildMenuItems(BuildContext context) {
@@ -30,8 +32,7 @@ Widget buildMenuItems(BuildContext context) {
           title: const Text('Latest Crypto News'),
           onTap: () {
             Navigator.push(context,
-            //TODO: Change the following link to latest crypto news screen when it's built
-                MaterialPageRoute(builder: (context) => const LatestCryptoPrices()));
+                MaterialPageRoute(builder: (context) => const LatestCryptoNews()));
           },
         ),
         ListTile(
@@ -39,8 +40,7 @@ Widget buildMenuItems(BuildContext context) {
           title: const Text('Crypto Exchanges'),
           onTap: () {
             Navigator.push(context,
-            //TODO: Change the following link to latest crypto exchanges screen when it's built
-                MaterialPageRoute(builder: (context) => const LatestCryptoPrices()));
+                MaterialPageRoute(builder: (context) => const CryptoExchanges()));
           },
         ),
         const Divider(color: Colors.black),

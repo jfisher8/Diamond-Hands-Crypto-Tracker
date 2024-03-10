@@ -21,19 +21,19 @@ void main() async {
   String? email = preferences.getString('emailAddress');
   SharedPreferences onboarding = await SharedPreferences.getInstance();
   bool showOnboarding = onboarding.getBool('onboarding') ?? true;
-  developer.log('SharedPrefs login session: ' "$email");
-  developer.log('Onboarding shown? ' "$showOnboarding");
+  //if email variable is null, state there is no current session, else, state last logged in email
+  email == null ? developer.log('SharedPrefs: No current session') : 
+  developer.log('Last logged in session: ' "$email");
+  developer.log('Should onboarding be shown? ' "$showOnboarding");
 
   runApp(MaterialApp(
-    //TODO: implement home page
     //home page of the app is determined by if onboarded bool equals true
-    home: onboarded == true ? NewUserOnboarding() : const HomeScreen(),
+    home: onboarded == true ? const HomeScreen() : NewUserOnboarding(),
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
-      //commenting this out for now as the AppBarTheme may not be needed
-      // appBarTheme: const AppBarTheme(
-      //   backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
-      //   ),
+      appBarTheme: const AppBarTheme(
+         backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
+         ),
       textTheme: TextTheme(
         titleSmall: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 16, color: const Color.fromRGBO(56, 182, 255, 1.0),),
         titleMedium: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),

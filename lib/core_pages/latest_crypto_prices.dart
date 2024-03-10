@@ -17,11 +17,7 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
       backgroundColor: const Color.fromRGBO(56, 182, 255, 1.0),
       title: Text('Latest Crypto Prices', style: Theme.of(context).textTheme.titleLarge),
       elevation: 0.0,
-      actions: const <Widget>[
-        Padding(padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-        child: Icon(Icons.login, color: Colors.black),
-        ),
-      ],
+      actions: const [Icon(Icons.login_rounded, color: Colors.black), Padding(padding: EdgeInsets.fromLTRB(0, 0, 10, 0))],
     ),
     drawer: const NavigationMenu(),
     body: 
