@@ -1,3 +1,4 @@
+import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_news_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_prices_carousel.dart';
@@ -59,9 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const HomeScreen())));
+                            builder: ((context) => const LatestCryptoNews())));
                   }),
-                  child: Text("View More News",
+                  child: Text("View more",
                       style: Theme.of(context).textTheme.titleSmall)),
             ],
           ),
