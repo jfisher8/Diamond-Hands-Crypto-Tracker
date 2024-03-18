@@ -20,7 +20,7 @@ Container signUpButton(BuildContext context, bool isLogin, Function onTap) {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)))),
-        child: const Text('Sign Up'),
+        child: Text('Sign Up', style: Theme.of(context).textTheme.bodyLarge),
       ));
 }
 
@@ -44,7 +44,7 @@ Container loginButton(BuildContext context, bool isLogin, Function onTap) {
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           )),
-      child: const Text('Login'),
+      child: Text('Login', style: Theme.of(context).textTheme.bodyLarge),
     ),
   );
 }
