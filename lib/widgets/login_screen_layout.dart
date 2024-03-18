@@ -20,7 +20,7 @@ Widget buildLoginScreen(BuildContext context) {
       const SizedBox(height: 20),
       emailAddressTextField('Enter Email Address', Icons.email_rounded, false, emailController),
       const SizedBox(height: 20),
-      passwordTextField("Enter Password", Icons.lock_outline_rounded, true, passwordController),
+      passwordTextField("Enter Password", Icons.lock_rounded, true, passwordController),
       const SizedBox(height: 20),
     ],
   );
