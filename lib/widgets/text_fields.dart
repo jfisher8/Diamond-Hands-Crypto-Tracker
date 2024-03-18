@@ -20,7 +20,7 @@ TextFormField emailAddressTextField(String text, IconData icon,
             fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
         filled: true,
         floatingLabelBehavior: FloatingLabelBehavior.never,
-        fillColor: Colors.grey[400],
+        fillColor: Colors.grey[300],
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30.0),
         )),

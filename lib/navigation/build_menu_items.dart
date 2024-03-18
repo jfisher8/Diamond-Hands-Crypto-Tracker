@@ -2,6 +2,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:flutter/material.dart';
 
 Widget buildMenuItems(BuildContext context) {
@@ -50,7 +51,7 @@ Widget buildMenuItems(BuildContext context) {
           onTap: () {
             Navigator.push(context,
             //TODO: Change the following link to logout/logout screen when it's built
-                MaterialPageRoute(builder: (context) => const LatestCryptoPrices()));
+                MaterialPageRoute(builder: (context) => const LoginScreen()));
           },
         ),
       ],
