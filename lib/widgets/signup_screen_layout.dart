@@ -1,4 +1,4 @@
-import 'package:diamond_hands_crypto_tracker/core_pages/signup_screen.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/login_signup_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
@@ -7,7 +7,7 @@ final emailController = TextEditingController();
 final passwordController = TextEditingController();
 String errorMessage = "";
 
-Widget buildLoginScreen(BuildContext context) {
+Widget buildSignupScreen(BuildContext context) {
   return Column(children: [
     Card(
         elevation: 30,
@@ -28,14 +28,13 @@ Widget buildLoginScreen(BuildContext context) {
         child: Text(errorMessage.toString(),
             style: const TextStyle(
                 fontSize: 14, color: Colors.red, fontWeight: FontWeight.bold))),
-    loginButton(context, true, () async {
+    signUpButton(context, true, () async {
       //business logic for login here, import/call as a function
     }),
     const SizedBox(height: 20),
-    const Text("Don't have an account?"),
-    signUpButton(context, false, () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupScreen()));
-      //page route to sign up screen
+    const Text("Already have an account?"),
+    loginButton(context, false, () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
     })
   ]);
 }
