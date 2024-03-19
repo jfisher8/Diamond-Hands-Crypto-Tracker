@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "319458704280",
+    "project_id": "diamond-hands-crypto-tracker",
+    "storage_bucket": "diamond-hands-crypto-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319458704280:android:6954fb2edb0cb9f06609ed",
+        "android_client_info": {
+          "package_name": "com.example.diamond_hands_crypto_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABkZc2EC8iY2vshGnv2U_NSYwz6-o-XrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

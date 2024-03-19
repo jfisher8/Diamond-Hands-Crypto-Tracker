@@ -12,10 +12,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
         options: const FirebaseOptions(  
-          apiKey: "AIzaSyA0Orx2bv5G6Jk5x_HyBLWoFhEOhohLvXA",
-          appId: "1:157892586995:android:9b652a9fd3bf7418fe3686",
-          messagingSenderId: "157892586995",
-          projectId: "co2404-flutter-project"
+          apiKey: "AIzaSyABkZc2EC8iY2vshGnv2U_NSYwz6-o-XrE",
+          appId: "1:319458704280:android:6954fb2edb0cb9f06609ed",
+          messagingSenderId: "319458704280",
+          projectId: "diamond-hands-crypto-tracker"
   ));
   SharedPreferences preferences = await SharedPreferences.getInstance(); //gets an instance of Local storage
   String? email = preferences.getString('emailAddress');

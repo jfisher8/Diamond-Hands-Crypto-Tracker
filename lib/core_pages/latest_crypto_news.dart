@@ -39,6 +39,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
           )),
           Expanded(child:
           ListView.builder(itemBuilder:(context, index) {
+            return null;
+          
             //business login for it here, replace with futureBuilder once API is added
           },
           ))

@@ -14,7 +14,7 @@ Widget buildCryptoNews(BuildContext context) {
           itemBuilder: (context, index) {
             //TODO replace container with snapshot data
             return Container(
-              child: Placeholder(),
+              child: const Placeholder(),
             );
           },
           itemCount: 15,
