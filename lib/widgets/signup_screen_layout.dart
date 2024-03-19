@@ -28,12 +28,12 @@ Widget buildSignupScreen(BuildContext context) {
         child: Text(errorMessage.toString(),
             style: const TextStyle(
                 fontSize: 14, color: Colors.red, fontWeight: FontWeight.bold))),
-    signUpButton(context, true, () async {
+    primarySignUpButton(context, true, () async {
       //business logic for login here, import/call as a function
     }),
     const SizedBox(height: 20),
     const Text("Already have an account?"),
-    loginButton(context, false, () {
+    secondaryLoginButton(context, false, () {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
     })
   ]);
