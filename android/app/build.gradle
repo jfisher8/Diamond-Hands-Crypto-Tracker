@@ -6,7 +6,9 @@ plugins {
 
 dependencies {
   implementation platform('com.google.firebase:firebase-bom:32.7.4')
-  //implementation 'com.google.firebase:firebase-analytics'
+  implementation ('com.google.firebase:firebase-analytics')
+  implementation("com.google.firebase:firebase-auth")
+  implementation("com.google.firebase:firebase-firestore")
 }
 
 def localProperties = new Properties()
@@ -26,6 +28,8 @@ def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
+
+apply plugin: 'com.android.application'
 
 android {
     namespace "com.example.diamond_hands_crypto_tracker"
@@ -69,4 +73,3 @@ android {
 flutter {
     source '../..'
 }
-
