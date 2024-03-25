@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 
 class CryptoExchanges extends StatefulWidget {
   const CryptoExchanges({super.key});
@@ -12,14 +14,18 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Crypto Exchanges', style: Theme.of(context).textTheme.titleLarge),
-        elevation: 0.0,
-        actions: const [Icon(Icons.login_rounded, color: Colors.black), Padding(padding: EdgeInsets.fromLTRB(0, 0, 10, 0))],
+      appBar: BuildAppBar(
+        title: const Text('Diamond Hands Crypto Tracker'),
+        appBar: AppBar(),
+        widgets: [
+          IconButton(
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen())),
+              icon: const Icon(Icons.login_rounded, color: Colors.black))
+        ],
       ),
       body: ListView.builder(
-        itemBuilder:(context, index) {
+        itemBuilder: (context, index) {
           return const ListTile(
             title: Text('Test title'),
           );

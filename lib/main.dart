@@ -31,9 +31,6 @@ void main() async {
     home: onboarded == true ? const HomeScreen() : NewUserOnboarding(),
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
-      appBarTheme: const AppBarTheme(
-         backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
-         ),
       textTheme: TextTheme(
         titleSmall: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 16, color: const Color.fromRGBO(56, 182, 255, 1.0),),
         titleMedium: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),

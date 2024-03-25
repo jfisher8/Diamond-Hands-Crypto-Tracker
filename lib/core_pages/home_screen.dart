@@ -1,5 +1,7 @@
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_news_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_prices_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
@@ -16,11 +18,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(56, 182, 255, 1.0),
-        centerTitle: true,
+      appBar: BuildAppBar(
         title: const Text('Diamond Hands Crypto Tracker'),
-        actions: const [Icon(Icons.login_rounded, color: Colors.black), Padding(padding: EdgeInsets.fromLTRB(0, 0, 10, 0))],
+        appBar: AppBar(),
+        widgets: [
+          IconButton(
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen())),
+              icon: const Icon(Icons.login_rounded, color: Colors.black))
+        ],
       ),
       body: SingleChildScrollView(
           child: Column(children: <Widget>[
