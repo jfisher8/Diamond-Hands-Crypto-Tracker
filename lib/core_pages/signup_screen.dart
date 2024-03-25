@@ -1,6 +1,11 @@
+import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
-import 'package:diamond_hands_crypto_tracker/widgets/signup_screen_layout.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/login_signup_widgets.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as developer;
 //import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
 //import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 
@@ -48,7 +53,55 @@ class _SignupScreenState extends State<SignupScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-            child: buildSignupScreen(context),
+            child: Column(children: [
+              Card(
+                  elevation: 30,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(90)),
+                  child: Image.asset('assets/diamond_hands_logo.png',
+                      height: 140, width: 140)),
+              const SizedBox(
+                height: 20,
+              ),
+              const SizedBox(height: 20),
+              emailAddressTextField('Enter Email Address', Icons.email_rounded,
+                  false, emailController),
+              const SizedBox(height: 20),
+              passwordTextField("Enter Password", Icons.lock_rounded, true,
+                  passwordController),
+              const SizedBox(height: 20),
+              Center(
+                  child: Text(errorMessage.toString(),
+                      style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold))),
+              primarySignUpButton(context, true, () async {
+                if (_key.currentState!.validate()) {
+                  try {
+                    await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                            email: emailController.text,
+                            password: passwordController.text)
+                        .then((value) => developer.log('New account created'));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const HomeScreen())));
+                  } on FirebaseAuthException catch (error) {
+                    errorMessage = error.message!;
+                  }
+                }
+              }),
+              const SizedBox(height: 20),
+              const Text("Already have an account?"),
+              secondaryLoginButton(context, false, () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
+              })
+            ]),
           ),
         ),
       ),

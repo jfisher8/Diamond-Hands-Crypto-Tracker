@@ -84,19 +84,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       primaryLoginButton(context, true, () async {
                         if (_key.currentState!.validate()) {
                           try {
-                            emailValidator.checkTextField(emailController.text, emailWord);
-                            SharedPreferences preferences = await SharedPreferences.getInstance();
-                            preferences.setString('emailAddress', emailController.text);
-                            await FirebaseAuth.instance.signInWithEmailAndPassword(
-                              email: emailController.text, password: passwordController.text).then((value) => 
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen())));
-                              developer.log('Logged in successfully');
-                              errorMessage = '';
+                            emailValidator.checkTextField(
+                                emailController.text, emailWord);
+                            SharedPreferences preferences =
+                                await SharedPreferences.getInstance();
+                            preferences.setString(
+                                'emailAddress', emailController.text);
+                            await FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text)
+                                .then((value) => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomeScreen())));
+                            developer.log('Logged in successfully');
+                            errorMessage = '';
+                          } on FirebaseAuthException catch (error) {
+                            errorMessage = error.message!.toString();
                           }
-                          on FirebaseAuthException catch (error) {
-                            //firebase error catch here
-                          }
-                          
                         }
                       }),
                       const SizedBox(height: 20),
