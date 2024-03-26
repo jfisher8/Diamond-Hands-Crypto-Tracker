@@ -84,18 +84,19 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
               }),
               const SizedBox(height: 20),
               TextButton(
+                // style: TextButton.styleFrom(
+                //       foregroundColor: Colors.black,
                   onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: ((context) => const HomeScreen()))),
-                  child: Text(
+                  child: const Text(
                     'Skip and continue to app',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  )),
-            ]),
+                    )
+                  )]),
+            ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
