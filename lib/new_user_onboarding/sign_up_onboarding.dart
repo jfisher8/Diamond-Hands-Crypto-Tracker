@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
-import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/login_signup_widgets.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,7 +37,6 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
         appBar: AppBar(),
         widgets: const [],
       ),
-      drawer: const NavigationMenu(),
       body: Form(
         key: _key,
         child: SingleChildScrollView(
@@ -92,7 +90,7 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
                           builder: ((context) => const HomeScreen()))),
                   child: Text(
                     'Skip and continue to app',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   )),
             ]),
           ),

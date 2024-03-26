@@ -28,7 +28,7 @@ void main() async {
 
   runApp(MaterialApp(
     //home page of the app is determined by if onboarded bool equals true
-    home: onboarded == true ? const HomeScreen() : NewUserOnboarding(),
+    home: onboarded == true ? NewUserOnboarding() : const HomeScreen(), //swap the screen routing after testing
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       textTheme: TextTheme(
@@ -36,7 +36,7 @@ void main() async {
         titleMedium: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
         titleLarge: GoogleFonts.anton(fontSize: 20, color: Colors.black),
         bodySmall: GoogleFonts.mavenPro(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
-        bodyMedium: GoogleFonts.mavenPro(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+        bodyMedium: GoogleFonts.mavenPro(fontSize: 14, fontWeight: FontWeight.bold, color: const Color.fromRGBO(56, 182, 255, 1.0)),
         bodyLarge: GoogleFonts.mavenPro(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
       )
       )
