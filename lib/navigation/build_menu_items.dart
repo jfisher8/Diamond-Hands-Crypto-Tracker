@@ -46,7 +46,7 @@ Widget buildMenuItems(BuildContext context) {
         ),
         const Divider(color: Colors.black),
         ListTile(
-          leading: const Icon(Icons.login_rounded),
+          leading: const Icon(Icons.login_rounded, color: Colors.black),
           title: const Text('Login'),
           onTap: () {
             Navigator.push(context,

@@ -5,6 +5,7 @@ import 'package:diamond_hands_crypto_tracker/widgets/login_signup_widgets.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/signup_screen.dart';
 import 'dart:developer' as developer;
+import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 import 'package:flutter/material.dart';
@@ -45,12 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text('Account Login',
-              style: Theme.of(context).textTheme.titleLarge),
-          elevation: 0.0,
-          centerTitle: true,
+        appBar: BuildAppBar(
+          title: const Text('Account Login'),
+          appBar: AppBar(),
+          widgets: const [],
         ),
         drawer: const NavigationMenu(),
         body: Form(
