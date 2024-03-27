@@ -33,7 +33,8 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account Signup', style: Theme.of(context).textTheme.titleLarge),
+        title: Text('Account Signup',
+            style: Theme.of(context).textTheme.titleLarge),
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(56, 182, 255, 1.0),
         automaticallyImplyLeading: false,
@@ -93,7 +94,7 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
                         builder: ((context) => const HomeScreen()))),
                 style: TextButton.styleFrom(
                     foregroundColor: const Color.fromRGBO(56, 182, 255, 1.0)),
-                    child: const Text('Skip and continue to app'),
+                child: const Text('Skip and continue to app'),
               )
             ]),
           ),
