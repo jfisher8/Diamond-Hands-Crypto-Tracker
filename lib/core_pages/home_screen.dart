@@ -5,7 +5,6 @@ import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_news_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_prices_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
-import 'package:diamond_hands_crypto_tracker/main.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

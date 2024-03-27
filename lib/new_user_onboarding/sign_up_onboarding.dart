@@ -1,12 +1,12 @@
+// import 'package:diamond_hands_crypto_tracker/login_validation/text_field_valdiation.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/login_signup_widgets.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'dart:developer' as developer;
-//import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
-//import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
+// import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpOnboardingScreen extends StatefulWidget {
   const SignUpOnboardingScreen({super.key});
@@ -18,9 +18,10 @@ class SignUpOnboardingScreen extends StatefulWidget {
 class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  //final emailValidator = validateEmail();
+  //final emailValidator = TextfieldValidation();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   String errorMessage = "";
+  String emailWord = 'email';
 
   @override
   void dispose() {
@@ -70,6 +71,8 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
               primarySignUpButton(context, true, () async {
                 if (_key.currentState!.validate()) {
                   try {
+                    SharedPreferences preferences = await SharedPreferences.getInstance();
+                    preferences.setString('emailAddress', emailController.text);
                     await FirebaseAuth.instance
                         .createUserWithEmailAndPassword(
                             email: emailController.text,
@@ -86,8 +89,6 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
               }),
               const SizedBox(height: 20),
               TextButton(
-                // style: TextButton.styleFrom(
-                //       foregroundColor: Colors.black,
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
