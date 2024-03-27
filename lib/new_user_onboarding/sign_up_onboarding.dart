@@ -32,10 +32,11 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildAppBar(
-        title: const Text('Account Signup'),
-        appBar: AppBar(),
-        widgets: const [],
+      appBar: AppBar(
+        title: Text('Account Signup', style: Theme.of(context).textTheme.titleLarge),
+        centerTitle: true,
+        backgroundColor: const Color.fromRGBO(56, 182, 255, 1.0),
+        automaticallyImplyLeading: false,
       ),
       body: Form(
         key: _key,

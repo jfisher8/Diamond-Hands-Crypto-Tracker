@@ -25,9 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const LoginScreen())),
-              icon: const Icon(Icons.login_rounded, color: Colors.black))
+              icon: const Icon(Icons.login_rounded, color: Colors.black)),
         ],
       ),
+      drawer: const NavigationMenu(),
       body: SingleChildScrollView(
           child: Column(children: <Widget>[
         Padding(
@@ -75,7 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         buildCryptoNews(context),
       ])),
-      drawer: const NavigationMenu(),
     );
   }
 }
