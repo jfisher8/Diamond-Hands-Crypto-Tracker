@@ -6,6 +6,8 @@ import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_news_c
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_prices_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,10 +24,30 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Diamond Hands Crypto Tracker'),
         appBar: AppBar(),
         widgets: [
-          IconButton(
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen())),
-              icon: const Icon(Icons.login_rounded, color: Colors.black)),
+          FirebaseAuth.instance.currentUser != null
+              ? IconButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut().then((value) async {
+                      SharedPreferences preferences =
+                          await SharedPreferences.getInstance();
+                      preferences.remove('emailAddress');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()),
+                      );
+                    });
+                  },
+                  icon: const Icon(Icons.logout_rounded, color: Colors.black))
+              : IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
+                    );
+                  },
+                  icon: const Icon(Icons.login_rounded, color: Colors.black)),
         ],
       ),
       drawer: const NavigationMenu(),
