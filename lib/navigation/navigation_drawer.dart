@@ -18,23 +18,19 @@ class _NavigationMenuState extends State<NavigationMenu> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          SizedBox(
-              height: 200,
-              child: Column(
-                children: <Widget>[
-                  const SizedBox(height: 50),
-                  Card(
-                    elevation: 30,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(90)),
-                    child: Image.asset(
-                      'assets/diamond_hands_logo.png',
-                      height: 115,
-                      width: 115,
-                    ),
-                  ),
-                ],
-              )),
+          Column(children: [
+            const SizedBox(height: 50),
+              Card(
+                elevation: 30,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(90)),
+                child: Image.asset(
+                  'assets/diamond_hands_logo.png',
+                  height: 115,
+                  width: 115,
+                ),
+              ),
+          ]),
           buildMenuItems(context)
         ],
       ),
