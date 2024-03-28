@@ -79,6 +79,7 @@ flutter:
     - assets/material_newspaper_black.png
     - assets/material_upwards_trend_arrow_black.png
     - assets/noNetworkConnection.png
+    - lib/.env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

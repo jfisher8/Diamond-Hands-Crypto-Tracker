@@ -4,20 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:developer' as developer;
 
 bool onboarded = true;
 
-void main() async {
+Future<void> main() async {
+  await dotenv.load(fileName: "lib/.env");
+  String firebaseKey = dotenv.env['FIREBASE_KEY'] as String;
+  String appId = dotenv.env['APP_ID'] as String;
+  String messagingSenderId = dotenv.env['MESSAGING_SENDER_ID'] as String;
+  String projectId = dotenv.env['PROJECT_ID'] as String;
   WidgetsFlutterBinding.ensureInitialized();
-  // await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(
-        options: const FirebaseOptions(  
-          apiKey: "AIzaSyABkZc2EC8iY2vshGnv2U_NSYwz6-o-XrE",
-          appId: "1:319458704280:android:6954fb2edb0cb9f06609ed",
-          messagingSenderId: "319458704280",
-          projectId: "diamond-hands-crypto-tracker"
+        options: FirebaseOptions(  
+          apiKey: firebaseKey,
+          appId: appId,
+          messagingSenderId: messagingSenderId,
+          projectId: projectId
   ));
   SharedPreferences preferences = await SharedPreferences.getInstance(); //gets an instance of Local storage
   String? email = preferences.getString('emailAddress');
