@@ -15,3 +15,5 @@ class Exchanges {
     image = json['image'];
   }
 }
+
+List<Exchanges> exchangesList = [];
