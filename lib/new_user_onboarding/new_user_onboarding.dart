@@ -9,6 +9,7 @@ import 'dart:developer' as developer;
 
 class NewUserOnboarding extends StatelessWidget {
   NewUserOnboarding({super.key});
+  
 
   final List<PageViewModel> onboardingScreens = [
     PageViewModel(

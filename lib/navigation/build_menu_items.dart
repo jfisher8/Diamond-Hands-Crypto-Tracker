@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:developer' as developer;
 
 Widget buildMenuItems(BuildContext context) {
-  //bool darkModeEnabled = false;
+  
   final String? currentEmail = FirebaseAuth.instance.currentUser?.email;
   return Container(
     padding: const EdgeInsets.all(24),
@@ -17,22 +17,20 @@ Widget buildMenuItems(BuildContext context) {
       runSpacing: 20,
       children: [
         SizedBox(
-          height: 90,
-          width: MediaQuery.of(context).size.width,
-          child: ListView(
-            children: [
+            height: 90,
+            width: MediaQuery.of(context).size.width,
+            child: ListView(
+              children: [
                 Column(
                   children: [
-                    currentEmail !=null ? Text('Logged in as ' '$currentEmail') : const Text('Welcome to the app', textAlign: TextAlign.center),
-                    // TextButton(onPressed:() {
-                      
-                    // }, child: darkModeEnabled == true ? const Text('Turn off Dark Mode') : const Text('Turn on Dark Mode'),
-                    // )
+                    currentEmail != null
+                        ? Text('Logged in as ' '$currentEmail')
+                        : const Text('Welcome to the app',
+                            textAlign: TextAlign.center),
                   ],
                 ),
-            ],
-          )
-          ),
+              ],
+            )),
         const Divider(color: Colors.black),
         ListTile(
           leading: const Icon(Icons.home),

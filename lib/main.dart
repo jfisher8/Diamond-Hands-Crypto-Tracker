@@ -1,11 +1,13 @@
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/new_user_onboarding/new_user_onboarding.dart';
+import 'package:diamond_hands_crypto_tracker/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:developer' as developer;
+import 'package:provider/provider.dart';
 
 bool onboarded = true;
 
@@ -32,20 +34,25 @@ Future<void> main() async {
   developer.log('Last logged in session: ' "$email");
   developer.log('Should onboarding be shown? ' "$showOnboarding");
 
-  runApp(MaterialApp(
-    //home page of the app is determined by if onboarded bool equals true
-    home: onboarded == true ? NewUserOnboarding() : const HomeScreen(), //swap the screen routing after testing
-    debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      textTheme: TextTheme(
-        titleSmall: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 16, color: const Color.fromRGBO(56, 182, 255, 1.0),),
-        titleMedium: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
-        titleLarge: GoogleFonts.anton(fontSize: 20, color: Colors.black),
-        bodySmall: GoogleFonts.mavenPro(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
-        bodyMedium: GoogleFonts.mavenPro(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
-        bodyLarge: GoogleFonts.mavenPro(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-      )
-      )
-    ),
-  );
+  runApp(ChangeNotifierProvider(create: (context) => ThemeProvider(),
+    child: const MainApp(
+    )));
+}
+
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: onboarded == true ? NewUserOnboarding() : const HomeScreen(),
+      theme: Provider.of<ThemeProvider>(context).themeData,
+    );
+  }
 }

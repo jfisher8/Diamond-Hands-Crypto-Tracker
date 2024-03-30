@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: BuildAppBar(
         title: const Text('Diamond Hands Crypto Tracker'),
         appBar: AppBar(),
