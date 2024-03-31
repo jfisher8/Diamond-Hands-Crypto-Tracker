@@ -31,7 +31,7 @@ Widget buildMenuItems(BuildContext context) {
                 ),
               ],
             )),
-        const Divider(color: Colors.black),
+        const Divider(),
         ListTile(
           leading: const Icon(Icons.home),
           title: const Text('Home'),
@@ -70,11 +70,11 @@ Widget buildMenuItems(BuildContext context) {
                     builder: (context) => const CryptoExchanges()));
           },
         ),
-        const Divider(color: Colors.black),
+        const Divider(),
         currentEmail != null
             ? //if someone's LOGGED IN
             ListTile(
-                leading: const Icon(Icons.logout_rounded, color: Colors.black),
+                leading: const Icon(Icons.logout_rounded),
                 title: const Text('Logout'),
                 onTap: () {
                   FirebaseAuth.instance.signOut().then((value) async {
@@ -91,7 +91,7 @@ Widget buildMenuItems(BuildContext context) {
               )
             : //if nobody is logged in, show default list tile
             ListTile(
-                leading: const Icon(Icons.login_rounded, color: Colors.black),
+                leading: const Icon(Icons.login_rounded),
                 title: const Text('Login'),
                 onTap: () {
                   Navigator.push(

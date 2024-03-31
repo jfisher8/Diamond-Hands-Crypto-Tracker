@@ -24,7 +24,7 @@ ThemeData darkMode = ThemeData(
     titleLarge: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.grey[350]),
     bodySmall: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.grey[350]),
     bodyMedium: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.grey[350]),
-    bodyLarge: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.grey[350]),
+    bodyLarge: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
   ),
   colorScheme: ColorScheme.dark(
     background: Colors.grey.shade900
