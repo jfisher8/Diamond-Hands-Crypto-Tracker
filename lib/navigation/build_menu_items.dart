@@ -17,7 +17,7 @@ Widget buildMenuItems(BuildContext context) {
       runSpacing: 20,
       children: [
         SizedBox(
-            height: 90,
+            height: 20,
             width: MediaQuery.of(context).size.width,
             child: ListView(
               children: [
@@ -30,7 +30,8 @@ Widget buildMenuItems(BuildContext context) {
                   ],
                 ),
               ],
-            )),
+            )
+          ),
         const Divider(),
         ListTile(
           leading: const Icon(Icons.home),
