@@ -39,8 +39,8 @@ class _NavigationMenuState extends State<NavigationMenu> {
                       });
                     },
                     icon: isToggled == true
-                        ? const Icon(Icons.dark_mode_rounded)
-                        : const Icon(Icons.light_mode_rounded)),
+                        ? const Icon(Icons.light_mode_rounded)
+                        : const Icon(Icons.dark_mode_rounded)),
               ],
             ),
             //SizedBox(height: 50),
