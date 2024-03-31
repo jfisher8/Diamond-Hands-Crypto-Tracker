@@ -3,7 +3,6 @@ import 'package:diamond_hands_crypto_tracker/new_user_onboarding/new_user_onboar
 import 'package:diamond_hands_crypto_tracker/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-//import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:developer' as developer;
