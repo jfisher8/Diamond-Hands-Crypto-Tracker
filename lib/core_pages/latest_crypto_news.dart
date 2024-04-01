@@ -19,7 +19,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildAppBar(
-        title: const Text('Diamond Hands Crypto Tracker'),
+        title: const Text('Latest Crypto News'),
         appBar: AppBar(),
         widgets: [
           FirebaseAuth.instance.currentUser != null

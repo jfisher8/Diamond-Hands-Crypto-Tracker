@@ -19,7 +19,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildAppBar(
-        title: const Text('Diamond Hands Crypto Tracker'),
+        title: const Text('Crypto Exchanges'),
         appBar: AppBar(),
         widgets: [
           FirebaseAuth.instance.currentUser != null
