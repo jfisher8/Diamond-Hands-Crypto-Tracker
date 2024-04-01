@@ -5,6 +5,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/exchanges_card_widget.dart';
 
 class CryptoExchanges extends StatefulWidget {
   const CryptoExchanges({super.key});
@@ -49,9 +50,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return const ListTile(
-            title: Text('Test title'),
-          );
+          return ExchangesCard(name: 'test', yearEstablished: '2000', url: 'google.com', image: 'image');
           //business logic here once API is added
         },
         itemCount: 20,

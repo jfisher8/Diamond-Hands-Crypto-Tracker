@@ -19,6 +19,9 @@ class ExchangesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Padding(padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
+    child: Card(
+      child: ListTile(),
+    ));
   }
 }
