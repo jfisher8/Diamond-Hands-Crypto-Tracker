@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 //TODO add url launcher package if needed
 
 class ExchangesCard extends StatelessWidget {
-  ExchangesCard(
+  const ExchangesCard(
       {super.key,
       required this.name,
       required this.yearEstablished,
       required this.url,
       required this.image});
 
-  String name;
-  String yearEstablished;
-  String url;
-  String image;
+  final String name;
+  final String yearEstablished;
+  final String url;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
