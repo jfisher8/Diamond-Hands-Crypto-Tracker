@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 
 TextFormField emailAddressTextField(String text, IconData icon,
     bool isPasswordType, TextEditingController controller) {
   return TextFormField(
       key: const Key("emailAddress"),
       controller: controller,
-      //validator: validateEmail, <-- TODO: uncomment when the email validation function is written
+      validator: validateEmail,
       obscureText: isPasswordType,
       cursorColor: Colors.black,
       style: const TextStyle(color: Colors.black, fontSize: 14),

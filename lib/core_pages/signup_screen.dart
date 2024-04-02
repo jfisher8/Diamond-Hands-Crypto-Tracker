@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'dart:developer' as developer;
 //import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
-// import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
+import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -79,6 +79,7 @@ class _SignupScreenState extends State<SignupScreen> {
               primarySignUpButton(context, true, () async {
                 if (_key.currentState!.validate()) {
                   try {
+                    validateEmail(emailController.text);
                     await FirebaseAuth.instance
                         .createUserWithEmailAndPassword(
                             email: emailController.text,

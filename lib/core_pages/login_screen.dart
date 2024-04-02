@@ -7,12 +7,9 @@ import 'package:diamond_hands_crypto_tracker/core_pages/signup_screen.dart';
 import 'dart:developer' as developer;
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 import 'package:flutter/material.dart';
+import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-//import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
-//import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -83,8 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       primaryLoginButton(context, true, () async {
                         if (_key.currentState!.validate()) {
                           try {
-                            emailValidator.checkTextField(
-                                emailController.text, emailWord);
+                            validateEmail(emailController.text);
                             SharedPreferences preferences =
                                 await SharedPreferences.getInstance();
                             preferences.setString(
