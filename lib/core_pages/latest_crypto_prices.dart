@@ -29,12 +29,12 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                         SharedPreferences preferences =
                             await SharedPreferences.getInstance();
                         preferences.remove('emailAddress');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomeScreen()),
-                        );
                       });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()),
+                      );
                     },
                     icon: const Icon(Icons.logout_rounded, color: Colors.black))
                 : IconButton(

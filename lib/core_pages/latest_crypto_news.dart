@@ -29,12 +29,12 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                       SharedPreferences preferences =
                           await SharedPreferences.getInstance();
                       preferences.remove('emailAddress');
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()),
-                      );
                     });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
+                    );
                   },
                   icon: const Icon(Icons.logout_rounded, color: Colors.black))
               : IconButton(

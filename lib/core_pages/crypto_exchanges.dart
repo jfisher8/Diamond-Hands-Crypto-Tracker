@@ -29,12 +29,12 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                       SharedPreferences preferences =
                           await SharedPreferences.getInstance();
                       preferences.remove('emailAddress');
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()),
-                      );
                     });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
+                    );
                   },
                   icon: const Icon(Icons.logout_rounded, color: Colors.black))
               : IconButton(
@@ -50,11 +50,14 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return ExchangesCard(name: 'test', yearEstablished: '2000', url: 'google.com', image: 'image');
+          return ExchangesCard(
+              name: 'test',
+              yearEstablished: '2000',
+              url: 'google.com',
+              image: 'image');
           //business logic here once API is added
         },
         itemCount: 20,
-        //TODO: return exchangesCard widget here once it
       ),
       drawer: const NavigationMenu(),
     );
