@@ -9,6 +9,7 @@ import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
+import 'package:diamond_hands_crypto_tracker/login_validation/password_validation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -81,6 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (_key.currentState!.validate()) {
                           try {
                             validateEmail(emailController.text);
+                            validatePassword(passwordController.text);
                             SharedPreferences preferences =
                                 await SharedPreferences.getInstance();
                             preferences.setString(
