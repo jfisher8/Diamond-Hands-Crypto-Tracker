@@ -27,8 +27,6 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  //String emailWord = "email";
-  // final emailValidator = validateEmail(emailController.text);
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   String errorMessage = "";
 
@@ -80,9 +78,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 if (_key.currentState!.validate()) {
                   try {
                     validateEmail(emailController.text);
-                    developer.log('validate email triggered');
                     validatePassword(passwordController.text);
-                    developer.log('validate password');
                     await FirebaseAuth.instance
                         .createUserWithEmailAndPassword(
                             email: emailController.text,
