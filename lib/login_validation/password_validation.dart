@@ -1,6 +1,6 @@
-String? validatePassword (String? formEmail) {
-  if (formEmail == null) {
-    return 'Pasdword field cannot be empty';
+String? validatePassword (String? formPassword) {
+  if (formPassword == null) {
+    return 'Password cannot be empty';
   }
   return null;
 }
