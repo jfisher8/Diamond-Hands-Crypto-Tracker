@@ -35,7 +35,7 @@ dependencies:
   flutter_signin_button: ^2.0.0
   google_fonts: ^4.0.3
   google_sign_in: ^5.4.3
-  http: ^0.13.5
+  http: ^1.2.1
   introduction_screen: ^3.1.4
   shared_preferences: ^2.0.16
   url_launcher: ^6.1.7
