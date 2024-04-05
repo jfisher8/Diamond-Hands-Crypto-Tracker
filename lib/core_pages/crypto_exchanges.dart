@@ -3,7 +3,6 @@ import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/exchanges_card_widget.dart';
 
