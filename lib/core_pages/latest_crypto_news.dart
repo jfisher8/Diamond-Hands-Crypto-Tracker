@@ -4,8 +4,7 @@ import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'dart:developer' as developer;
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart';
@@ -38,18 +37,13 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
           FirebaseAuth.instance.currentUser != null
               ? IconButton(
                   onPressed: () {
-                    FirebaseAuth.instance.signOut().then((value) async {
-                      SharedPreferences preferences =
-                          await SharedPreferences.getInstance();
-                      preferences.remove('emailAddress');
-                    });
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
+                          builder: (context) => const FavouritesScreen()),
                     );
                   },
-                  icon: const Icon(Icons.logout_rounded, color: Colors.black))
+                  icon: const Icon(Icons.bookmark_rounded, color: Colors.black))
               : IconButton(
                   onPressed: () {
                     Navigator.push(

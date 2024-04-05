@@ -4,8 +4,7 @@ import 'package:diamond_hands_crypto_tracker/widgets/coin_card_widget.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 
 class LatestCryptoPrices extends StatefulWidget {
   const LatestCryptoPrices({super.key});
@@ -24,19 +23,14 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
           widgets: [
             FirebaseAuth.instance.currentUser != null
                 ? IconButton(
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut().then((value) async {
-                        SharedPreferences preferences =
-                            await SharedPreferences.getInstance();
-                        preferences.remove('emailAddress');
-                      });
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()),
-                      );
-                    },
-                    icon: const Icon(Icons.logout_rounded, color: Colors.black))
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FavouritesScreen()),
+                    );
+                  },
+                  icon: const Icon(Icons.bookmark_rounded, color: Colors.black))
                 : IconButton(
                     onPressed: () {
                       Navigator.push(

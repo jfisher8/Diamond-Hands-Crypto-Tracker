@@ -9,7 +9,7 @@ Future<List<Article>> getArticleData () async {
   String newsAPIKey = dotenv.env['NEWS_API_KEY'] as String;
 
   final URL = 'https://newsapi.org/2/everything?q=cryptocurrency&apiKey=$newsAPIKey';
-  var response = await http.get(Uri.parse(URL));
+  var response = await http.get((Uri.parse(URL)));
   if (response.statusCode == 200) {
     Map<String, dynamic> json = jsonDecode(response.body);
 
