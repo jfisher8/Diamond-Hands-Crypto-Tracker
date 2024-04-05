@@ -76,37 +76,43 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                   )),
               style: Theme.of(context).textTheme.bodySmall,
             )),
-            Expanded(
-            child: FutureBuilder(
+        Expanded(
+          child: FutureBuilder(
               future: futureArticle,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.hasData) {
-                  List<Article> articles = snapshot.data!;
-                  developer.log(snapshot.data);
-                  return ListView.builder(
-                      itemCount: articles.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return articles[index]
-                                .source
-                                .name
-                                .contains(searchString)
-                            ? newsListTile(articles[index], context)
-                            : Container();
-                      });
-                }
-                if (snapshot.hasError) {
-                    developer.log('snapshot has an error');
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasData) {
+                    List<Article> articles = snapshot.data;
+                    developer.log(snapshot.data);
+                    return ListView.builder(
+                        itemCount: articles.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return articles[index]
+                                  .source
+                                  .name
+                                  .contains(searchString)
+                              ? newsListTile(articles[index], context)
+                              : Container();
+                        });
                   }
-                else {
+                  if (snapshot.data == null) {
+                    developer.log('no data in snapshot');
+                    developer.log(snapshot.error.toString());
+                    const Center(child: CircularProgressIndicator());
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                }
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: Text('snapshot connection still waiting'),
                 );
-              };
-              return const Center(child: CircularProgressIndicator());
-              }
-            ),
-      )]),
+              }),
+        )
+      ]),
     );
   }
 }
