@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
+import 'package:intl/intl.dart';
 
 Widget newsListTile(Article article, BuildContext context) {
   return Padding(
