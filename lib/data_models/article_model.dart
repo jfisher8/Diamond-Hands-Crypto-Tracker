@@ -2,11 +2,11 @@ import 'source_model.dart';
 
 class Article {
   Source source;
-  String author;
+  String? author;
   String title;
   String url;
-  String imageURL;
-  String publishedAt;
+  String? imageURL;
+  String? publishedAt;
 
   Article(
       {required this.source,
@@ -14,7 +14,8 @@ class Article {
       required this.title,
       required this.url,
       required this.imageURL,
-      required this.publishedAt});
+      required this.publishedAt
+      });
 
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
@@ -23,6 +24,7 @@ class Article {
         title: json['title'],
         url: json['url'],
         imageURL: json['urlToImage'],
-        publishedAt: json['publishedAt']);
+        publishedAt: json['publishedAt']
+      );
   }
 }

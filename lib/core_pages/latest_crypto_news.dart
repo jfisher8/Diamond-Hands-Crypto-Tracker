@@ -77,7 +77,6 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
                     List<Article> articles = snapshot.data;
-                    developer.log(snapshot.data);
                     return ListView.builder(
                         itemCount: articles.length,
                         shrinkWrap: true,
@@ -94,7 +93,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                     developer.log('no data in snapshot');
                     developer.log(snapshot.error.toString());
                     const Center(child: CircularProgressIndicator());
-                  } else {
+                  } 
+                  else {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
