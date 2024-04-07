@@ -88,22 +88,40 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                               ? newsListTile(articles[index], context)
                               : Container();
                         });
-                  }
-                  if (snapshot.data == null) {
+                  } else if (snapshot.hasError || snapshot.data == null) {
                     developer.log('no data in snapshot');
                     developer.log(snapshot.error.toString());
-                    const Center(child: CircularProgressIndicator());
-                  } 
-                  else {
+                    const Center(
+                        child: Column(
+                      children: [
+                        SizedBox(height: 40),
+                        CircularProgressIndicator(),
+                        SizedBox(height: 40),
+                        Text('Error loading News.'),
+                        Text('Please refresh and try again later.')
+                      ],
+                    ));
+                  } else {
                     return const Center(
-                      child: CircularProgressIndicator(),
-                    );
+                        child: Column(
+                      children: [
+                        SizedBox(height: 40),
+                        CircularProgressIndicator(),
+                        SizedBox(height: 40),
+                        Text('Loading news...')
+                      ],
+                    ));
                   }
-                  return const Center(child: CircularProgressIndicator());
                 }
                 return const Center(
-                  child: Text('snapshot connection still waiting'),
-                );
+                    child: Column(
+                  children: [
+                    SizedBox(height: 40),
+                    CircularProgressIndicator(),
+                    SizedBox(height: 40),
+                    Text('Loading News...'),
+                  ],
+                ));
               }),
         )
       ]),
