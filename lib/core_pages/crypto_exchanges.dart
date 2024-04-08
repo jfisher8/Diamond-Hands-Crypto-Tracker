@@ -1,3 +1,5 @@
+import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
+import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
@@ -42,18 +44,18 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                   icon: const Icon(Icons.login_rounded, color: Colors.black)),
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return ExchangesCard(
-              name: 'test',
-              yearEstablished: '2000',
-              url: 'google.com',
-              image: 'image');
-          //business logic here once API is added
-        },
-        itemCount: 20,
-      ),
       drawer: const NavigationMenu(),
-    );
+      body: ListView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: exchangesList.length,
+          itemBuilder: (context, index) {
+            return ExchangesCard(
+              name: exchangesList[index].name.toString(),
+              yearEstablished: exchangesList[index].yearEstablished.toString(),
+              url: exchangesList[index].url.toString(),
+              image: exchangesList[index].image.toString(),
+            );
+          },
+        ));
   }
 }

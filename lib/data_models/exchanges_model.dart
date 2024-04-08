@@ -1,6 +1,6 @@
 class Exchanges {
   late String name;
-  late int yearEstablished;
+  late int? yearEstablished;
   late String url;
   late String image;
 
