@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 
 Widget newsListTile(Article article, BuildContext context) {
@@ -34,8 +35,10 @@ Widget newsListTile(Article article, BuildContext context) {
                         Text(article.publishedAt.toString(),
                             style: Theme.of(context).textTheme.bodySmall)
                       ]),
-                  trailing: const Icon(Icons.arrow_forward_rounded),
-                  onTap: () {},
+                  trailing: const Icon(Icons.open_in_new_rounded),
+                  onTap: () {
+                    launchUrl(Uri.parse(article.url)); //add url launcher here
+                  },
                 )
               ],
             ))
