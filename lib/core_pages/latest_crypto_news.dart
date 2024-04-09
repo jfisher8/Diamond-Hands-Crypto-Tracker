@@ -62,7 +62,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
-                labelText: 'Search articles...', labelStyle: Theme.of(context).textTheme.bodyLarge,
+                labelText: 'Search articles by publisher...', labelStyle: Theme.of(context).textTheme.bodyMedium,
                   enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue),
                   ),
@@ -70,6 +70,11 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                     borderSide: BorderSide(color: Colors.blue, width: 2),
                   )),
               style: Theme.of(context).textTheme.bodySmall,
+              onChanged: (value) {
+                setState(() {
+                  searchString = value;
+                });
+              },
             )),
         Expanded(
           child: FutureBuilder(
@@ -83,8 +88,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return articles[index]
-                                  .source
-                                  .name
+                                  .source.name.toLowerCase()
                                   .contains(searchString)
                               ? newsListTile(articles[index], context)
                               : Container();
