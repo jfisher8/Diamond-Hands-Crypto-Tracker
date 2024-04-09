@@ -1,4 +1,3 @@
-import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';

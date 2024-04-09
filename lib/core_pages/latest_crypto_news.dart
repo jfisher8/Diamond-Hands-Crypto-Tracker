@@ -62,6 +62,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
             child: TextField(
               controller: searchController,
               decoration: const InputDecoration(
+                labelText: 'Search articles...',
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue),
                   ),
