@@ -61,12 +61,12 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
             padding: const EdgeInsets.all(5),
             child: TextField(
               controller: searchController,
-              decoration: const InputDecoration(
-                labelText: 'Search articles...',
-                  enabledBorder: OutlineInputBorder(
+              decoration: InputDecoration(
+                labelText: 'Search articles...', labelStyle: Theme.of(context).textTheme.bodyLarge,
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue, width: 2),
                   )),
               style: Theme.of(context).textTheme.bodySmall,
