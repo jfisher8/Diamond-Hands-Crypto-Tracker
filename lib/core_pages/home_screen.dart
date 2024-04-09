@@ -5,6 +5,8 @@ import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_news_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_prices_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
+import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
+import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
@@ -17,6 +19,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late Future<List<Article>> futureArticle;
+
+  void initState() {
+    futureArticle = getArticleData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,8 +100,51 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        buildCryptoNews(context),
-      ])),
-    );
+        Column(children: [
+      FutureBuilder<List<Article>>(
+        future: futureArticle,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.data == null || snapshot.hasError) {
+            return Column(
+              children: [
+                CircularProgressIndicator(),
+                Center(child: Text('Error loading News...'))
+              ],
+            );
+          } else {
+            return Padding(padding: EdgeInsets.all(10),
+            child: InkWell(
+              child: SizedBox(
+                height: 320,
+                child: ListView.separated(
+                  separatorBuilder: (context, index) => const SizedBox(width: 10),
+                  itemCount: snapshot.data.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                      width: 200,
+                      height: 100,
+                      child: Column(children: [
+                        const SizedBox(height: 5),
+                        Expanded(child: Card(
+                          child: ListTile(onTap: () {
+                            //logic here for ontap
+                          },
+                          title: Text(snapshot.data[index].title.toString()),
+                          subtitle: Text(snapshot.data[index].source.name),
+                          ),
+                        ))
+                      ],),
+                    );
+                  },
+                  ),
+              ),
+            ));
+          }
+        }
+        ),
+      ]),
+          ])));
   }
 }
