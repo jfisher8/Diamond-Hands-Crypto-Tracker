@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     return SizedBox(
                       width: 200,
-                      height: 100,
+                      height: 150,
                       child: Column(children: [
                         const SizedBox(height: 5),
                         Expanded(child: Card(
