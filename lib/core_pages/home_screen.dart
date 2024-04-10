@@ -133,20 +133,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         const SizedBox(height: 5),
                                         Card(
-                                            child: ListTile(
-                                            onTap: () {
-                                              //logic here for ontap
-                                            },
-                                            trailing: IconButton(onPressed:() {
-                                              //logic here
-                                            }, icon: const Icon(Icons.open_in_new_outlined)),
+                                          child: ListTile(
+                                            trailing: IconButton(
+                                                onPressed: () {
+                                                  //logic here
+                                                },
+                                                icon: const Icon(Icons
+                                                    .open_in_new_outlined)),
                                             title: Text(snapshot
                                                 .data[index].title
                                                 .toString()),
                                             subtitle: Text(snapshot
                                                 .data[index].source.name),
                                           ),
-                                    )],
+                                        )
+                                      ],
                                     ),
                                   );
                                 },
