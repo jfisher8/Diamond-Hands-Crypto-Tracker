@@ -28,123 +28,137 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: BuildAppBar(
-        title: const Text('Diamond Hands Crypto Tracker'),
-        appBar: AppBar(),
-        widgets: [
-          FirebaseAuth.instance.currentUser != null
-              ? IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FavouritesScreen()),
-                    );
-                  },
-                  icon: const Icon(Icons.bookmark_rounded, color: Colors.black))
-              : IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginScreen()),
-                    );
-                  },
-                  icon: const Icon(Icons.login_rounded, color: Colors.black)),
-        ],
-      ),
-      drawer: const NavigationMenu(),
-      body: SingleChildScrollView(
-          child: Column(children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Latest Crypto Prices",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: BuildAppBar(
+          title: const Text('Diamond Hands Crypto Tracker'),
+          appBar: AppBar(),
+          widgets: [
+            FirebaseAuth.instance.currentUser != null
+                ? IconButton(
+                    onPressed: () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const LatestCryptoPrices()));
-                  },
-                  child: Text(
-                    "View more",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ))
-            ],
-          ),
-        ),
-        buildCryptoPrices(context),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text("Latest Crypto News",
-                  style: Theme.of(context).textTheme.titleMedium),
-              TextButton(
-                  onPressed: (() {
-                    Navigator.push(
+                            builder: (context) => const FavouritesScreen()),
+                      );
+                    },
+                    icon:
+                        const Icon(Icons.bookmark_rounded, color: Colors.black))
+                : IconButton(
+                    onPressed: () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const LatestCryptoNews())));
-                  }),
-                  child: Text("View more",
-                      style: Theme.of(context).textTheme.titleSmall)),
-            ],
-          ),
+                            builder: (context) => const LoginScreen()),
+                      );
+                    },
+                    icon: const Icon(Icons.login_rounded, color: Colors.black)),
+          ],
         ),
-        Column(children: [
-      FutureBuilder<List<Article>>(
-        future: futureArticle,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.data == null || snapshot.hasError) {
-            return Column(
-              children: [
-                CircularProgressIndicator(),
-                Center(child: Text('Error loading News...'))
+        drawer: const NavigationMenu(),
+        body: SingleChildScrollView(
+            child: Column(children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  "Latest Crypto Prices",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const LatestCryptoPrices()));
+                    },
+                    child: Text(
+                      "View more",
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ))
               ],
-            );
-          } else {
-            return Padding(padding: EdgeInsets.all(10),
-            child: InkWell(
-              child: SizedBox(
-                height: 320,
-                child: ListView.separated(
-                  separatorBuilder: (context, index) => const SizedBox(width: 10),
-                  itemCount: snapshot.data.length,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    return SizedBox(
-                      width: 200,
-                      height: 150,
-                      child: Column(children: [
-                        const SizedBox(height: 5),
-                        Expanded(child: Card(
-                          child: ListTile(onTap: () {
-                            //logic here for ontap
-                          },
-                          title: Text(snapshot.data[index].title.toString()),
-                          subtitle: Text(snapshot.data[index].source.name),
-                          ),
-                        ))
-                      ],),
-                    );
-                  },
-                  ),
-              ),
-            ));
-          }
-        }
-        ),
-      ]),
-          ])));
+            ),
+          ),
+          buildCryptoPrices(context),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text("Latest Crypto News",
+                    style: Theme.of(context).textTheme.titleMedium),
+                TextButton(
+                    onPressed: (() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) =>
+                                  const LatestCryptoNews())));
+                    }),
+                    child: Text("View more",
+                        style: Theme.of(context).textTheme.titleSmall)),
+              ],
+            ),
+          ),
+          Column(children: [
+            FutureBuilder<List<Article>>(
+                future: futureArticle,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting ||
+                      snapshot.connectionState == ConnectionState.none) {
+                    if (snapshot.data == null || snapshot.hasError) {
+                      return Column(
+                        children: [
+                          CircularProgressIndicator(),
+                          Center(child: Text('Loading News'))
+                        ],
+                      );
+                    } else {
+                      return Padding(
+                          padding: EdgeInsets.all(10),
+                          child: InkWell(
+                            child: SizedBox(
+                              height: 320,
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(width: 10),
+                                itemCount: snapshot.data.length,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemBuilder: (context, index) {
+                                  return SizedBox(
+                                    width: 200,
+                                    height: 150,
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(height: 5),
+                                        Expanded(
+                                            child: Card(
+                                          child: ListTile(
+                                            onTap: () {
+                                              //logic here for ontap
+                                            },
+                                            title: Text(snapshot
+                                                .data[index].title
+                                                .toString()),
+                                            subtitle: Text(snapshot
+                                                .data[index].source.name),
+                                          ),
+                                        ))
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ));
+                    }
+                  }
+                }),
+          ]),
+        ])));
   }
 }
