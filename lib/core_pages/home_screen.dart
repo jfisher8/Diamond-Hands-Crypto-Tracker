@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.data == null || snapshot.hasError) {
-                      return Column(
+                      return const Column(
                         children: [
                           CircularProgressIndicator(),
                           Center(child: Text('Error loading News...'))
@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     } else {
                       return Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: InkWell(
                             child: SizedBox(
                               height: 320,
@@ -129,24 +129,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                 itemBuilder: (context, index) {
                                   return SizedBox(
                                     width: 200,
-                                    height: 150,
                                     child: Column(
                                       children: [
                                         const SizedBox(height: 5),
-                                        Expanded(
-                                            child: Card(
-                                          child: ListTile(
+                                        Card(
+                                            child: ListTile(
                                             onTap: () {
                                               //logic here for ontap
                                             },
+                                            trailing: IconButton(onPressed:() {
+                                              //logic here
+                                            }, icon: const Icon(Icons.open_in_new_outlined)),
                                             title: Text(snapshot
                                                 .data[index].title
                                                 .toString()),
                                             subtitle: Text(snapshot
                                                 .data[index].source.name),
                                           ),
-                                        ))
-                                      ],
+                                    )],
                                     ),
                                   );
                                 },
