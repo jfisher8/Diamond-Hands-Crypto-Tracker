@@ -2,7 +2,6 @@ import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart'
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
-import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_news_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_prices_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
@@ -107,13 +106,12 @@ class _HomeScreenState extends State<HomeScreen> {
             FutureBuilder<List<Article>>(
                 future: futureArticle,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting ||
-                      snapshot.connectionState == ConnectionState.none) {
+                  if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.data == null || snapshot.hasError) {
                       return Column(
                         children: [
                           CircularProgressIndicator(),
-                          Center(child: Text('Loading News'))
+                          Center(child: Text('Error loading News...'))
                         ],
                       );
                     } else {
@@ -156,7 +154,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ));
                     }
+                  } else {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Column(
+                        children: [
+                          SizedBox(height: 40),
+                          CircularProgressIndicator(),
+                          SizedBox(height: 40),
+                          Text('Loading news...'),
+                        ],
+                      );
+                    }
                   }
+                  return const CircularProgressIndicator();
                 }),
           ]),
         ])));
