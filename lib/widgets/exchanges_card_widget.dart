@@ -6,12 +6,12 @@ class ExchangesCard extends StatelessWidget {
   const ExchangesCard(
       {super.key,
       required this.name,
-      required this.year_established,
+      required this.yearEstablished,
       required this.url,
       required this.image});
 
   final String name;
-  final String year_established;
+  final String yearEstablished;
   final String url;
   final String image;
 
@@ -37,7 +37,7 @@ class ExchangesCard extends StatelessWidget {
                       color: Colors.red)),
             ),
             title: Text(name),
-            subtitle: Text(year_established),
+            subtitle: Text(yearEstablished),
           ),
         ));
   }
