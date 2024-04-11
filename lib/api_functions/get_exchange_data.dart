@@ -1,5 +1,4 @@
 import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';

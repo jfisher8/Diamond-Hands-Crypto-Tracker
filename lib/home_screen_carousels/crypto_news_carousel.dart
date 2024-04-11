@@ -14,14 +14,14 @@ Widget buildCryptoNews(BuildContext context) {
         future: futureArticle,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data == null || snapshot.hasError) {
-            return Column(
+            return const Column(
               children: [
                 CircularProgressIndicator(),
                 Center(child: Text('Error loading News...'))
               ],
             );
           } else {
-            return Padding(padding: EdgeInsets.all(10),
+            return Padding(padding: const EdgeInsets.all(10),
             child: InkWell(
               child: SizedBox(
                 height: 320,
