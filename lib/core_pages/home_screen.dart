@@ -20,7 +20,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late Future<List<Article>> futureArticle;
 
+  @override
   void initState() {
+    super.initState();
     futureArticle = getArticleData();
   }
 
