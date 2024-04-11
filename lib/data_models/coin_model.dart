@@ -1,7 +1,7 @@
 class Coin {
   String name;
   String symbol;
-  String imageUrl;
+  String imageURL;
   num price;
   num change;
   num changePercentage;
@@ -9,7 +9,7 @@ class Coin {
   Coin({
     required this.name,
     required this.symbol,
-    required this.imageUrl,
+    required this.imageURL,
     required this.price,
     required this.change,
     required this.changePercentage,
@@ -19,7 +19,7 @@ class Coin {
     return Coin(
       name: json['name'],
       symbol: json['symbol'],
-      imageUrl: json['image'],
+      imageURL: json['image'],
       price: json['current_price'],
       change: json['price_change_24h'],
       changePercentage: json['price_change_percentage_24h']

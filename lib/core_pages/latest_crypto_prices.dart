@@ -6,8 +6,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:diamond_hands_crypto_tracker/api_functions/get_price_data.dart';
 
 class LatestCryptoPrices extends StatefulWidget {
   const LatestCryptoPrices({super.key});
@@ -16,38 +15,14 @@ class LatestCryptoPrices extends StatefulWidget {
   State<LatestCryptoPrices> createState() => _LatestCryptoPricesState();
 }
 
-
 class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
-
-    Future<List<Coin>> fetchCoin() async {
-    coinList = [];
-    final response = await http.get(Uri.parse(
-        'https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=50&page=1&sparkline=false'));
-
-    if (response.statusCode == 200) {
-      List<dynamic> values = [];
-      values = json.decode(response.body);
-      if (values.isNotEmpty) {
-        for (int i = 0; i < values.length; i++) {
-          if (values[i] != null) {
-            Map<String, dynamic> map = values[i];
-            coinList.add(Coin.fromJson(map));
-          }
-        }
-        setState(() {
-          coinList;
-        });
-      }
-      return coinList;
-    } else {
-      //return coinList;
-      throw Exception('Failed to load coins');
-    }
-  }
 
   @override
   void initState() {
     fetchCoin();
+    setState(() {
+      coinList;
+    });
     super.initState();
   }
 
@@ -82,10 +57,15 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
         drawer: const NavigationMenu(),
         body: ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: 30,
+          itemCount: coinList.length,
           itemBuilder: (context, index) {
-            return const CoidCard(
-                //add business logic and data here
+            return CoinCard(
+                name: coinList[index].name,
+                imageUrl: coinList[index].imageURL,
+                change: coinList[index].change,
+                changePercentage: coinList[index].changePercentage,
+                symbol: coinList[index].symbol,
+                price: coinList[index].price.toString(),
                 );
           },
         ));
