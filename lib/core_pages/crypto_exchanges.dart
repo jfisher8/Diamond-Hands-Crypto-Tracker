@@ -50,7 +50,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
           itemBuilder: (context, index) {
             return ExchangesCard(
               name: exchangesList[index].name.toString(),
-              yearEstablished: exchangesList[index].yearEstablished.toString(),
+              year_established: exchangesList[index].yearEstablished.toString(),
               url: exchangesList[index].url.toString(),
               image: exchangesList[index].image.toString(),
             );

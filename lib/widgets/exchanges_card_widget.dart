@@ -1,17 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-//TODO add url launcher package if needed
+import 'package:url_launcher/url_launcher.dart';
 
 class ExchangesCard extends StatelessWidget {
   const ExchangesCard(
       {super.key,
       required this.name,
-      required this.yearEstablished,
+      required this.year_established,
       required this.url,
       required this.image});
 
   final String name;
-  final String yearEstablished;
+  final String year_established;
   final String url;
   final String image;
 
@@ -22,7 +22,7 @@ class ExchangesCard extends StatelessWidget {
         child: Card(
           child: ListTile(
             onTap: () {
-              //add logic to open url to the exchange's website here
+              launchUrl(Uri.parse(url));
             },
             trailing: const Icon(Icons.open_in_new_rounded),
             leading: ConstrainedBox(
@@ -37,7 +37,7 @@ class ExchangesCard extends StatelessWidget {
                       color: Colors.red)),
             ),
             title: Text(name),
-            subtitle: Text(yearEstablished),
+            subtitle: Text(year_established),
           ),
         ));
   }
