@@ -84,6 +84,7 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
           scrollDirection: Axis.vertical,
           itemCount: coinList.length,
           itemBuilder: (context, index) {
+            if (coinList.length == 1 || coinList.length > 1) {
             return CoinCard(
                 name: coinList[index].name,
                 imageUrl: coinList[index].imageURL,
@@ -92,6 +93,10 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                 symbol: coinList[index].symbol,
                 price: coinList[index].price.toString(),
                 );
+          }
+          else {
+            return CircularProgressIndicator();
+          }
           },
         ));
   }
