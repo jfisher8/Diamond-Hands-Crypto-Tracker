@@ -1,4 +1,3 @@
-import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
@@ -19,11 +18,37 @@ class CryptoExchanges extends StatefulWidget {
 
 
 class _CryptoExchangesState extends State<CryptoExchanges> {
+
+    Future<List<Exchanges>> fetchExchanges() async {
+    exchangesList = [];
+    final response =
+        await http.get(Uri.parse('https://api.coingecko.com/api/v3/exchanges'));
+
+    if (response.statusCode == 200) {
+      List<dynamic> values = [];
+      values = json.decode(response.body);
+      if (values.isNotEmpty) {
+        for (int i = 0; i < values.length; i++) {
+          if (values[i] != null) {
+            Map<String, dynamic> map = values[i];
+            exchangesList.add(Exchanges.fromJson(map));
+          }
+        }
+      }
+      return exchangesList;
+    } else {
+      throw Exception('Failed to load coins');
+    }
+  }
+
+
+  @override
   void initState() {
     fetchExchanges();
     setState(() {
       exchangesList;
     });
+    super.initState();
   }
 
   @override
@@ -70,25 +95,3 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
         ));
   }
 }
-
-  Future<List<Exchanges>> fetchExchanges() async {
-    exchangesList = [];
-    final response =
-        await http.get(Uri.parse('https://api.coingecko.com/api/v3/exchanges'));
-
-    if (response.statusCode == 200) {
-      List<dynamic> values = [];
-      values = json.decode(response.body);
-      if (values.isNotEmpty) {
-        for (int i = 0; i < values.length; i++) {
-          if (values[i] != null) {
-            Map<String, dynamic> map = values[i];
-            exchangesList.add(Exchanges.fromJson(map));
-          }
-        }
-      }
-      return exchangesList;
-    } else {
-      throw Exception('Failed to load coins');
-    }
-  }

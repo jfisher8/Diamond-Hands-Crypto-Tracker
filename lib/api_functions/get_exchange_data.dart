@@ -2,7 +2,6 @@ import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer' as developer;
 
   Future<List<Exchanges>> fetchExchanges() async {
     exchangesList = [];
