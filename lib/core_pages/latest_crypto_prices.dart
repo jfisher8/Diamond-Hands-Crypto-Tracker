@@ -7,8 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_price_data.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class LatestCryptoPrices extends StatefulWidget {
   const LatestCryptoPrices({super.key});
@@ -18,7 +16,6 @@ class LatestCryptoPrices extends StatefulWidget {
 }
 
 class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
-
   @override
   void initState() {
     fetchCoin();
@@ -61,40 +58,56 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
         body: FutureBuilder(
             future: fetchCoin(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasError) {
-                return const Column(
-                  children: [
-                    Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    Text('Loading data...')
-                  ],
-                );
-              } else if (snapshot.hasData) {
-                return ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: coinList.length,
-                    itemBuilder: (context, index) {
-                      return CoinCard(
-                        name: coinList[index].name,
-                        imageUrl: coinList[index].imageURL,
-                        change: coinList[index].change,
-                        changePercentage: coinList[index].changePercentage,
-                        symbol: coinList[index].symbol,
-                        price: coinList[index].price.toString(),
-                      );
-                    });
-              } else {
+              if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
-                  child:
-                    Column(
-                      children: [
-                        CircularProgressIndicator(),
-                        Text('Error loading data')
-                      ],
-                    )
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 40,
+                      ),
+                      CircularProgressIndicator(),
+                      SizedBox(height: 40),
+                      Text('Loading coin prices...')
+                    ],
+                  ),
                 );
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
+                  return const Center(
+                      child: Column(
+                    children: [
+                      SizedBox(height: 40),
+                      CircularProgressIndicator(),
+                      SizedBox(height: 40),
+                      Text('Please refresh and try again')
+                    ],
+                  ));
+                } else if (snapshot.hasData) {
+                  return ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: coinList.length,
+                      itemBuilder: (context, index) {
+                        return CoinCard(
+                          name: coinList[index].name,
+                          imageUrl: coinList[index].imageURL,
+                          change: coinList[index].change,
+                          changePercentage: coinList[index].changePercentage,
+                          symbol: coinList[index].symbol,
+                          price: coinList[index].price.toString(),
+                        );
+                      });
+                } else {
+                  return const Center(
+                      child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Error loading data. Please refresh and try again')
+                    ],
+                  ));
+                }
               }
-            }));
+              return const CircularProgressIndicator();
+            }
+            ));
   }
 }
