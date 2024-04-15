@@ -19,29 +19,6 @@ class LatestCryptoPrices extends StatefulWidget {
 
 class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
 
-      Future<List<Coin>> fetchCoin() async {
-    coinList = [];
-    final response = await http.get(Uri.parse(
-        'https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=50&page=1&sparkline=false'));
-
-    if (response.statusCode == 200) {
-      List<dynamic> values = [];
-      values = json.decode(response.body);
-      if (values.isNotEmpty) {
-        for (int i = 0; i < values.length; i++) {
-          if (values[i] != null) {
-            Map<String, dynamic> map = values[i];
-            coinList.add(Coin.fromJson(map));
-          }
-        }
-      }
-      return coinList;
-    } else {
-      //return coinList;
-      throw Exception('Failed to load coins');
-    }
-  }
-
   @override
   void initState() {
     fetchCoin();
@@ -60,14 +37,15 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
           widgets: [
             FirebaseAuth.instance.currentUser != null
                 ? IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FavouritesScreen()),
-                    );
-                  },
-                  icon: const Icon(Icons.bookmark_rounded, color: Colors.black))
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FavouritesScreen()),
+                      );
+                    },
+                    icon:
+                        const Icon(Icons.bookmark_rounded, color: Colors.black))
                 : IconButton(
                     onPressed: () {
                       Navigator.push(
@@ -80,24 +58,43 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
           ],
         ),
         drawer: const NavigationMenu(),
-        body: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: coinList.length,
-          itemBuilder: (context, index) {
-            if (coinList.length == 1 || coinList.length > 1) {
-            return CoinCard(
-                name: coinList[index].name,
-                imageUrl: coinList[index].imageURL,
-                change: coinList[index].change,
-                changePercentage: coinList[index].changePercentage,
-                symbol: coinList[index].symbol,
-                price: coinList[index].price.toString(),
+        body: FutureBuilder(
+            future: fetchCoin(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasError) {
+                return const Column(
+                  children: [
+                    Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    Text('Loading data...')
+                  ],
                 );
-          }
-          else {
-            return CircularProgressIndicator();
-          }
-          },
-        ));
+              } else if (snapshot.hasData) {
+                return ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: coinList.length,
+                    itemBuilder: (context, index) {
+                      return CoinCard(
+                        name: coinList[index].name,
+                        imageUrl: coinList[index].imageURL,
+                        change: coinList[index].change,
+                        changePercentage: coinList[index].changePercentage,
+                        symbol: coinList[index].symbol,
+                        price: coinList[index].price.toString(),
+                      );
+                    });
+              } else {
+                return const Center(
+                  child:
+                    Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('Error loading data')
+                      ],
+                    )
+                );
+              }
+            }));
   }
 }
