@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class CoinCard extends StatelessWidget {
-  CoinCard({
+  const CoinCard({
     super.key,
     required this.name,
     required this.symbol,
@@ -12,12 +12,12 @@ class CoinCard extends StatelessWidget {
     required this.changePercentage,
   });
 
-  String? name;
-  String? symbol;
-  String? imageUrl;
-  String? price;
-  num? change;
-  num? changePercentage;
+  final String? name;
+  final String? symbol;
+  final String? imageUrl;
+  final String? price;
+  final num? change;
+  final num? changePercentage;
 
   @override
   Widget build(BuildContext context) {

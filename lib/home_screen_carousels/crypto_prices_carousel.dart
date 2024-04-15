@@ -13,9 +13,7 @@ Widget buildCryptoPrices(BuildContext context) {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             //TODO replace container with snapshot data
-            return Container(
-              child: const Placeholder(),
-            );
+            return const Placeholder();
           },
           itemCount: 15,
           )
