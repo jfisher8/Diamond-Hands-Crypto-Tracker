@@ -1,5 +1,3 @@
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
@@ -8,6 +6,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/exchanges_card_widget.dart';
+import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
 
 class CryptoExchanges extends StatefulWidget {
   const CryptoExchanges({super.key});
@@ -18,28 +17,6 @@ class CryptoExchanges extends StatefulWidget {
 
 
 class _CryptoExchangesState extends State<CryptoExchanges> {
-
-    Future<List<Exchanges>> fetchExchanges() async {
-    exchangesList = [];
-    final response =
-        await http.get(Uri.parse('https://api.coingecko.com/api/v3/exchanges'));
-
-    if (response.statusCode == 200) {
-      List<dynamic> values = [];
-      values = json.decode(response.body);
-      if (values.isNotEmpty) {
-        for (int i = 0; i < values.length; i++) {
-          if (values[i] != null) {
-            Map<String, dynamic> map = values[i];
-            exchangesList.add(Exchanges.fromJson(map));
-          }
-        }
-      }
-      return exchangesList;
-    } else {
-      throw Exception('Failed to load coins');
-    }
-  }
 
 
   @override
@@ -81,17 +58,57 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
           ],
         ),
         drawer: const NavigationMenu(),
-        body: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: exchangesList.length,
-          itemBuilder: (context, index) {
-            return ExchangesCard(
-              name: exchangesList[index].name,
-              yearEstablished: exchangesList[index].yearEstablished.toString(),
-              url: exchangesList[index].url,
-              image: exchangesList[index].image,
-            );
-          },
-        ));
+        body: FutureBuilder(
+            future: fetchExchanges(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 40,
+                      ),
+                      CircularProgressIndicator(),
+                      SizedBox(height: 40),
+                      Text('Loading coin prices...')
+                    ],
+                  ),
+                );
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
+                  return const Center(
+                      child: Column(
+                    children: [
+                      SizedBox(height: 40),
+                      CircularProgressIndicator(),
+                      SizedBox(height: 40),
+                      Text('Please refresh and try again')
+                    ],
+                  ));
+                } else if (snapshot.hasData) {
+                  return ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: exchangesList.length,
+                      itemBuilder: (context, index) {
+                        return ExchangesCard(
+                          name: exchangesList[index].name,
+                          image: exchangesList[index].image,
+                          yearEstablished: exchangesList[index].yearEstablished.toString(),
+                          url: exchangesList[index].url,
+                        );
+                      });
+                } else {
+                  return const Center(
+                      child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Error loading data. Please refresh and try again')
+                    ],
+                  ));
+                }
+              }
+              return const CircularProgressIndicator();
+            }
+            ));
   }
 }
