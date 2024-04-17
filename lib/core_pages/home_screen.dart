@@ -3,7 +3,6 @@ import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart'
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
-import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_prices_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
@@ -102,28 +101,51 @@ class _HomeScreenState extends State<HomeScreen> {
                         Text('Waiting for data...'),
                       ],
                     ));
+                  } else if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasData) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: InkWell(
+                          child: SizedBox(
+                              height: 230,
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(width: 10),
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  //add coinCard here
+                                  return const Placeholder();
+                                },
+                                itemCount: 15,
+                              )),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return const Center(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 40),
+                            CircularProgressIndicator(),
+                            SizedBox(height: 40),
+                            Text('Error loading data...')
+                          ],
+                        ),
+                      );
+                    }
                   }
-                  //TODO: replace placeholder with further handling logic
-                  return Placeholder();
+                  return const Center(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 40),
+                        CircularProgressIndicator(),
+                        SizedBox(height: 40),
+                        Text('Error loading data...')
+                      ],
+                    ),
+                  );
                 },
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: InkWell(
-                  child: SizedBox(
-                      height: 230,
-                      child: ListView.separated(
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(width: 10),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return const Placeholder();
-                        },
-                        itemCount: 15,
-                      )),
-                ),
-              )
             ],
           ),
           Padding(
