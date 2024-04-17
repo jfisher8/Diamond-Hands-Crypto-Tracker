@@ -99,8 +99,8 @@ class CoinCard extends StatelessWidget {
                   ),
                   Text(
                     change!.toDouble() < 0
-                        ? change!.toDouble().toStringAsFixed(2)
-                        : '+${change!.toDouble().toStringAsFixed(2)}',
+                        ? '£${change!.toDouble().toStringAsFixed(2)}'
+                        : '+£${change!.toDouble().toStringAsFixed(2)}',
                     style: TextStyle(
                       color: change!.toDouble() < 0 ? Colors.red : Colors.green,
                       fontSize: 16,
