@@ -1,3 +1,4 @@
+import 'package:diamond_hands_crypto_tracker/api_functions/get_price_data.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
@@ -5,6 +6,7 @@ import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/home_screen_carousels/crypto_prices_carousel.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
+import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,11 +21,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Future<List<Article>> futureArticle;
+  late Future<List<Coin>> futureCoin;
 
   @override
   void initState() {
     super.initState();
     futureArticle = getArticleData();
+    futureCoin = fetchCoin();
   }
 
   @override
@@ -83,7 +87,45 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          buildCryptoPrices(context),
+          Column(
+            children: [
+              FutureBuilder<List<Coin>>(
+                future: futureCoin,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                        child: Column(
+                      children: [
+                        SizedBox(height: 40),
+                        CircularProgressIndicator(),
+                        SizedBox(height: 40),
+                        Text('Waiting for data...'),
+                      ],
+                    ));
+                  }
+                  //TODO: replace placeholder with further handling logic
+                  return Placeholder();
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: InkWell(
+                  child: SizedBox(
+                      height: 230,
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(width: 10),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return const Placeholder();
+                        },
+                        itemCount: 15,
+                      )),
+                ),
+              )
+            ],
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
