@@ -7,6 +7,7 @@ import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/coin_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
@@ -114,7 +115,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  
+                                  return CoinCard(
+                                    name: coinList[index].name,
+                                    symbol: coinList[index].symbol,
+                                    imageUrl: coinList[index].imageURL,
+                                    price: coinList[index].price.toString(),
+                                    change: coinList[index].change,
+                                    changePercentage: coinList[index].changePercentage);
                                 },
                                 itemCount: coinList.length,
                               )),
