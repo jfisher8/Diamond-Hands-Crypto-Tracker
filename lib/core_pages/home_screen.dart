@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_price_data.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
@@ -115,15 +116,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  return CoinCard(
-                                    name: coinList[index].name,
-                                    symbol: coinList[index].symbol,
-                                    imageUrl: coinList[index].imageURL,
-                                    price: coinList[index].price.toString(),
-                                    change: coinList[index].change,
-                                    changePercentage: coinList[index].changePercentage);
+                                  return SizedBox(
+                                    width: 150,
+                                    height: 150,
+                                    child: Column(
+                                      children: [
+                                        CachedNetworkImage(imageUrl: snapshot.data[index].imageURL,
+                                        placeholder: (url, error) => const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red)),
+                                        const SizedBox(height: 5),
+                                        Text(snapshot.data[index].name,
+                                        textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge),
+                                        Text(snapshot.data[index].price.toStringAsFixed(2), style: Theme.of(context).textTheme.bodyLarge)
+                                      ],
+                                    ),
+                                  );
                                 },
-                                itemCount: coinList.length,
+                                itemCount: snapshot.data.length,
                               )),
                         ),
                       );
