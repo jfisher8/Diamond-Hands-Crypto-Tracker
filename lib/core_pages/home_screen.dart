@@ -8,7 +8,6 @@ import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart';
-import 'package:diamond_hands_crypto_tracker/widgets/coin_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
@@ -116,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
+                                  final String latestPrice = snapshot.data[index].price.toStringAsFixed(2);
                                   return SizedBox(
                                     width: 150,
                                     height: 150,
@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         const SizedBox(height: 5),
                                         Text(snapshot.data[index].name,
                                         textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge),
-                                        Text(snapshot.data[index].price.toStringAsFixed(2), style: Theme.of(context).textTheme.bodyLarge)
+                                        Text('£$latestPrice', style: Theme.of(context).textTheme.bodyLarge)
                                       ],
                                     ),
                                   );
