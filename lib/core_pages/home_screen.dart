@@ -114,10 +114,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  //add coinCard here
-                                  return const Placeholder();
+                                  
                                 },
-                                itemCount: 15,
+                                itemCount: coinList.length,
                               )),
                         ),
                       );
