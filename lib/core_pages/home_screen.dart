@@ -11,6 +11,7 @@ import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/api_loading_status.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -93,15 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 future: futureCoin,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                        child: Column(
-                      children: [
-                        SizedBox(height: 40),
-                        CircularProgressIndicator(),
-                        SizedBox(height: 40),
-                        Text('Waiting for data...'),
-                      ],
-                    ));
+                    return buildLoadingDataStatus(context);
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
                       return Padding(
@@ -115,19 +108,33 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  final String latestPrice = snapshot.data[index].price.toStringAsFixed(2);
+                                  final String latestPrice = snapshot
+                                      .data[index].price
+                                      .toStringAsFixed(2);
                                   return SizedBox(
                                     width: 150,
                                     height: 150,
                                     child: Column(
                                       children: [
-                                        CachedNetworkImage(imageUrl: snapshot.data[index].imageURL,
-                                        placeholder: (url, error) => const CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red)),
+                                        CachedNetworkImage(
+                                            imageUrl:
+                                                snapshot.data[index].imageURL,
+                                            placeholder: (url, error) =>
+                                                const CircularProgressIndicator(),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    const Icon(Icons.error,
+                                                        color: Colors.red)),
                                         const SizedBox(height: 5),
                                         Text(snapshot.data[index].name,
-                                        textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge),
-                                        Text('£$latestPrice', style: Theme.of(context).textTheme.bodyLarge)
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge),
+                                        Text('£$latestPrice',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge)
                                       ],
                                     ),
                                   );
@@ -137,28 +144,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     } else if (snapshot.hasError) {
-                      return const Center(
-                        child: Column(
-                          children: [
-                            SizedBox(height: 40),
-                            CircularProgressIndicator(),
-                            SizedBox(height: 40),
-                            Text('Error loading data...')
-                          ],
-                        ),
-                      );
+                      return buildDataErrorStatus(context);
                     }
                   }
-                  return const Center(
-                    child: Column(
-                      children: [
-                        SizedBox(height: 40),
-                        CircularProgressIndicator(),
-                        SizedBox(height: 40),
-                        Text('Error loading data...')
-                      ],
-                    ),
-                  );
+                  return buildDataErrorStatus(context);
                 },
               ),
             ],
@@ -189,12 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.data == null || snapshot.hasError) {
-                      return const Column(
-                        children: [
-                          CircularProgressIndicator(),
-                          Center(child: Text('Error loading News...'))
-                        ],
-                      );
+                      return buildDataErrorStatus(context);
                     } else {
                       return Padding(
                           padding: const EdgeInsets.all(10),
@@ -238,17 +222,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   } else {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Column(
-                        children: [
-                          SizedBox(height: 40),
-                          CircularProgressIndicator(),
-                          SizedBox(height: 40),
-                          Text('Loading news...'),
-                        ],
-                      );
+                      return buildLoadingDataStatus(context);
                     }
                   }
-                  return const CircularProgressIndicator();
+                  return buildDataErrorStatus(context);
                 }),
           ]),
         ])));
