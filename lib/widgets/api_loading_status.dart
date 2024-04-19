@@ -25,3 +25,16 @@ Widget buildDataErrorStatus(BuildContext context) {
     ),
   );
 }
+
+Widget buildPricesErrorStatus(BuildContext context) {
+  return const Center(
+    child: Column(
+      children: [
+        SizedBox(height: 40),
+        CircularProgressIndicator(),
+        SizedBox(height: 40),
+        Text('Error loading prices. Please refresh and try again.'),
+      ],
+    ),
+  );
+}
