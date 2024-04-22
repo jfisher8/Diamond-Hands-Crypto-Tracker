@@ -60,18 +60,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
             future: fetchExchanges(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 40,
-                      ),
-                      CircularProgressIndicator(),
-                      SizedBox(height: 40),
-                      Text('Loading coin prices...')
-                    ],
-                  ),
-                );
+                return buildLoadingDataStatus(context);
               } else if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {
                   return buildDataErrorStatus(context);
