@@ -81,7 +81,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                   return buildDataErrorStatus(context);
                 }
               }
-              return const CircularProgressIndicator();
+              return buildDataErrorStatus(context);
             }));
   }
 }
