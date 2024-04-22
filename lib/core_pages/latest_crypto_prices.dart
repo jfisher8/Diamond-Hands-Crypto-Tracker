@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_price_data.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/api_loading_status.dart';
 
 class LatestCryptoPrices extends StatefulWidget {
   const LatestCryptoPrices({super.key});
@@ -73,15 +74,7 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                 );
               } else if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {
-                  return const Center(
-                      child: Column(
-                    children: [
-                      SizedBox(height: 40),
-                      CircularProgressIndicator(),
-                      SizedBox(height: 40),
-                      Text('Please refresh and try again')
-                    ],
-                  ));
+                  return buildPricesErrorStatus(context);
                 } else if (snapshot.hasData) {
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
