@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/exchanges_card_widget.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/api_loading_status.dart';
 
 class CryptoExchanges extends StatefulWidget {
   const CryptoExchanges({super.key});
@@ -15,10 +16,7 @@ class CryptoExchanges extends StatefulWidget {
   State<CryptoExchanges> createState() => _CryptoExchangesState();
 }
 
-
 class _CryptoExchangesState extends State<CryptoExchanges> {
-
-
   @override
   void initState() {
     fetchExchanges();
@@ -76,15 +74,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                 );
               } else if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {
-                  return const Center(
-                      child: Column(
-                    children: [
-                      SizedBox(height: 40),
-                      CircularProgressIndicator(),
-                      SizedBox(height: 40),
-                      Text('Please refresh and try again')
-                    ],
-                  ));
+                  return buildDataErrorStatus(context);
                 } else if (snapshot.hasData) {
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
@@ -93,22 +83,16 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                         return ExchangesCard(
                           name: exchangesList[index].name,
                           image: exchangesList[index].image,
-                          yearEstablished: exchangesList[index].yearEstablished.toString(),
+                          yearEstablished:
+                              exchangesList[index].yearEstablished.toString(),
                           url: exchangesList[index].url,
                         );
                       });
                 } else {
-                  return const Center(
-                      child: Column(
-                    children: [
-                      CircularProgressIndicator(),
-                      Text('Error loading data. Please refresh and try again')
-                    ],
-                  ));
+                  return buildDataErrorStatus(context);
                 }
               }
               return const CircularProgressIndicator();
-            }
-            ));
+            }));
   }
 }
