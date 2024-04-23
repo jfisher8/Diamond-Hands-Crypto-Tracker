@@ -26,6 +26,20 @@ Widget buildCoinsErrorStatus(BuildContext context) {
   );
 }
 
+Widget buildLoadingNewsStatus(BuildContext context) {
+  return const Center(
+    child: Column(
+      children: [
+        SizedBox(height: 40),
+        CircularProgressIndicator(),
+        SizedBox(height: 40),
+        Text('Loading News data...'),
+      ],
+    ),
+  );
+}
+
+
 Widget buildDataErrorStatus(BuildContext context) {
   return const Center(
     child: Column(
