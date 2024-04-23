@@ -222,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   } else {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return buildLoadingCoinsStatus(context);
+                      return buildLoadingNewsStatus(context);
                     }
                   }
                   return buildDataErrorStatus(context);
