@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 future: futureCoin,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return buildLoadingDataStatus(context);
+                    return buildLoadingCoinsStatus(context);
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
                       return Padding(
@@ -222,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   } else {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return buildLoadingDataStatus(context);
+                      return buildLoadingCoinsStatus(context);
                     }
                   }
                   return buildDataErrorStatus(context);
