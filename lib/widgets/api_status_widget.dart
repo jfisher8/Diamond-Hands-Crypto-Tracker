@@ -39,6 +39,19 @@ Widget buildLoadingNewsStatus(BuildContext context) {
   );
 }
 
+Widget buildNewsErrorStatus(BuildContext context) {
+  return const Center(
+    child: Column(
+      children: [
+        SizedBox(height: 40),
+        CircularProgressIndicator(),
+        SizedBox(height: 40),
+        Text('Error loading News. Please refresh and try again.'),
+      ],
+    ),
+  );
+}
+
 
 Widget buildDataErrorStatus(BuildContext context) {
   return const Center(
