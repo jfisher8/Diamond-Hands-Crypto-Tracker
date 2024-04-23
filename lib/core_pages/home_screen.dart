@@ -225,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       return buildLoadingNewsStatus(context);
                     }
                   }
-                  return buildDataErrorStatus(context);
+                  return buildNewsErrorStatus(context);
                 }),
           ]),
         ])));
