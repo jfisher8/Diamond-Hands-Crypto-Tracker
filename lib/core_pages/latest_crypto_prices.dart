@@ -90,16 +90,10 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                         );
                       });
                 } else {
-                  return const Center(
-                      child: Column(
-                    children: [
-                      CircularProgressIndicator(),
-                      Text('Error loading data. Please refresh and try again')
-                    ],
-                  ));
+                  return buildCoinsErrorStatus(context);
                 }
               }
-              return const CircularProgressIndicator();
+              return buildCoinsErrorStatus(context);
             }
             ));
   }
