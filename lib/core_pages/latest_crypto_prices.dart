@@ -74,7 +74,7 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                 );
               } else if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {
-                  return buildPricesErrorStatus(context);
+                  return buildCoinsErrorStatus(context);
                 } else if (snapshot.hasData) {
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
