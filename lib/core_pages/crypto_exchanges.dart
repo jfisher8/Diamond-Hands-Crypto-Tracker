@@ -60,10 +60,10 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
             future: fetchExchanges(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return buildDataErrorStatus(context); //TODO: replace with exchanges waiting component when built
+                return buildExchangesLoadingStatus(context); //TODO: replace with exchanges waiting component when built
               } else if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {
-                  return buildDataErrorStatus(context);
+                  return buildExchangesErrorStatus(context);
                 } else if (snapshot.hasData) {
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
@@ -78,10 +78,10 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                         );
                       });
                 } else {
-                  return buildDataErrorStatus(context);
+                  return buildExchangesErrorStatus(context);
                 }
               }
-              return buildDataErrorStatus(context);
+              return buildExchangesErrorStatus(context);
             }));
   }
 }
