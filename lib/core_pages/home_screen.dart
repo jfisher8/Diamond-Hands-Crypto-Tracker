@@ -144,10 +144,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     } else if (snapshot.hasError) {
-                      return buildDataErrorStatus(context);
+                      return buildCoinsErrorStatus(context);
                     }
                   }
-                  return buildDataErrorStatus(context);
+                  return buildCoinsErrorStatus(context);
                 },
               ),
             ],
@@ -178,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.data == null || snapshot.hasError) {
-                      return buildDataErrorStatus(context);
+                      return buildNewsErrorStatus(context);
                     } else {
                       return Padding(
                           padding: const EdgeInsets.all(10),
