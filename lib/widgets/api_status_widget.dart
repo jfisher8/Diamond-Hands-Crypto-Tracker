@@ -64,3 +64,16 @@ Widget buildExchangesErrorStatus(BuildContext context) {
     ),
   );
 }
+
+Widget buildExchangesLoadingStatus(BuildContext context) {
+  return const Center(
+    child: Column(
+      children: [
+        SizedBox(height: 40),
+        CircularProgressIndicator(),
+        SizedBox(height: 40),
+        Text('Error Exchanges data...'),
+      ],
+    ),
+  );
+}
