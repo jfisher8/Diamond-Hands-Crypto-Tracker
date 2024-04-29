@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/news_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
@@ -8,6 +9,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'dart:developer' as developer;
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/read_news_article.dart';
 
 class LatestCryptoNews extends StatefulWidget {
   const LatestCryptoNews({super.key});
@@ -62,7 +64,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
-                labelText: 'Search articles by publisher...', labelStyle: Theme.of(context).textTheme.bodyMedium,
+                  labelText: 'Search articles by publisher...',
+                  labelStyle: Theme.of(context).textTheme.bodyMedium,
                   enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue),
                   ),
@@ -88,9 +91,67 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return articles[index]
-                                  .source.name.toLowerCase()
+                                  .source
+                                  .name
+                                  .toLowerCase()
                                   .contains(searchString)
-                              ? newsListTile(articles[index], context)
+                              ? Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Column(children: [
+                                    Card(
+                                        elevation: 30,
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 200,
+                                              child: CachedNetworkImage(
+                                                imageUrl: snapshot
+                                                    .data[index].imageURL,
+                                                fit: BoxFit.fill,
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const Center(
+                                                            child: Icon(
+                                                  Icons.error_rounded,
+                                                  color: Colors.red,
+                                                )),
+                                              ),
+                                            ),
+                                            ListTile(
+                                              title: Text(
+                                                  snapshot.data[index].title,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium),
+                                              subtitle: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                        snapshot.data[index]
+                                                            .source.name,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall),
+                                                    // Text(article.publishedAt.toString(),
+                                                    //     style: Theme.of(context).textTheme.bodySmall)
+                                                  ]),
+                                              trailing: const Icon(
+                                                  Icons.open_in_new_rounded),
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ReadNewsArticle(
+                                                                article: snapshot
+                                                                        .data[
+                                                                    index])));
+                                              },
+                                            )
+                                          ],
+                                        ))
+                                  ]))
                               : Container();
                         });
                   } else if (snapshot.hasError || snapshot.data == null) {
