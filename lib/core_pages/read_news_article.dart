@@ -39,7 +39,7 @@ class ReadNewsArticle extends StatelessWidget {
         ],
       ),
       drawer: const NavigationMenu(),
-      body: Center(child: Text('text'),)
+      body: Text(article.content),
     );
   }
 }
