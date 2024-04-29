@@ -136,7 +136,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                     //     style: Theme.of(context).textTheme.bodySmall)
                                                   ]),
                                               trailing: const Icon(
-                                                  Icons.open_in_new_rounded),
+                                                  Icons.arrow_forward_rounded),
                                               onTap: () {
                                                 Navigator.push(
                                                     context,
