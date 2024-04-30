@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/api_status_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
@@ -156,16 +157,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                   } else if (snapshot.hasError || snapshot.data == null) {
                     developer.log('no data in snapshot');
                     developer.log(snapshot.error.toString());
-                    const Center(
-                        child: Column(
-                      children: [
-                        SizedBox(height: 40),
-                        CircularProgressIndicator(),
-                        SizedBox(height: 40),
-                        Text('Error loading News.'),
-                        Text('Please refresh and try again later.')
-                      ],
-                    ));
+                    buildNewsErrorStatus(context);
                   } else {
                     return const Center(
                         child: Column(
