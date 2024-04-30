@@ -14,7 +14,7 @@ class ReadNewsArticle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildAppBar(
-        title: Text(article.title),
+        title: const Text('Diamond Hands Crypto Tracker'),
         appBar: AppBar(),
         widgets: [
           FirebaseAuth.instance.currentUser != null
