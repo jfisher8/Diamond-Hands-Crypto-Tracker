@@ -159,15 +159,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                     developer.log(snapshot.error.toString());
                     buildNewsErrorStatus(context);
                   } else {
-                    return const Center(
-                        child: Column(
-                      children: [
-                        SizedBox(height: 40),
-                        CircularProgressIndicator(),
-                        SizedBox(height: 40),
-                        Text('Loading news...')
-                      ],
-                    ));
+                    return buildLoadingNewsStatus(context);
                   }
                 }
                 return const Center(
