@@ -162,15 +162,10 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                     return buildLoadingNewsStatus(context);
                   }
                 }
-                return const Center(
-                    child: Column(
-                  children: [
-                    SizedBox(height: 40),
-                    CircularProgressIndicator(),
-                    SizedBox(height: 40),
-                    Text('Loading News...'),
-                  ],
-                ));
+                else if (snapshot.connectionState == ConnectionState.waiting) {
+                  return buildLoadingNewsStatus(context);
+                }
+                return buildNewsErrorStatus(context);
               }),
         )
       ]),
