@@ -3,6 +3,7 @@ import 'package:diamond_hands_crypto_tracker/api_functions/get_price_data.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/read_news_article.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
@@ -201,7 +202,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                           child: ListTile(
                                             trailing: IconButton(
                                                 onPressed: () {
-                                                  //logic here
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ReadNewsArticle(
+                                                                  article: snapshot
+                                                                          .data[
+                                                                      index])));
                                                 },
                                                 icon: const Icon(Icons
                                                     .arrow_forward_rounded)),
