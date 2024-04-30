@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
@@ -39,7 +40,21 @@ class ReadNewsArticle extends StatelessWidget {
         ],
       ),
       drawer: const NavigationMenu(),
-      body: Text(article.content),
+      body: Center(
+          child: Column(
+        children: [
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100)),
+            child: CachedNetworkImage(imageUrl: article.imageURL.toString()),
+          ),
+          Text(
+            article.title,
+            style: Theme.of(context).textTheme.bodyLarge,
+            textAlign: TextAlign.center,
+          )
+        ],
+      )),
     );
   }
 }
