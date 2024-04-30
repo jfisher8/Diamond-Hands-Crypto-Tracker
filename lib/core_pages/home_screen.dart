@@ -204,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   //logic here
                                                 },
                                                 icon: const Icon(Icons
-                                                    .open_in_new_outlined)),
+                                                    .arrow_forward_rounded)),
                                             title: Text(snapshot
                                                 .data[index].title
                                                 .toString()),
