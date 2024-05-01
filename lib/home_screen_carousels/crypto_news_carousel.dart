@@ -7,6 +7,7 @@ Widget buildCryptoNews(BuildContext context) {
 
   void initState() {
     futureArticle = getArticleData();
+    
   }
   return (
     Column(children: [

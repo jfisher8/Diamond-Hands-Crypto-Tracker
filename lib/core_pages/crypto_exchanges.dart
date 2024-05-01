@@ -60,7 +60,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
             future: fetchExchanges(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return buildExchangesLoadingStatus(context); //TODO: replace with exchanges waiting component when built
+                return buildExchangesLoadingStatus(context);
               } else if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {
                   return buildExchangesErrorStatus(context);
