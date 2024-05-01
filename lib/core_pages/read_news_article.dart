@@ -6,6 +6,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
+import 'package:flutter/widgets.dart';
 
 class ReadNewsArticle extends StatelessWidget {
   const ReadNewsArticle({super.key, required this.article});
@@ -52,7 +53,11 @@ class ReadNewsArticle extends StatelessWidget {
             article.title,
             style: Theme.of(context).textTheme.bodyLarge,
             textAlign: TextAlign.center,
-          )
+          ),
+          const SizedBox(height: 10),
+          Text(article.source.name.toString()),
+          const SizedBox(height: 10),
+          Text(article.description.toString(), textAlign: TextAlign.center),
         ],
       )),
     );
