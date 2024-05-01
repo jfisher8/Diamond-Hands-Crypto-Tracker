@@ -58,6 +58,9 @@ class ReadNewsArticle extends StatelessWidget {
           Text(article.source.name.toString()),
           const SizedBox(height: 10),
           Text(article.description.toString(), textAlign: TextAlign.center),
+          ElevatedButton(onPressed:() {
+            //logic here
+          }, child: const Text('Read more...'))
         ],
       )),
     );
