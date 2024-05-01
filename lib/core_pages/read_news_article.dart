@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
@@ -6,7 +7,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
-import 'package:flutter/widgets.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/read_more_widget.dart';
 
 class ReadNewsArticle extends StatelessWidget {
   const ReadNewsArticle({super.key, required this.article});
@@ -58,9 +59,7 @@ class ReadNewsArticle extends StatelessWidget {
           Text(article.source.name.toString()),
           const SizedBox(height: 10),
           Text(article.description.toString(), textAlign: TextAlign.center),
-          ElevatedButton(onPressed:() {
-            //logic here
-          }, child: const Text('Read more...'))
+          newsArticleReadMoreButton(context, () => const HomeScreen())
         ],
       )),
     );
