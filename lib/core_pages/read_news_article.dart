@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/read_more_widget.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/save_for_later_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReadNewsArticle extends StatelessWidget {
@@ -61,6 +62,9 @@ class ReadNewsArticle extends StatelessWidget {
           Text(article.description.toString(), textAlign: TextAlign.center),
           const SizedBox(height: 40),
           newsArticleReadMoreButton(context, () => launchUrl(Uri.parse(article.url))),
+          saveForLaterButton(context, () {
+            //ontap logic here, should save article to list
+          })
         ],
       )),
     );
