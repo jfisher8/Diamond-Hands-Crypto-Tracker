@@ -59,6 +59,7 @@ class ReadNewsArticle extends StatelessWidget {
           Text(article.source.name.toString()),
           const SizedBox(height: 10),
           Text(article.description.toString(), textAlign: TextAlign.center),
+          const SizedBox(height: 40),
           newsArticleReadMoreButton(context, () => launchUrl(Uri.parse(article.url))),
         ],
       )),
