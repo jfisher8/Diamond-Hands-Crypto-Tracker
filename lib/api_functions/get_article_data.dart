@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'dart:developer' as developer;
+//import 'dart:developer' as developer;
 
 Future<List<Article>> getArticleData () async {
   await dotenv.load(fileName: "lib/.env");
@@ -17,7 +17,7 @@ Future<List<Article>> getArticleData () async {
     List<dynamic> body = json['articles'];
 
     List<Article> articles = body.map((dynamic item) => Article.fromJson(item)).toList();
-    developer.log(response.body);
+    //developer.log(response.body);
     return articles;
   }
   else {
