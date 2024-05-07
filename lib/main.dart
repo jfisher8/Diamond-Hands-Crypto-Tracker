@@ -50,7 +50,7 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: onboarded == true ? const HomeScreen() : NewUserOnboarding(),
+      home: onboarded == true ? NewUserOnboarding() : HomeScreen(),
       theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }

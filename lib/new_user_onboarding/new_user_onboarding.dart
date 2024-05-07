@@ -9,7 +9,6 @@ import 'dart:developer' as developer;
 
 class NewUserOnboarding extends StatelessWidget {
   NewUserOnboarding({super.key});
-  
 
   final List<PageViewModel> onboardingScreens = [
     PageViewModel(
@@ -34,11 +33,7 @@ class NewUserOnboarding extends StatelessWidget {
         )),
     PageViewModel(
         image: Center(
-          child: Card(
-              elevation: 30,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(90)),
-              child: Image.asset('assets/material_upwards_trend_arrow_black.png')),
+          child: Image.asset('assets/material_upwards_trend_arrow_black.png'),
         ),
         title: 'Track the prices of your favourite crypto',
         body:
@@ -108,12 +103,15 @@ class NewUserOnboarding extends StatelessWidget {
           ),
           showDoneButton: true,
           done: ElevatedButton(
-            child: Text('Next', style: GoogleFonts.mavenPro(fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold)),
+            child: Text('Next',
+                style: GoogleFonts.mavenPro(
+                    fontSize: 16,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold)),
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      const SignUpOnboardingScreen()),
+                  builder: (context) => const SignUpOnboardingScreen()),
             ),
           ),
           showSkipButton: true,
@@ -128,9 +126,15 @@ class NewUserOnboarding extends StatelessWidget {
               },
               child: Text('Skip',
                   style: GoogleFonts.mavenPro(
-                      fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue))),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue))),
           showNextButton: true,
-          next: const Icon(Icons.arrow_forward, size: 40, color: Colors.blue,),
+          next: const Icon(
+            Icons.arrow_forward,
+            size: 40,
+            color: Colors.blue,
+          ),
           onDone: () => onDone(context),
           curve: Curves.bounceOut,
         ),
