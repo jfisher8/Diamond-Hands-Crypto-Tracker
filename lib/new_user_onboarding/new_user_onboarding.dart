@@ -49,11 +49,7 @@ class NewUserOnboarding extends StatelessWidget {
         )),
     PageViewModel(
         image: Center(
-          child: Card(
-              elevation: 30,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(90)),
-              child: Image.asset('assets/material_exchanges_black.png')),
+          child: Image.asset('assets/material_exchanges_black.png'),
         ),
         title: 'Research the best crypto exchanges',
         body:
@@ -69,11 +65,7 @@ class NewUserOnboarding extends StatelessWidget {
         )),
     PageViewModel(
         image: Center(
-          child: Card(
-              elevation: 30,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50)),
-              child: Image.asset('assets/material_newspaper_black.png')),
+          child: Image.asset('assets/material_newspaper_black.png'),
         ),
         title: "All the latest news",
         body: "Read the latest news on all things cryptocurrency",
