@@ -124,7 +124,6 @@ class NewUserOnboarding extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      // TODO: Create LatestCryptoPrices page
                         builder: (context) => const HomeScreen()));
               },
               child: Text('Skip',
