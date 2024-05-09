@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges_details.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
@@ -24,7 +25,7 @@ class ExchangesCard extends StatelessWidget {
         child: Card(
           child: ListTile(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const CryptoExchangesDetails()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
             },
             trailing: const Icon(Icons.arrow_forward_rounded),
             leading: ConstrainedBox(

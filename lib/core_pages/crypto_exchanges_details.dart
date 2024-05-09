@@ -11,8 +11,9 @@ class CryptoExchangesDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildAppBar(
-        title: const Text('Diamond Hands Placeholder'), appBar: AppBar(), widgets: [],
+        title: Text(exchanges.name), appBar: AppBar(), widgets: [],
         ),
+        body: const Placeholder(),
     );
   }
 }

@@ -2,17 +2,17 @@ class Exchanges {
   late String name;
   late int? yearEstablished;
   late String url;
-  late String image;
+  late String imageURL;
 
   Exchanges({
-    required this.name, required this.yearEstablished, required this.url, required this.image
+    required this.name, required this.yearEstablished, required this.url, required this.imageURL
   });
 
   Exchanges.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     yearEstablished = json['year_established'];
     url = json['url'];
-    image = json['image'];
+    imageURL = json['image'];
   }
 }
 

@@ -82,7 +82,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                           builder: (context) =>
                                               CryptoExchangesDetails(
                                                 exchanges: snapshot
-                                                    .data[context].index,
+                                                    .data[index],
                                               )));
                                 },
                                 trailing:
@@ -94,7 +94,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                       maxWidth: 66,
                                       maxHeight: 100),
                                   child: CachedNetworkImage(
-                                      imageUrl: snapshot.data.imageURL,
+                                      imageUrl: snapshot.data[index].imageURL,
                                       placeholder: (imageUrl, error) =>
                                           const CircularProgressIndicator(),
                                       errorWidget: (context, imageUrl, error) =>
@@ -102,8 +102,8 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                               Icons.error_outline_rounded,
                                               color: Colors.red)),
                                 ),
-                                title: Text(snapshot.data.name),
-                                subtitle: Text(snapshot.data.yearEstablished),
+                                title: Text(snapshot.data[index].name),
+                                subtitle: Text(snapshot.data[index].yearEstablished.toString()),
                               ),
                             ));
                       });
