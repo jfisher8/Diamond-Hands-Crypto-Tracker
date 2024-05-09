@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,7 +18,7 @@ class ReadNewsArticle extends StatelessWidget {
     return Scaffold(
       appBar: BuildAppBar(
         title: const Text('Diamond Hands Crypto Tracker'),
-        appBar: AppBar(),
+        appBar: AppBar(automaticallyImplyLeading: true),
         widgets: [
           FirebaseAuth.instance.currentUser != null
               ? IconButton(
@@ -42,7 +41,6 @@ class ReadNewsArticle extends StatelessWidget {
                   icon: const Icon(Icons.login_rounded, color: Colors.black)),
         ],
       ),
-      drawer: const NavigationMenu(),
       body: Center(
           child: Column(
         children: [
