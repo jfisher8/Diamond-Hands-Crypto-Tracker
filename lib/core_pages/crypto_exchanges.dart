@@ -5,9 +5,10 @@ import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
-import 'package:diamond_hands_crypto_tracker/widgets/exchanges_card_widget.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges_details.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/api_status_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CryptoExchanges extends StatefulWidget {
   const CryptoExchanges({super.key});
@@ -69,13 +70,42 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                       scrollDirection: Axis.vertical,
                       itemCount: exchangesList.length,
                       itemBuilder: (context, index) {
-                        return ExchangesCard(
-                          name: exchangesList[index].name,
-                          image: exchangesList[index].image,
-                          yearEstablished:
-                              exchangesList[index].yearEstablished.toString(),
-                          url: exchangesList[index].url,
-                        );
+                        return Padding(
+                            padding: const EdgeInsets.only(
+                                top: 15, left: 10, right: 10),
+                            child: Card(
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CryptoExchangesDetails(
+                                                exchanges: snapshot
+                                                    .data[context].index,
+                                              )));
+                                },
+                                trailing:
+                                    const Icon(Icons.arrow_forward_rounded),
+                                leading: ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                      minWidth: 66,
+                                      minHeight: 66,
+                                      maxWidth: 66,
+                                      maxHeight: 100),
+                                  child: CachedNetworkImage(
+                                      imageUrl: snapshot.data.imageURL,
+                                      placeholder: (imageUrl, error) =>
+                                          const CircularProgressIndicator(),
+                                      errorWidget: (context, imageUrl, error) =>
+                                          const Icon(
+                                              Icons.error_outline_rounded,
+                                              color: Colors.red)),
+                                ),
+                                title: Text(snapshot.data.name),
+                                subtitle: Text(snapshot.data.yearEstablished),
+                              ),
+                            ));
                       });
                 } else {
                   return buildExchangesErrorStatus(context);
