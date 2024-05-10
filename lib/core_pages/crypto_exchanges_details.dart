@@ -22,6 +22,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(child: CachedNetworkImage(imageUrl: exchanges.imageURL)),
+                    const Padding(padding: EdgeInsets.all(5)),
                     Text(exchanges.name),
                   ],
                 )
