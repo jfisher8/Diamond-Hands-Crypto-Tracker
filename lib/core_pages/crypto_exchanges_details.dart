@@ -5,6 +5,7 @@ import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
+import 'package:flutter/widgets.dart';
 
 class CryptoExchangesDetails extends StatelessWidget {
   const CryptoExchangesDetails({super.key, required this.exchanges});
@@ -54,7 +55,7 @@ class CryptoExchangesDetails extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text("Established in ${exchanges.yearEstablished}",
-                  style: const TextStyle(fontSize: 14)),
+                  style: Theme.of(context).textTheme.bodyLarge),
             ],
           ),
         ));
