@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges_details.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
-import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
 
 class ExchangesCard extends StatelessWidget {
   const ExchangesCard(
