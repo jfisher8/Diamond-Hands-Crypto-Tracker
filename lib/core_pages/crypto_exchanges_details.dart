@@ -49,8 +49,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                   Center(
                       child: CachedNetworkImage(imageUrl: exchanges.imageURL)),
                   const Padding(padding: EdgeInsets.all(5)),
-                  Text(exchanges.name,
-                      style: Theme.of(context).textTheme.bodyLarge),
+                  Text(exchanges.name, style: const TextStyle(fontSize: 28),),
                 ],
               )
             ],
