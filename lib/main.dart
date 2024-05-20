@@ -26,12 +26,14 @@ Future<void> main() async {
   ));
   SharedPreferences preferences = await SharedPreferences.getInstance(); //gets an instance of Local storage
   String? email = preferences.getString('emailAddress');
+  bool? isDarkMode = preferences.getBool('darkMode');
   SharedPreferences onboarding = await SharedPreferences.getInstance();
   bool showOnboarding = onboarding.getBool('onboarding') ?? true;
   //if email variable is null, state there is no current session, else, state last logged in email
   email == null ? developer.log('SharedPrefs: No current session') : 
   developer.log('Last logged in session: ' "$email");
   developer.log('Should onboarding be shown? ' "$showOnboarding");
+  developer.log('Should app be in dark mode? ' "$isDarkMode");
 
   runApp(ChangeNotifierProvider(create: (context) => ThemeProvider(),
     child: const MainApp(
