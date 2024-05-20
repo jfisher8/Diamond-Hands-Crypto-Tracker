@@ -8,9 +8,8 @@ Future<List<Article>> getArticleData () async {
   await dotenv.load(fileName: "lib/.env");
   String newsAPIKey = dotenv.env['NEWS_API_KEY'] as String;
 
-  // ignore: non_constant_identifier_names
-  final URL = 'https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=$newsAPIKey';
-  var response = await http.get((Uri.parse(URL)));
+  final url = 'https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=$newsAPIKey';
+  var response = await http.get((Uri.parse(url)));
   if (response.statusCode == 200) {
     Map<String, dynamic> json = jsonDecode(response.body);
 
