@@ -13,7 +13,7 @@ class NavigationMenu extends StatefulWidget {
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
-  bool isToggled = false;
+  bool isOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,14 @@ class _NavigationMenuState extends State<NavigationMenu> {
                 IconButton(
                     onPressed: () {
                       Provider.of<ThemeProvider>(context, listen: false)
-                          .toggleTheme();
+                          .toggleTheme(isOn);
                       setState(() {
-                        isToggled != true
-                            ? isToggled = true
-                            : isToggled = false;
+                        isOn != true
+                            ? isOn = true
+                            : isOn = false;
                       });
                     },
-                    icon: isToggled == true
+                    icon: isOn == true
                         ? const Icon(Icons.light_mode_rounded)
                         : const Icon(Icons.dark_mode_rounded)),
               ],
