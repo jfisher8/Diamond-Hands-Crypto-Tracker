@@ -32,8 +32,8 @@ class ThemeProvider with ChangeNotifier {
   }
 
   void toggleTheme(bool isOn) async {
-    themeData = isOn ? darkMode : lightMode;
     notifyListeners();
+    themeData = isOn ? darkMode : lightMode;
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setBool('darkMode', themeData == darkMode);
     if (_themeData == lightMode) {
