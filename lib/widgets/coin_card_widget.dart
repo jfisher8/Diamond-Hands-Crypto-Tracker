@@ -26,7 +26,7 @@ class CoinCard extends StatelessWidget {
       child: Container(
         height: 110,
         decoration: BoxDecoration(
-          color: Colors.grey[500],
+          color: Colors.grey[500]?.withOpacity(0.1),
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
