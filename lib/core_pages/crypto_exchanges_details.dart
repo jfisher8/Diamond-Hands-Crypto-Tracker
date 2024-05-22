@@ -5,7 +5,6 @@ import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
-import 'package:flutter/widgets.dart';
 
 class CryptoExchangesDetails extends StatelessWidget {
   const CryptoExchangesDetails({super.key, required this.exchanges});
