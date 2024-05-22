@@ -21,7 +21,7 @@ ThemeData darkMode = ThemeData(
     textTheme: TextTheme(
     titleSmall: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 14, color: const Color.fromRGBO(56, 182, 255, 1.0)),
     titleMedium: GoogleFonts.questrial(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.grey[400]),
-    titleLarge: GoogleFonts.anton(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.grey[350]),
+    titleLarge: GoogleFonts.anton(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
     bodySmall: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.grey[350]),
     bodyMedium: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.grey[350]),
     bodyLarge: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
