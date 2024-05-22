@@ -15,6 +15,7 @@ class BuildAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       backgroundColor: backgroundColor,
       actions: widgets,
+      iconTheme: const IconThemeData(color: Colors.black),
     );
   }
 
