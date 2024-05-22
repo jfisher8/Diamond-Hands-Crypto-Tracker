@@ -26,13 +26,13 @@ class CoinCard extends StatelessWidget {
       child: Container(
         height: 110,
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: Colors.grey[500],
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.shade300,
               offset: const Offset(1, 1),
-              blurRadius: 5,
+              blurRadius: 2,
             ),
           ],
         ),
