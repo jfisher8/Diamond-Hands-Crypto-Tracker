@@ -33,7 +33,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildAppBar(
-        title: const Text('Latest Crypto News'),
+        title: Text('Latest Crypto News', style: Theme.of(context).textTheme.titleLarge),
         appBar: AppBar(),
         widgets: [
           FirebaseAuth.instance.currentUser != null
