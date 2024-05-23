@@ -31,7 +31,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BuildAppBar(
-          title: const Text('Crypto Exchanges'),
+          title: Text('Crypto Exchanges', style: Theme.of(context).textTheme.titleLarge),
           appBar: AppBar(),
           widgets: [
             FirebaseAuth.instance.currentUser != null
