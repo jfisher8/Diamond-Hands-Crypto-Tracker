@@ -60,7 +60,7 @@ Widget buildExchangesErrorStatus(BuildContext context) {
         SizedBox(height: 40),
         Icon((Icons.error)),
         SizedBox(height: 40),
-        Text('Error loading Exchanges data. Please refresh and try again.'),
+        Text('Error loading Exchanges data. Please refresh and try again.', textAlign: TextAlign.center),
       ],
     ),
   );
