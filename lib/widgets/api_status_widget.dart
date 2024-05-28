@@ -18,7 +18,7 @@ Widget buildCoinsErrorStatus(BuildContext context) {
     child: Column(
       children: [
         SizedBox(height: 40),
-        CircularProgressIndicator(),
+        Icon(Icons.error_rounded),
         SizedBox(height: 40),
         Text('Error loading Coin data. Please try again later.'),
         SizedBox(height: 80)
