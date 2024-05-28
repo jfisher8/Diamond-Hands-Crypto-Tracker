@@ -23,19 +23,17 @@ class CoinCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
-      // child: Container(
-      //   height: 110,
-      //   decoration: BoxDecoration(
-      //     color: Colors.grey[500]?.withOpacity(0.1),
-      //     borderRadius: BorderRadius.circular(20),
-      //     boxShadow: [
-      //       BoxShadow(
-      //         color: Colors.grey.shade300,
-      //         offset: const Offset(1, 1),
-      //         blurRadius: 2,
-      //       ),
-      //     ],
-      //   ),
+      child: Container(
+        height: 110,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              offset: const Offset(1, 1),
+              blurRadius: 2,
+            ),
+          ],
+        ),
         child: Row(
           children: [
             Padding(
@@ -66,8 +64,7 @@ class CoinCard extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     child: Text(
                       name!,
-                      style: TextStyle(
-                        color: Colors.grey[900],
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -75,10 +72,7 @@ class CoinCard extends StatelessWidget {
                   ),
                   Text(
                     symbol!.toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.grey[900],
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium
                   ),
                 ],
               ),
@@ -124,6 +118,6 @@ class CoinCard extends StatelessWidget {
             ),
           ],
         ),
-    );
+    ));
   }
 }
