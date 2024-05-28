@@ -65,6 +65,7 @@ class CoinCard extends StatelessWidget {
                     child: Text(
                       name!,
                       style: const TextStyle(
+                        color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
