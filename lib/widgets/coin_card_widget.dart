@@ -85,8 +85,7 @@ class CoinCard extends StatelessWidget {
                 children: [
                   Text(
                     "£$price",
-                    style: TextStyle(
-                      color: Colors.grey[900],
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
