@@ -155,11 +155,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                               : const Row(
                                   children: [
                                     Center(
-                                      child: Column(
-                                        children: [
-                                          Icon(Icons.search_off_rounded),
-                                        ],
-                                      )
+                                      child: Icon(Icons.search_off_rounded),
                                     )
                                   ],
                                 );
