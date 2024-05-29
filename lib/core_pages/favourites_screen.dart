@@ -13,7 +13,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BuildAppBar(
-            title: const Text('Your Favourites'),
+            title: Text('Your Favourites', style: Theme.of(context).textTheme.titleLarge),
             appBar: AppBar(),
             widgets: [
           IconButton(
