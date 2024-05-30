@@ -41,7 +41,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildAppBar(
-        title: const Text('Account Signup'),
+        title: Text('Account Signup', style: Theme.of(context).textTheme.titleLarge),
         appBar: AppBar(),
         widgets: const [],
       ),
