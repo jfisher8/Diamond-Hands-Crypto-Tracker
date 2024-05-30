@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BuildAppBar(
-          title: const Text('Account Login'),
+          title: Text('Account Login', style: Theme.of(context).textTheme.titleLarge),
           appBar: AppBar(),
           widgets: const [],
         ),
