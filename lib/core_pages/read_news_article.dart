@@ -10,8 +10,10 @@ import 'package:diamond_hands_crypto_tracker/widgets/save_for_later_widget.dart'
 import 'package:url_launcher/url_launcher.dart';
 
 class ReadNewsArticle extends StatelessWidget {
-  const ReadNewsArticle({super.key, required this.article});
+  ReadNewsArticle({super.key, required this.article});
   final Article article;
+
+  final String? currentSession = FirebaseAuth.instance.currentUser?.email;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,8 @@ class ReadNewsArticle extends StatelessWidget {
             //ontap logic here, should save article to list
           })
         ],
-      )),
+      ),
+      ),
     );
   }
 }
