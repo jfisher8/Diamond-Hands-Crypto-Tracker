@@ -19,7 +19,8 @@ class ReadNewsArticle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildAppBar(
-        title: Text('Diamond Hands Crypto Tracker', style: Theme.of(context).textTheme.titleLarge),
+        title: Text('Diamond Hands Crypto Tracker',
+            style: Theme.of(context).textTheme.titleLarge),
         appBar: AppBar(automaticallyImplyLeading: true),
         widgets: [
           FirebaseAuth.instance.currentUser != null
@@ -44,33 +45,33 @@ class ReadNewsArticle extends StatelessWidget {
         ],
       ),
       body: Center(
-          child: Column(
-        children: [
-          Card(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(100)),
-            child: CachedNetworkImage(imageUrl: article.imageURL.toString()),
-          ),
-          Text(
-            article.title,
-            style: Theme.of(context).textTheme.bodyLarge,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 10),
-          Text(article.source.name.toString()),
-          const SizedBox(height: 10),
-          Text(article.description.toString(), textAlign: TextAlign.center),
-          const SizedBox(height: 40),
-          newsArticleReadMoreButton(context, () => launchUrl(Uri.parse(article.url))),
-          const Text("or, if you're short on time..."),
-          currentSession != null ?
-          saveForLaterButton(context, () {
-            //ontap logic here, should save article to list
-          })
-          : const Placeholder()
-        ],
-      ),
-      ),
+          child: Column(children: [
+        Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+          child: CachedNetworkImage(imageUrl: article.imageURL.toString()),
+        ),
+        Text(
+          article.title,
+          style: Theme.of(context).textTheme.bodyLarge,
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 10),
+        Text(article.source.name.toString()),
+        const SizedBox(height: 10),
+        Text(article.description.toString(), textAlign: TextAlign.center),
+        const SizedBox(height: 40),
+        newsArticleReadMoreButton(
+            context, () => launchUrl(Uri.parse(article.url))),
+        const Text("or, if you're short on time..."),
+        currentSession != null
+            ? saveForLaterButton(context, () {
+                //ontap logic here, should save article to list
+              })
+            : loginAndSaveButton(context, () {
+              //ontap logic here to route user to login screen of the app
+            })
+      ])),
     );
   }
 }
