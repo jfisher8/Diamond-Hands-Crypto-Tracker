@@ -69,8 +69,11 @@ class ReadNewsArticle extends StatelessWidget {
                 //ontap logic here, should save article to list
               })
             : loginAndSaveButton(context, () {
-              //ontap logic here to route user to login screen of the app
-            })
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              })
       ])),
     );
   }
