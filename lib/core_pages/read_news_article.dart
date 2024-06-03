@@ -63,9 +63,11 @@ class ReadNewsArticle extends StatelessWidget {
           const SizedBox(height: 40),
           newsArticleReadMoreButton(context, () => launchUrl(Uri.parse(article.url))),
           const Text("or, if you're short on time..."),
+          currentSession != null ?
           saveForLaterButton(context, () {
             //ontap logic here, should save article to list
           })
+          : const Placeholder()
         ],
       ),
       ),
