@@ -152,13 +152,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                           ],
                                         ))
                                   ]))
-                              : const Row(
-                                  children: [
-                                    Center(
-                                      child: Icon(Icons.search_off_rounded),
-                                    )
-                                  ],
-                                );
+                              : Container();
                         });
                   } else if (snapshot.hasError || snapshot.data == null) {
                     developer.log('no data in snapshot');
