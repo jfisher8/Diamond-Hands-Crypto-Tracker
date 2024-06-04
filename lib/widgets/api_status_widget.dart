@@ -73,7 +73,7 @@ Widget buildExchangesLoadingStatus(BuildContext context) {
         SizedBox(height: 40),
         CircularProgressIndicator(),
         SizedBox(height: 40),
-        Text('Loading Exchanges data...'),
+        Text('Loading Exchanges data...', textAlign: TextAlign.center),
       ],
     ),
   );
