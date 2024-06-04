@@ -21,6 +21,7 @@ class LatestCryptoNews extends StatefulWidget {
 class _LatestCryptoNewsState extends State<LatestCryptoNews> {
   TextEditingController searchController = TextEditingController();
   late Future<List<Article>> futureArticle;
+  List<String> newsListOnSearch = [];
   String searchString = "";
 
   @override
@@ -86,8 +87,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
                     List<Article> articles = snapshot.data;
-                    return ListView.builder(
-                        itemCount: articles.length,
+                    searchController.text.isNotEmpty&&articles.isEmpty ? const Text('No results found') : ListView.builder(
+                        itemCount: searchController.text.isNotEmpty ? newsListOnSearch.length : articles.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return articles[index]
@@ -151,8 +152,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                             )
                                           ],
                                         ))
-                                  ]))
-                              : Container();
+                                  ])) : const Text('test');
                         });
                   } else if (snapshot.hasError || snapshot.data == null) {
                     developer.log('no data in snapshot');
