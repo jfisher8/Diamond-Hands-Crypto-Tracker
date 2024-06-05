@@ -99,6 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             developer.log('Logged in successfully');
                             errorMessage = '';
                           } on FirebaseAuthException catch (error) {
+                            String message = 'An error occured, try again later'; //default message
                             errorMessage = error.message!.toString();
                           }
                         }
