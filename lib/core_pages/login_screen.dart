@@ -102,7 +102,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             String message = 'An error occured, try again later'; //default message
                             switch (error.code) {
                               case 'EMAIL_NOT_FOUND':
-                              message = 'Unrecognised email address';
+                                message = 'Unrecognised email address';
+                                break;
+                              case 'EMAIL_EXISTS':
+                                message = 'Email address already in use';
+                              break;
                             }
                             errorMessage = error.message!.toString();
                           }
