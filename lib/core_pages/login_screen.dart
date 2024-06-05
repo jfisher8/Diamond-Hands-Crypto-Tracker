@@ -99,16 +99,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             developer.log('Logged in successfully');
                             Text(errorMessage);
                           } on FirebaseAuthException catch (error) {
-                            String message = 'An error occured, try again later'; //default message
+                            var message = 'An error occured'; //default message
                             switch (error.code) {
-                              case 'EMAIL_NOT_FOUND':
-                                message = 'Unrecognised email address';
-                                break;
                               case 'EMAIL_EXISTS':
                                 message = 'Email address already in use';
                                 break;
                               case 'INVALID_LOGIN_CREDENTIALS':
                                 message = 'Incorrect credentials, please try again';
+                              break;
                             }
                             errorMessage = message.toString();
                           }
