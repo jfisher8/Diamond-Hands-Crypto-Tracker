@@ -107,8 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               case 'EMAIL_EXISTS':
                                 message = 'Email address already in use';
                                 break;
-                              case 'INVALID_PASSWORD':
-                                message = 'Incorrect password, please try again';
+                              case 'INVALID_LOGIN_CREDENTIALS':
+                                message = 'Incorrect credentials, please try again';
                             }
                             errorMessage = error.message!.toString();
                           }
