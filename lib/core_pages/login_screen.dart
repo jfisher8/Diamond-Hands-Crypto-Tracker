@@ -97,7 +97,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                         builder: (context) =>
                                             const HomeScreen())));
                             developer.log('Logged in successfully');
-                            Text(errorMessage.toString());
                           } on FirebaseAuthException catch (error) {
                             developer.log(error.toString());
                             var message = 'An error occured'; //default message
@@ -109,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 message = 'Incorrect credentials, please try again';
                               break;
                             }
-                            errorMessage = message;
+                            Text(message);
                           }
                         }
                       }),
