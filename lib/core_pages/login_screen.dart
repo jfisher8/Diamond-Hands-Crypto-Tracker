@@ -109,7 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       }),
-                      const SizedBox(height: 60),
+                      const SizedBox(height: 50),
+                      const Divider(),
+                      const SizedBox(height: 10),
                       const Text("Don't have an account?"),
                       secondarySignUpButton(context, false, () {
                         Navigator.push(
