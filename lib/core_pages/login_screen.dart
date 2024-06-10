@@ -45,7 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BuildAppBar(
-          title: Text('Account Login', style: Theme.of(context).textTheme.titleLarge),
+          title: Text('Account Login',
+              style: Theme.of(context).textTheme.titleLarge),
           appBar: AppBar(),
           widgets: const [],
         ),
@@ -99,17 +100,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             developer.log('Logged in successfully');
                           } on FirebaseAuthException catch (error) {
                             developer.log(error.code);
-                            var message = 'An error occured, please try again'; //default message
+                            var message =
+                                'An error occured, please try again'; //default message
                             switch (error.code) {
                               case 'invalid-credential':
-                                message = 'Incorrect credentials, please try again';
-                              break;
+                                message =
+                                    'Incorrect credentials, please try again';
+                                break;
                             }
                             Text(message.toString());
                           }
                         }
                       }),
-                      const SizedBox(height: 50),
+                      TextButton(
+                          onPressed: () => const HomeScreen(),
+                          child: const Text('Forgotten Password?')),
                       const Divider(),
                       const SizedBox(height: 10),
                       const Text("Don't have an account?"),
