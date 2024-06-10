@@ -105,11 +105,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 message = 'Incorrect credentials, please try again';
                               break;
                             }
-                            Text(message);
+                            Text(message.toString());
                           }
                         }
                       }),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 60),
                       const Text("Don't have an account?"),
                       secondarySignUpButton(context, false, () {
                         Navigator.push(
