@@ -98,10 +98,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             const HomeScreen())));
                             developer.log('Logged in successfully');
                           } on FirebaseAuthException catch (error) {
-                            developer.log(error.toString());
+                            developer.log(error.code);
                             var message = 'An error occured, please try again'; //default message
                             switch (error.code) {
-                              case 'INVALID_PASSWORD':
+                              case 'invalid-credential':
                                 message = 'Incorrect credentials, please try again';
                               break;
                             }
