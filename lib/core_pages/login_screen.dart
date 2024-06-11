@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/password_validation.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -114,7 +115,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       }),
                       TextButton(
                           onPressed: () => const HomeScreen(),
-                          child: const Text('Forgotten Password?')),
+                          child: Text('Forgotten Password?',
+                              style: GoogleFonts.questrial(
+                                  decoration: TextDecoration.underline,
+                                  decorationColor:
+                                      const Color.fromRGBO(56, 182, 255, 1.0),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: const Color.fromRGBO(
+                                      56, 182, 255, 1.0)))),
                       const Divider(),
                       const SizedBox(height: 10),
                       const Text("Don't have an account?"),
