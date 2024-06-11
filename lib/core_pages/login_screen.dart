@@ -127,7 +127,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16,
                                           color: const Color.fromRGBO(
-                                              56, 182, 255, 1.0)))),
+                                              56, 182, 255, 1.0))),
+                                              content: const Text('Input your email address to reset password'))
                             );
                           },
                           child: Text('Forgotten Password?',
