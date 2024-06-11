@@ -114,7 +114,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       }),
                       TextButton(
-                          onPressed: () => const HomeScreen(),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) => AlertDialog(
+                                  title: Text('Reset your Password',
+                                      style: GoogleFonts.questrial(
+                                          decoration: TextDecoration.underline,
+                                          decorationColor: const Color.fromRGBO(
+                                              56, 182, 255, 1.0),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          color: const Color.fromRGBO(
+                                              56, 182, 255, 1.0)))),
+                            );
+                          },
                           child: Text('Forgotten Password?',
                               style: GoogleFonts.questrial(
                                   decoration: TextDecoration.underline,
