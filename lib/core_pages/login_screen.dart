@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             showDialog(
                               context: context,
-                              barrierDismissible: false,
+                              barrierDismissible: true,
                               builder: (BuildContext context) => AlertDialog(
                                   title: Text('Reset your Password',
                                       style: GoogleFonts.questrial(
