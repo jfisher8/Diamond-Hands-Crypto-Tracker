@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context: context,
                                 barrierDismissible: true,
                                 builder: (BuildContext context) => AlertDialog(
-                                    title: Text('Reset your Password',
+                                    title: Text('Enter your email address to reset your password',
                                         style: GoogleFonts.questrial(
                                             decorationColor:
                                                 const Color.fromRGBO(
