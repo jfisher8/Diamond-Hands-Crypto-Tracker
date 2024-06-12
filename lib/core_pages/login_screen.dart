@@ -121,7 +121,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (BuildContext context) => AlertDialog(
                                   title: Text('Reset your Password',
                                       style: GoogleFonts.questrial(
-                                          decoration: TextDecoration.underline,
                                           decorationColor: const Color.fromRGBO(
                                               56, 182, 255, 1.0),
                                           fontWeight: FontWeight.bold,
