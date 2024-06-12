@@ -119,16 +119,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context: context,
                                 barrierDismissible: true,
                                 builder: (BuildContext context) => AlertDialog(
-                                    title: Text('Enter your email address to reset your password',
-                                        style: GoogleFonts.questrial(
-                                            decorationColor:
-                                                const Color.fromRGBO(
-                                                    56, 182, 255, 1.0),
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
-                                            color: const Color.fromRGBO(
-                                                56, 182, 255, 1.0))),
-                                    content: const TextField()
+                                      title: Text(
+                                          'Enter your email address to reset your password',
+                                          style: GoogleFonts.questrial(
+                                              decorationColor:
+                                                  const Color.fromRGBO(
+                                                      56, 182, 255, 1.0),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                              color: const Color.fromRGBO(
+                                                  56, 182, 255, 1.0))),
+                                      content: const TextField(
+                                          decoration: InputDecoration(
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          56, 182, 255, 1.0))),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Color.fromRGBO(56,
+                                                          182, 255, 1.0))))),
                                     ));
                           },
                           child: Text('Forgotten Password?',
