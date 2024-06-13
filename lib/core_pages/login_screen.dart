@@ -131,6 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   56, 182, 255, 1.0))),
                                       content: const TextField(
                                           decoration: InputDecoration(
+                                            hintText: 'Enter your email address...',
                                               enabledBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Color.fromRGBO(
