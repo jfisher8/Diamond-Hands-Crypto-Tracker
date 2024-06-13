@@ -146,7 +146,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                                             TextButton(onPressed: () {
                                                               Navigator.pop(context);
                                                             }, child: Text('Cancel', style: GoogleFonts.questrial(color: Colors.red))),
-                                                            TextButton(onPressed: () {}, child: const Text('Send password reset email'))
+                                                            TextButton(onPressed: () {
+                                                              //TODO: add password reset functionality (should trigger Firebase password reset email)
+                                                            }, child: Text('Send password reset email', style: GoogleFonts.questrial(color: Colors.green)))
                                                           ],
                                     ));
                           },
