@@ -140,6 +140,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   borderSide: BorderSide(
                                                       color: Color.fromRGBO(56,
                                                           182, 255, 1.0))))),
+                                                          actions: [
+                                                            TextButton(onPressed: () {
+                                                              Navigator.pop(context);
+                                                            }, child: const Text('Cancel'))
+                                                          ],
                                     ));
                           },
                           child: Text('Forgotten Password?',
