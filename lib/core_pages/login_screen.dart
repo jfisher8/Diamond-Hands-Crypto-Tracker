@@ -28,6 +28,9 @@ class _LoginScreenState extends State<LoginScreen> {
   //googleSignIn.signInSilently();
   //super.initState();
 
+                            var message =
+                                'An error occured, please try again'; //default message
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final String emailWord = "email";
@@ -101,18 +104,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             developer.log('Logged in successfully');
                           } on FirebaseAuthException catch (error) {
                             developer.log(error.code);
-                            var message =
-                                'An error occured, please try again'; //default message
                             switch (error.code) {
                               case 'invalid-credential':
                                 message =
                                     'Incorrect credentials, please try again';
                                 break;
                             }
-                            Text(message.toString());
+                            // /Text(message);
                           }
                         }
                       }),
+                      Text(message), //TODO: explore alertDialog method of showing error message
                       TextButton(
                           onPressed: () {
                             showDialog(
