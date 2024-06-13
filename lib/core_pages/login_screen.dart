@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             showDialog(
                                 context: context,
-                                barrierDismissible: true,
+                                barrierDismissible: false,
                                 builder: (BuildContext context) => AlertDialog(
                                       title: Text(
                                           'Enter your email address to reset your password',
