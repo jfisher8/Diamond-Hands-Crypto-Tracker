@@ -28,10 +28,10 @@ class _LoginScreenState extends State<LoginScreen> {
   //googleSignIn.signInSilently();
   //super.initState();
 
-                            var message =
-                                'An error occured, please try again'; //default message
+  var message = 'An error occured, please try again'; //default message
 
   final emailController = TextEditingController();
+  final emailResetController = TextEditingController();
   final passwordController = TextEditingController();
   final String emailWord = "email";
   final emailValidator = TextfieldValidation();
@@ -114,7 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       }),
-                      Text(message), //TODO: explore alertDialog method of showing error message
+                      Text(
+                          message), //TODO: explore alertDialog method of showing error message
                       TextButton(
                           onPressed: () {
                             showDialog(
@@ -131,9 +132,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                               fontSize: 16,
                                               color: const Color.fromRGBO(
                                                   56, 182, 255, 1.0))),
-                                      content: const TextField(
-                                          decoration: InputDecoration(
-                                            hintText: 'Enter your email address...',
+                                      content: TextField(
+                                          controller: emailResetController,
+                                          decoration: const InputDecoration(
+                                              hintText:
+                                                  'Enter your email address...',
                                               enabledBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Color.fromRGBO(
@@ -142,14 +145,24 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   borderSide: BorderSide(
                                                       color: Color.fromRGBO(56,
                                                           182, 255, 1.0))))),
-                                                          actions: [
-                                                            TextButton(onPressed: () {
-                                                              Navigator.pop(context);
-                                                            }, child: Text('Cancel', style: GoogleFonts.questrial(color: Colors.red))),
-                                                            TextButton(onPressed: () {
-                                                              //TODO: add password reset functionality (should trigger Firebase password reset email)
-                                                            }, child: Text('Send password reset email', style: GoogleFonts.questrial(color: Colors.green)))
-                                                          ],
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('Cancel',
+                                                style: GoogleFonts.questrial(
+                                                    color: Colors.red))),
+                                        TextButton(
+                                            onPressed: () {
+                                              //TODO: add email validation function call
+                                              //TODO: add password reset functionality (should trigger Firebase password reset email)
+                                            },
+                                            child: Text(
+                                                'Send password reset email',
+                                                style: GoogleFonts.questrial(
+                                                    color: Colors.green)))
+                                      ],
                                     ));
                           },
                           child: Text('Forgotten Password?',
