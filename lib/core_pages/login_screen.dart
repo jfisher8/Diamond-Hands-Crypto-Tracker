@@ -143,7 +143,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                           actions: [
                                                             TextButton(onPressed: () {
                                                               Navigator.pop(context);
-                                                            }, child: const Text('Cancel'))
+                                                            }, child: const Text('Cancel')),
+                                                            TextButton(onPressed: () {}, child: const Text('Send password reset email'))
                                                           ],
                                     ));
                           },
