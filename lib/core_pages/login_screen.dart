@@ -155,7 +155,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     color: Colors.red))),
                                         TextButton(
                                             onPressed: () {
-                                              //TODO: add email validation function call
+                                              if (emailResetController.text.isNotEmpty) {
+                                                validateEmail(emailResetController.text);
+                                              }
                                               //TODO: add password reset functionality (should trigger Firebase password reset email)
                                             },
                                             child: Text(
