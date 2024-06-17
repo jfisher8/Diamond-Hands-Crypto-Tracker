@@ -105,17 +105,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           } on FirebaseAuthException catch (error) {
                             developer.log(error.code);
                             switch (error.code) {
-                              case 'invalid-credential':
+                              case 'invalid-email':
                                 message =
                                     'Incorrect credentials, please try again';
                                 break;
                             }
+                            showDialog(context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: Text(message),
+                            ));
                             // /Text(message);
                           }
                         }
                       }),
-                      Text(
-                          message), //TODO: explore alertDialog method of showing error message
+                      // Text(
+                      //     message), //TODO: explore alertDialog method of showing error message
                       TextButton(
                           onPressed: () {
                             showDialog(
