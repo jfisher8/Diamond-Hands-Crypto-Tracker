@@ -107,8 +107,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (error.code == 'invalid-credential') {
                               message = 'Incorrect credentials, try again';
                             }
+                          }
                         }
-                      }}),
+                      }),
                       // Text(
                       //     message), //TODO: explore alertDialog method of showing error message
                       TextButton(
@@ -150,9 +151,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     color: Colors.red))),
                                         TextButton(
                                             onPressed: () {
-                                              if (emailResetController.text.isNotEmpty) {
-                                                resetPassword(emailResetController.text);
-                                                }
+                                              if (emailResetController
+                                                  .text.isNotEmpty) {
+                                                resetPassword(
+                                                    emailResetController.text);
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        const AlertDialog(
+                                                          
+                                                        ));
+                                              }
                                               //TODO: add password reset functionality (should trigger Firebase password reset email)
                                             },
                                             child: Text(
