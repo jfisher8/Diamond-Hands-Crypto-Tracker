@@ -153,14 +153,33 @@ class _LoginScreenState extends State<LoginScreen> {
                                             onPressed: () {
                                               if (emailResetController
                                                   .text.isNotEmpty) {
-                                                resetPassword(
-                                                    emailResetController.text);
+                                                // resetPassword(
+                                                //     emailResetController.text);
                                                 showDialog(
                                                     context: context,
                                                     builder: (BuildContext
                                                             context) =>
-                                                        const AlertDialog(
-                                                          
+                                                        AlertDialog(
+                                                          title: Text(
+                                                              'Check your inbox! Reset email sent',
+                                                              style: GoogleFonts.questrial(
+                                                                  decorationColor:
+                                                                      const Color
+                                                                          .fromRGBO(
+                                                                          56,
+                                                                          182,
+                                                                          255,
+                                                                          1.0),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 16,
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      56,
+                                                                      182,
+                                                                      255,
+                                                                      1.0))),
                                                         ));
                                               }
                                               //TODO: add password reset functionality (should trigger Firebase password reset email)
