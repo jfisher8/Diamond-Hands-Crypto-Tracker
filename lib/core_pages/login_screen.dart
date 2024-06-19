@@ -182,6 +182,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                                                       1.0))),
                                                         ));
                                               }
+                                              else if (emailResetController.text.isEmpty) {
+                                                
+                                              }
                                               //TODO: add password reset functionality (should trigger Firebase password reset email)
                                             },
                                             child: Text(
