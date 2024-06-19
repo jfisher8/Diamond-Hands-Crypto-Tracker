@@ -46,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const emailRequiredSnackbar = SnackBar(content: Text('Email address required'));
     return Scaffold(
         appBar: BuildAppBar(
           title: Text('Account Login',
@@ -183,9 +184,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         ));
                                               }
                                               else if (emailResetController.text.isEmpty) {
-                                                
+                                                ScaffoldMessenger.of(context).showSnackBar(emailRequiredSnackbar);
                                               }
-                                              //TODO: add password reset functionality (should trigger Firebase password reset email)
+                                              else {
+                                                //TODO: add password reset functionality here
+                                              }
                                             },
                                             child: Text(
                                                 'Send password reset email',
