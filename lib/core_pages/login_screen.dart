@@ -187,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 ScaffoldMessenger.of(context).showSnackBar(emailRequiredSnackbar);
                                               }
                                               else {
-                                                //TODO: add password reset functionality here
+                                                resetPassword(emailResetController.text);
                                               }
                                             },
                                             child: Text(
