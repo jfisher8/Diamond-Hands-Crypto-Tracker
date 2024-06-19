@@ -36,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailValidator = TextfieldValidation();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   String errorMessage = "";
+  var message = 'An error occured'; //default Firebase login error message
 
   @override
   void dispose() {
@@ -104,7 +105,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             developer.log('Logged in successfully');
                           } on FirebaseAuthException catch (error) {
                             developer.log(error.code);
-                            var message = 'An error occured';
                             if (error.code == 'invalid-credential') {
                               message = 'Incorrect credentials, try again';
                             }
