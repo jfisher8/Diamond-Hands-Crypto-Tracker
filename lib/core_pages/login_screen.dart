@@ -47,7 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const emailRequiredSnackbar = SnackBar(content: Text('Email address required'));
+    const emailRequiredSnackbar =
+        SnackBar(content: Text('Email address required'));
     return Scaffold(
         appBar: BuildAppBar(
           title: Text('Account Login',
@@ -154,8 +155,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                             onPressed: () {
                                               if (emailResetController
                                                   .text.isNotEmpty) {
-                                                // resetPassword(
-                                                //     emailResetController.text);
+                                                resetPassword(
+                                                    emailResetController.text);
                                                 showDialog(
                                                     context: context,
                                                     builder: (BuildContext
@@ -182,9 +183,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                                                       255,
                                                                       1.0))),
                                                         ));
-                                              }
-                                              else if (emailResetController.text.isEmpty) {
-                                                ScaffoldMessenger.of(context).showSnackBar(emailRequiredSnackbar);
+                                              } else if (emailResetController
+                                                  .text.isEmpty) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                        emailRequiredSnackbar);
                                               }
                                             },
                                             child: Text(
