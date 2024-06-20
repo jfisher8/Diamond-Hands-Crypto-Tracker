@@ -118,8 +118,60 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             showDialog(
                                 context: context,
-                                barrierDismissible: false,
+                                barrierDismissible: true,
                                 builder: (BuildContext context) => AlertDialog(
+                                  actions: [
+                                                                            TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('Cancel',
+                                                style: GoogleFonts.questrial(
+                                                    color: Colors.red))),
+                                        TextButton(
+                                            onPressed: () {
+                                              if (emailResetController
+                                                  .text.isNotEmpty) {
+                                                resetPassword(
+                                                    emailResetController.text);
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        AlertDialog(
+                                                          title: Text(
+                                                              'Check your inbox! Reset email sent',
+                                                              style: GoogleFonts.questrial(
+                                                                  decorationColor:
+                                                                      const Color
+                                                                          .fromRGBO(
+                                                                          56,
+                                                                          182,
+                                                                          255,
+                                                                          1.0),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 16,
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      56,
+                                                                      182,
+                                                                      255,
+                                                                      1.0))),
+                                                        ));
+                                              } else if (emailResetController
+                                                  .text.isEmpty) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                        emailRequiredSnackbar);
+                                              }
+                                            },
+                                            child: Text(
+                                                'Send password reset email',
+                                                style: GoogleFonts.questrial(
+                                                    color: Colors.green)))
+                                  ],
                                       title: Text(
                                           'Enter your email address to reset your password',
                                           style: GoogleFonts.questrial(
@@ -135,76 +187,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ListBody(
                                           children: [
                                             Text('Enter email address'),
-                                            Expanded(child: TextFormField())
+                                            TextFormField()
                                           ],
                                         )),
-                                      )));
-                                      // TextField(
-                                      //     controller: emailResetController,
-                                      //     decoration: const InputDecoration(
-                                      //         hintText:
-                                      //             'Enter your email address...',
-                                      //         enabledBorder: OutlineInputBorder(
-                                      //             borderSide: BorderSide(
-                                      //                 color: Color.fromRGBO(
-                                      //                     56, 182, 255, 1.0))),
-                                      //         focusedBorder: OutlineInputBorder(
-                                      //             borderSide: BorderSide(
-                                      //                 color: Color.fromRGBO(56,
-                                      //                     182, 255, 1.0))))),
-                                    //   actions: [
-                                    //     TextButton(
-                                    //         onPressed: () {
-                                    //           Navigator.pop(context);
-                                    //         },
-                                    //         child: Text('Cancel',
-                                    //             style: GoogleFonts.questrial(
-                                    //                 color: Colors.red))),
-                                    //     TextButton(
-                                    //         onPressed: () {
-                                    //           if (emailResetController
-                                    //               .text.isNotEmpty) {
-                                    //             resetPassword(
-                                    //                 emailResetController.text);
-                                    //             showDialog(
-                                    //                 context: context,
-                                    //                 builder: (BuildContext
-                                    //                         context) =>
-                                    //                     AlertDialog(
-                                    //                       title: Text(
-                                    //                           'Check your inbox! Reset email sent',
-                                    //                           style: GoogleFonts.questrial(
-                                    //                               decorationColor:
-                                    //                                   const Color
-                                    //                                       .fromRGBO(
-                                    //                                       56,
-                                    //                                       182,
-                                    //                                       255,
-                                    //                                       1.0),
-                                    //                               fontWeight:
-                                    //                                   FontWeight
-                                    //                                       .bold,
-                                    //                               fontSize: 16,
-                                    //                               color: const Color
-                                    //                                   .fromRGBO(
-                                    //                                   56,
-                                    //                                   182,
-                                    //                                   255,
-                                    //                                   1.0))),
-                                    //                     ));
-                                    //           } else if (emailResetController
-                                    //               .text.isEmpty) {
-                                    //             ScaffoldMessenger.of(context)
-                                    //                 .showSnackBar(
-                                    //                     emailRequiredSnackbar);
-                                    //           }
-                                    //         },
-                                    //         child: Text(
-                                    //             'Send password reset email',
-                                    //             style: GoogleFonts.questrial(
-                                    //                 color: Colors.green)))
-                                    //   ],
-                                    // ));
+                                    )));
                           },
                           child: Text('Forgotten Password?',
                               style: GoogleFonts.questrial(
