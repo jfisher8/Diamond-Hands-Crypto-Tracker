@@ -190,6 +190,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0))
                                               ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0)))
                                             ))
                                           ],
                                         )),
