@@ -186,7 +186,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                         child: Form(child:
                                         ListBody(
                                           children: [
-                                            Text('Enter email address'),
                                             TextFormField()
                                           ],
                                         )),
