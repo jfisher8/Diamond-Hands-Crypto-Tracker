@@ -186,7 +186,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                         child: Form(child:
                                         ListBody(
                                           children: [
-                                            TextFormField()
+                                            TextFormField(decoration: const InputDecoration(
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0))
+                                              ),
+                                            ))
                                           ],
                                         )),
                                     )));
