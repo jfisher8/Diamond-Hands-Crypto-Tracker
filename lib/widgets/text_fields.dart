@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/password_validation.dart';
 
-TextFormField resetPasswordTextField(String text, IconData icon,
-    bool isPasswordType, TextEditingController controller) {
+TextFormField resetPasswordTextField(
+    String text, bool isPasswordType, TextEditingController controller) {
   return TextFormField(
       key: const Key("emailAddress"),
       controller: controller,
@@ -13,10 +13,6 @@ TextFormField resetPasswordTextField(String text, IconData icon,
       cursorColor: Colors.black,
       style: const TextStyle(color: Colors.black, fontSize: 14),
       decoration: InputDecoration(
-          prefixIcon: Icon(
-            icon,
-            color: const Color.fromRGBO(56, 182, 255, 1.0),
-          ),
           labelText: text,
           labelStyle: GoogleFonts.mavenPro(
               fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
