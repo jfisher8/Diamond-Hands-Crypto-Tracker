@@ -30,10 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
   //super.initState();
 
   final emailController = TextEditingController();
-  final emailResetController = TextEditingController();
+  var emailResetController = TextEditingController();
   final passwordController = TextEditingController();
   final String emailWord = "email";
-  final emailValidator = TextfieldValidation();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   String errorMessage = "";
   var message = 'An error occured'; //default Firebase login error message
@@ -47,8 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var emailRequiredSnackbar =
-        SnackBar(content: Text('Email address required', style: Theme.of(context).textTheme.bodyLarge), backgroundColor: Color.fromRGBO(56, 182, 255, 1.0));
+    var emailRequiredSnackbar = SnackBar(
+        content: Text('Email address required',
+            style: Theme.of(context).textTheme.bodyLarge),
+        backgroundColor: Color.fromRGBO(56, 182, 255, 1.0));
     return Scaffold(
         appBar: BuildAppBar(
           title: Text('Account Login',
@@ -120,82 +121,100 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context: context,
                                 barrierDismissible: true,
                                 builder: (BuildContext context) => AlertDialog(
-                                  actions: [
-                                                                            TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text('Cancel',
-                                                style: GoogleFonts.questrial(
-                                                    color: Colors.red))),
-                                        TextButton(
-                                            onPressed: () {
-                                              if (emailResetController
-                                                  .text.isNotEmpty) {
-                                                resetPassword(
-                                                    emailResetController.text);
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        AlertDialog(
-                                                          title: Text(
-                                                              'Check your inbox! Reset email sent',
-                                                              style: GoogleFonts.questrial(
-                                                                  decorationColor:
-                                                                      const Color
-                                                                          .fromRGBO(
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text('Cancel',
+                                                  style: GoogleFonts.questrial(
+                                                      color: Colors.red))),
+                                          TextButton(
+                                              onPressed: () {
+                                                validateEmail(emailResetController.text);
+                                                if (emailResetController
+                                                    .text.isNotEmpty) {
+                                                  resetPassword(
+                                                      emailResetController
+                                                          .text);
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          AlertDialog(
+                                                            title: Text(
+                                                                'Check your inbox! Reset email sent',
+                                                                style: GoogleFonts.questrial(
+                                                                    decorationColor:
+                                                                        const Color
+                                                                            .fromRGBO(
+                                                                            56,
+                                                                            182,
+                                                                            255,
+                                                                            1.0),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        16,
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        56,
+                                                                        182,
+                                                                        255,
+                                                                        1.0))),
+                                                          ));
+                                                } else if (emailResetController
+                                                    .text.isEmpty) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                          emailRequiredSnackbar);
+                                                }
+                                              },
+                                              child: Text(
+                                                  'Send password reset email',
+                                                  style: GoogleFonts.questrial(
+                                                      color: Colors.green)))
+                                        ],
+                                        title: Text(
+                                            'Enter your email address to reset your password',
+                                            style: GoogleFonts.questrial(
+                                                decorationColor:
+                                                    const Color.fromRGBO(
+                                                        56, 182, 255, 1.0),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                                color: const Color.fromRGBO(
+                                                    56, 182, 255, 1.0))),
+                                        content: SingleChildScrollView(
+                                          child: Form(
+                                              child: ListBody(
+                                            children: [
+                                              TextFormField(
+                                                controller: emailResetController,
+                                                validator: validateEmail(emailController.text),
+                                                  decoration: const InputDecoration(
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromRGBO(
                                                                           56,
                                                                           182,
                                                                           255,
-                                                                          1.0),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize: 16,
-                                                                  color: const Color
+                                                                          1.0))),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                                  color: Color
                                                                       .fromRGBO(
-                                                                      56,
-                                                                      182,
-                                                                      255,
-                                                                      1.0))),
-                                                        ));
-                                              } else if (emailResetController
-                                                  .text.isEmpty) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                        emailRequiredSnackbar);
-                                              }
-                                            },
-                                            child: Text(
-                                                'Send password reset email',
-                                                style: GoogleFonts.questrial(
-                                                    color: Colors.green)))
-                                  ],
-                                      title: Text(
-                                          'Enter your email address to reset your password',
-                                          style: GoogleFonts.questrial(
-                                              decorationColor:
-                                                  const Color.fromRGBO(
-                                                      56, 182, 255, 1.0),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                              color: const Color.fromRGBO(
-                                                  56, 182, 255, 1.0))),
-                                      content: SingleChildScrollView(
-                                        child: Form(child:
-                                        ListBody(
-                                          children: [
-                                            TextFormField(decoration: const InputDecoration(
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0))
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0)))
-                                            ))
-                                          ],
-                                        )),
-                                    )));
+                                                                          56,
+                                                                          182,
+                                                                          255,
+                                                                          1.0)))))
+                                            ],
+                                          )),
+                                        )));
                           },
                           child: Text('Forgotten Password?',
                               style: GoogleFonts.questrial(
