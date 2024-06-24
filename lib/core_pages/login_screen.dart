@@ -190,28 +190,29 @@ class _LoginScreenState extends State<LoginScreen> {
                                           child: Form(
                                               child: ListBody(
                                             children: [
-                                              TextFormField(
-                                                controller: emailResetController,
-                                                validator: validateEmail(emailController.text),
-                                                  decoration: const InputDecoration(
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          56,
-                                                                          182,
-                                                                          255,
-                                                                          1.0))),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          56,
-                                                                          182,
-                                                                          255,
-                                                                          1.0)))))
+                                              resetPasswordTextField('Enter your email address', false, emailResetController)
+                                              // TextFormField(
+                                              //   controller: emailResetController,
+                                              //   validator: validateEmail(emailController.text),
+                                              //     decoration: const InputDecoration(
+                                              //         enabledBorder:
+                                              //             OutlineInputBorder(
+                                              //                 borderSide: BorderSide(
+                                              //                     color: Color
+                                              //                         .fromRGBO(
+                                              //                             56,
+                                              //                             182,
+                                              //                             255,
+                                              //                             1.0))),
+                                              //         focusedBorder:
+                                              //             OutlineInputBorder(
+                                              //                 borderSide: BorderSide(
+                                              //                     color: Color
+                                              //                         .fromRGBO(
+                                              //                             56,
+                                              //                             182,
+                                              //                             255,
+                                              //                             1.0)))))
                                             ],
                                           )),
                                         )));
