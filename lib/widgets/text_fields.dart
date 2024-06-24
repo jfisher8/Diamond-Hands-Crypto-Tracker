@@ -10,20 +10,14 @@ TextFormField resetPasswordTextField(
       controller: controller,
       validator: validateEmail,
       obscureText: isPasswordType,
-      cursorColor: Colors.black,
-      style: const TextStyle(color: Colors.black, fontSize: 14),
-      decoration: InputDecoration(
-          labelText: text,
-          labelStyle: GoogleFonts.mavenPro(
-              fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
-          filled: true,
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          fillColor: Colors.grey[300],
-          enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blue)),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.blue, width: 2),
-          )));
+      cursorColor: Colors.white,
+      style: const TextStyle(color: Colors.white, fontSize: 14),
+      decoration: const InputDecoration(
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0))),
+          focusedBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0)))));
 }
 
 TextFormField emailAddressTextField(String text, IconData icon,

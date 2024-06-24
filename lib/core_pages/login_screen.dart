@@ -1,6 +1,5 @@
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
-import 'package:diamond_hands_crypto_tracker/login_validation/text_field_valdiation.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/login_signup_widgets.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/text_fields.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/signup_screen.dart';
@@ -191,28 +190,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                               child: ListBody(
                                             children: [
                                               resetPasswordTextField('Enter your email address', false, emailResetController)
-                                              // TextFormField(
-                                              //   controller: emailResetController,
-                                              //   validator: validateEmail(emailController.text),
-                                              //     decoration: const InputDecoration(
-                                              //         enabledBorder:
-                                              //             OutlineInputBorder(
-                                              //                 borderSide: BorderSide(
-                                              //                     color: Color
-                                              //                         .fromRGBO(
-                                              //                             56,
-                                              //                             182,
-                                              //                             255,
-                                              //                             1.0))),
-                                              //         focusedBorder:
-                                              //             OutlineInputBorder(
-                                              //                 borderSide: BorderSide(
-                                              //                     color: Color
-                                              //                         .fromRGBO(
-                                              //                             56,
-                                              //                             182,
-                                              //                             255,
-                                              //                             1.0)))))
                                             ],
                                           )),
                                         )));
