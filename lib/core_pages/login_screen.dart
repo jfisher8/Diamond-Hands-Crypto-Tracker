@@ -143,43 +143,48 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     color: Colors.red))),
                                         TextButton(
                                             onPressed: () {
-                                              if (_emailResetKey.currentState!.validate()) {
+                                              if (_emailResetKey.currentState!
+                                                  .validate()) {
                                                 () async {
-                                                try {
-                                                  validateEmail(emailResetController.text);
-                                                //resetPassword(emailResetController.text);
+                                                  try {
+                                                    validateEmail(
+                                                        emailResetController
+                                                            .text);
+                                                            resetPassword(emailResetController.text);
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            AlertDialog(
+                                                              title: Text(
+                                                                  'Check your inbox! Reset email sent',
+                                                                  style: GoogleFonts.questrial(
+                                                                      decorationColor: const Color
+                                                                          .fromRGBO(
+                                                                          56,
+                                                                          182,
+                                                                          255,
+                                                                          1.0),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          16,
+                                                                      color: const Color
+                                                                          .fromRGBO(
+                                                                          56,
+                                                                          182,
+                                                                          255,
+                                                                          1.0))),
+                                                            ));
+                                                    //resetPassword(emailResetController.text);
+                                                  } on FirebaseAuthException {
+                                                    {
+                                                      //error handler here
+                                                    }
+                                                  }
+                                                };
                                               }
-                                              on FirebaseAuthException { {
-                                                //error handler here
-                                              }}};
-                                              }
-                                              showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          AlertDialog(
-                                                            title: Text(
-                                                                'Check your inbox! Reset email sent',
-                                                                style: GoogleFonts.questrial(
-                                                                    decorationColor:
-                                                                        const Color
-                                                                            .fromRGBO(
-                                                                            56,
-                                                                            182,
-                                                                            255,
-                                                                            1.0),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        16,
-                                                                    color: const Color
-                                                                        .fromRGBO(
-                                                                        56,
-                                                                        182,
-                                                                        255,
-                                                                        1.0))),
-                                                          ));
                                             },
                                             child: Text(
                                                 'Send password reset email',
