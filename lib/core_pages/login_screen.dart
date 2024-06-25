@@ -33,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final passwordController = TextEditingController();
   final String emailWord = "email";
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  final GlobalKey<FormState> _emailResetKey = GlobalKey<FormState>();
   String errorMessage = "";
   var message = 'An error occured'; //default Firebase login error message
 
@@ -120,26 +121,42 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context: context,
                                 barrierDismissible: true,
                                 builder: (BuildContext context) => AlertDialog(
-                                        actions: [
-                                          TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text('Cancel',
-                                                  style: GoogleFonts.questrial(
-                                                      color: Colors.red))),
-                                          TextButton(
-                                              onPressed: () {
-                                                validateEmail(emailResetController.text);
-                                                if (emailResetController
-                                                    .text.isNotEmpty) {
-                                                  resetPassword(
-                                                      emailResetController
-                                                          .text);
-                                                  showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                              context) =>
+                                      actions: [
+                                        SingleChildScrollView(
+                                          child: Form(
+                                              key: _emailResetKey,
+                                              child: ListBody(
+                                                children: [
+                                                  resetPasswordTextField(
+                                                      'Enter your email address',
+                                                      false,
+                                                      emailResetController)
+                                                ],
+                                              )),
+                                        ),
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('Cancel',
+                                                style: GoogleFonts.questrial(
+                                                    color: Colors.red))),
+                                        TextButton(
+                                            onPressed: () {
+                                              if (_emailResetKey.currentState!.validate()) {
+                                                () async {
+                                                try {
+                                                  validateEmail(emailResetController.text);
+                                                //resetPassword(emailResetController.text);
+                                              }
+                                              on FirebaseAuthException { {
+                                                //error handler here
+                                              }}};
+                                              }
+                                              showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) =>
                                                           AlertDialog(
                                                             title: Text(
                                                                 'Check your inbox! Reset email sent',
@@ -163,36 +180,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                                                         255,
                                                                         1.0))),
                                                           ));
-                                                } else if (emailResetController
-                                                    .text.isEmpty) {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                          emailRequiredSnackbar);
-                                                }
-                                              },
-                                              child: Text(
-                                                  'Send password reset email',
-                                                  style: GoogleFonts.questrial(
-                                                      color: Colors.green)))
-                                        ],
-                                        title: Text(
-                                            'Enter your email address to reset your password',
-                                            style: GoogleFonts.questrial(
-                                                decorationColor:
-                                                    const Color.fromRGBO(
-                                                        56, 182, 255, 1.0),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16,
-                                                color: const Color.fromRGBO(
-                                                    56, 182, 255, 1.0))),
-                                        content: SingleChildScrollView(
-                                          child: Form(
-                                              child: ListBody(
-                                            children: [
-                                              resetPasswordTextField('Enter your email address', false, emailResetController)
-                                            ],
-                                          )),
-                                        )));
+                                            },
+                                            child: Text(
+                                                'Send password reset email',
+                                                style: GoogleFonts.questrial(
+                                                    color: Colors.green)))
+                                      ],
+                                      title: Text(
+                                          'Enter your email address to reset your password',
+                                          style: GoogleFonts.questrial(
+                                              decorationColor:
+                                                  const Color.fromRGBO(
+                                                      56, 182, 255, 1.0),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                              color: const Color.fromRGBO(
+                                                  56, 182, 255, 1.0))),
+                                    ));
                           },
                           child: Text('Forgotten Password?',
                               style: GoogleFonts.questrial(
