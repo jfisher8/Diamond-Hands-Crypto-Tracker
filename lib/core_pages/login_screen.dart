@@ -6,6 +6,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/signup_screen.dart';
 import 'dart:developer' as developer;
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/password_validation.dart';
@@ -36,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _emailResetKey = GlobalKey<FormState>();
   String errorMessage = "";
   var message = 'An error occured'; //default Firebase login error message
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   void dispose() {
@@ -150,34 +152,24 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     validateEmail(
                                                         emailResetController
                                                             .text);
-                                                            resetPassword(emailResetController.text);
-                                                    showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            AlertDialog(
-                                                              title: Text(
-                                                                  'Check your inbox! Reset email sent',
-                                                                  style: GoogleFonts.questrial(
-                                                                      decorationColor: const Color
-                                                                          .fromRGBO(
-                                                                          56,
-                                                                          182,
-                                                                          255,
-                                                                          1.0),
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontSize:
-                                                                          16,
-                                                                      color: const Color
-                                                                          .fromRGBO(
-                                                                          56,
-                                                                          182,
-                                                                          255,
-                                                                          1.0))),
-                                                            ));
-                                                    //resetPassword(emailResetController.text);
+                                                    FirebaseAuth.instance.sendPasswordResetEmail(email: emailResetController.text.trim())
+                                                        .then((value) =>
+                                                            showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    AlertDialog(
+                                                                      title: Text(
+                                                                          'Check your inbox! Reset email sent',
+                                                                          style: GoogleFonts.questrial(
+                                                                              decorationColor: const Color.fromRGBO(56, 182, 255, 1.0),
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontSize: 16,
+                                                                              color: const Color.fromRGBO(56, 182, 255, 1.0))),
+                                                                    )));
+                                                    developer.log(
+                                                        'Password reset sent');
                                                   } on FirebaseAuthException {
                                                     {
                                                       //error handler here
