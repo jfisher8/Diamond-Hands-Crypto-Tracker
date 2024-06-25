@@ -13,9 +13,9 @@ TextFormField resetPasswordTextField(
       cursorColor: Colors.white,
       style: const TextStyle(color: Colors.white, fontSize: 14),
       decoration: const InputDecoration(
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0))),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: UnderlineInputBorder(
               borderSide:
                   BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0)))));
 }
