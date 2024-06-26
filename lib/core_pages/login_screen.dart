@@ -46,10 +46,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var emailRequiredSnackbar = SnackBar(
-        content: Text('Email address required',
-            style: Theme.of(context).textTheme.bodyLarge),
-        backgroundColor: Color.fromRGBO(56, 182, 255, 1.0));
     return Scaffold(
         appBar: BuildAppBar(
           title: Text('Account Login',
