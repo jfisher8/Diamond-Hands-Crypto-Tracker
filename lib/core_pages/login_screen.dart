@@ -144,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 style: GoogleFonts.questrial(
                                                     color: Colors.red))),
                                         TextButton(
-                                            onPressed: () {
+                                            onPressed: () async {
                                               if (_emailResetKey.currentState!
                                                   .validate()) {
                                                 () async {
@@ -152,28 +152,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     validateEmail(
                                                         emailResetController
                                                             .text);
-                                                    FirebaseAuth.instance.sendPasswordResetEmail(email: emailResetController.text.trim())
-                                                        .then((value) =>
-                                                            showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder: (BuildContext
-                                                                        context) =>
-                                                                    AlertDialog(
-                                                                      title: Text(
-                                                                          'Check your inbox! Reset email sent',
-                                                                          style: GoogleFonts.questrial(
-                                                                              decorationColor: const Color.fromRGBO(56, 182, 255, 1.0),
-                                                                              fontWeight: FontWeight.bold,
-                                                                              fontSize: 16,
-                                                                              color: const Color.fromRGBO(56, 182, 255, 1.0))),
-                                                                    )));
-                                                    developer.log(
-                                                        'Password reset sent');
-                                                  } on FirebaseAuthException {
-                                                    {
-                                                      //error handler here
-                                                    }
+                                                    await FirebaseAuth.instance.sendPasswordResetEmail(email: emailResetController.text)
+                                                        .then((value) {
+                                                          developer.log('Reset email');
+                                                        },
+                                                            // showDialog(
+                                                            //     context:
+                                                            //         context,
+                                                            //     builder: (BuildContext
+                                                            //             context) =>
+                                                            //         AlertDialog(
+                                                            //           title: Text(
+                                                            //               'Check your inbox! Reset email sent',
+                                                            //               style: GoogleFonts.questrial(
+                                                            //                   decorationColor: const Color.fromRGBO(56, 182, 255, 1.0),
+                                                            //                   fontWeight: FontWeight.bold,
+                                                            //                   fontSize: 16,
+                                                            //                   color: const Color.fromRGBO(56, 182, 255, 1.0))),
+                                                            //         )));
+                                        );} on FirebaseAuthException catch (error) {
+                                                      developer.log(error.code);
                                                   }
                                                 };
                                               }

@@ -11,7 +11,7 @@ TextFormField resetPasswordTextField(
       validator: validateEmail,
       obscureText: isPasswordType,
       cursorColor: Colors.white,
-      style: const TextStyle(color: Colors.white, fontSize: 14),
+      style: GoogleFonts.questrial(color: Colors.white, fontSize: 14, fontWeight: FontWeight.normal),
       decoration: const InputDecoration(
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Color.fromRGBO(56, 182, 255, 1.0))),
