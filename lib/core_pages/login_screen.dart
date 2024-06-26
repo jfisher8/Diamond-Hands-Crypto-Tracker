@@ -147,11 +147,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                             onPressed: () async {
                                               if (_emailResetKey.currentState!
                                                   .validate()) {
-                                                () async {
                                                   try {
                                                     validateEmail(
                                                         emailResetController
                                                             .text);
+                                                            developer.log(emailResetController.text);
                                                     await FirebaseAuth.instance.sendPasswordResetEmail(email: emailResetController.text)
                                                         .then((value) {
                                                           developer.log('Reset email');
@@ -173,8 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         );} on FirebaseAuthException catch (error) {
                                                       developer.log(error.code);
                                                   }
-                                                };
-                                              }
+                                                }
                                             },
                                             child: Text(
                                                 'Send password reset email',
