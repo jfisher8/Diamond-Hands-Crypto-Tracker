@@ -6,13 +6,11 @@ import 'package:diamond_hands_crypto_tracker/core_pages/signup_screen.dart';
 import 'dart:developer' as developer;
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/password_validation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:diamond_hands_crypto_tracker/user_account_logic/send_password_reset.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -154,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                             developer.log(emailResetController.text);
                                                     await FirebaseAuth.instance.sendPasswordResetEmail(email: emailResetController.text)
                                                         .then((value) {
-                                                          developer.log('Reset email');
+                                                          developer.log('Password reset email sent');
                                                         },
                                                             // showDialog(
                                                             //     context:
