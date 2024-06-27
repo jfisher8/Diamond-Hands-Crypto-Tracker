@@ -33,8 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final String emailWord = "email";
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   final GlobalKey<FormState> _emailResetKey = GlobalKey<FormState>();
+  late var message = "";
   String errorMessage = "";
-  var message = 'An error occured'; //default Firebase login error message
   FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
@@ -109,8 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       }),
-                      Text(
-                          message), //TODO: explore alertDialog method of showing error message
+                      Text(message),
+                      //Text(
+                        //  message), //TODO: explore alertDialog method of showing error message
                       TextButton(
                           onPressed: () {
                             showDialog(
