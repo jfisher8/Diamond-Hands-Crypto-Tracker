@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       }),
-                      Text(message),
+                      Text(message, style: const TextStyle(color: Colors.red)),
                       //Text(
                         //  message), //TODO: explore alertDialog method of showing error message
                       TextButton(
