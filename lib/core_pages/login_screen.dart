@@ -148,6 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   developer.log(
                                                       emailResetController
                                                           .text);
+                                                          emailResetController.clear();
                                                   await FirebaseAuth.instance
                                                       .sendPasswordResetEmail(
                                                           email:
@@ -157,7 +158,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     (value) {
                                                       developer.log(
                                                           'Password reset email sent');
-                                                      //TODO: text form field content should be cleared when password reset is sent
                                                     },
                                                     // showDialog(
                                                     //     context:
