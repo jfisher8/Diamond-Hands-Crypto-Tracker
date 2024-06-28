@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.red,
-                                  fontWeight: FontWeight.bold))),
+                                  fontWeight: FontWeight.bold), textAlign: TextAlign.center)),
                       primaryLoginButton(context, true, () async {
                         if (_key.currentState!.validate()) {
                           try {
