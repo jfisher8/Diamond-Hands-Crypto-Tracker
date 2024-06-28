@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           } on FirebaseAuthException catch (error) {
                             developer.log(error.code);
                             if (error.code == 'invalid-credential') {
-                              message = 'Incorrect credentials, try again';
+                              message = 'Incorrect credentials, please try again';
                             }
                           }
                         }
