@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       }),
-                      Text(message, style: const TextStyle(color: Colors.red)),
+                      Text(message, style: const TextStyle(color: Colors.red), textAlign: TextAlign.center),
                       TextButton(
                           onPressed: () {
                             showDialog(
