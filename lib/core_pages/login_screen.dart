@@ -110,8 +110,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       }),
                       Text(message, style: const TextStyle(color: Colors.red)),
-                      //Text(
-                        //  message), //TODO: explore alertDialog method of showing error message
                       TextButton(
                           onPressed: () {
                             showDialog(
@@ -159,24 +157,24 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     (value) {
                                                       developer.log(
                                                           'Password reset email sent');
-                                                    },
-                                                    // showDialog(
-                                                    //     context:
-                                                    //         context,
-                                                    //     builder: (BuildContext
-                                                    //             context) =>
-                                                    //         AlertDialog(
-                                                    //           title: Text(
-                                                    //               'Check your inbox! Reset email sent',
-                                                    //               style: GoogleFonts.questrial(
-                                                    //                   decorationColor: const Color.fromRGBO(56, 182, 255, 1.0),
-                                                    //                   fontWeight: FontWeight.bold,
-                                                    //                   fontSize: 16,
-                                                    //                   color: const Color.fromRGBO(56, 182, 255, 1.0))),
-                                                    //         )));
-                                                  );
+                                                    showDialog(
+                                                        context:
+                                                            context,
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            AlertDialog(
+                                                              title: Text(
+                                                                  'Check your inbox! Reset email sent',
+                                                                  style: GoogleFonts.questrial(
+                                                                      decorationColor: const Color.fromRGBO(56, 182, 255, 1.0),
+                                                                      fontWeight: FontWeight.bold,
+                                                                      fontSize: 16,
+                                                                      color: const Color.fromRGBO(56, 182, 255, 1.0))),
+                                                            ));});
+                                                
                                                 } on FirebaseAuthException catch (error) {
                                                   developer.log(error.code);
+                                                  const Text('Error occured with reset, try again');
                                                 }
                                               }
                                             },
