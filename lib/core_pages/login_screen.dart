@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   final GlobalKey<FormState> _emailResetKey = GlobalKey<FormState>();
   late var message = "";
-  String errorMessage = "";
+  //String errorMessage = "";
   FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
@@ -76,12 +76,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       passwordTextField("Enter Password", Icons.lock_rounded,
                           true, passwordController),
                       const SizedBox(height: 20),
-                      Center(
-                          child: Text(errorMessage.toString(),
-                              style: const TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold), textAlign: TextAlign.center)),
                       primaryLoginButton(context, true, () async {
                         if (_key.currentState!.validate()) {
                           try {
