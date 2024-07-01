@@ -98,7 +98,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           } on FirebaseAuthException catch (error) {
                             developer.log(error.code);
                             if (error.code == 'invalid-credential') {
-                              message = 'Incorrect credentials, please try again';
+                              message =
+                                  'Incorrect credentials, please try again';
                             }
                           }
                         }
@@ -141,34 +142,47 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   developer.log(
                                                       emailResetController
                                                           .text);
-                                                          emailResetController.clear();
                                                   await FirebaseAuth.instance
                                                       .sendPasswordResetEmail(
                                                           email:
                                                               emailResetController
                                                                   .text)
-                                                      .then(
-                                                    (value) {
-                                                      developer.log(
-                                                          'Password reset email sent');
+                                                      .then((value) {
+                                                    emailResetController
+                                                        .clear();
+                                                    developer.log(
+                                                        'Password reset email sent');
                                                     showDialog(
-                                                        context:
-                                                            context,
+                                                        context: context,
                                                         builder: (BuildContext
                                                                 context) =>
                                                             AlertDialog(
                                                               title: Text(
                                                                   'Check your inbox! Reset email sent',
                                                                   style: GoogleFonts.questrial(
-                                                                      decorationColor: const Color.fromRGBO(56, 182, 255, 1.0),
-                                                                      fontWeight: FontWeight.bold,
-                                                                      fontSize: 16,
-                                                                      color: const Color.fromRGBO(56, 182, 255, 1.0))),
-                                                            ));});
-                                                
+                                                                      decorationColor: const Color
+                                                                          .fromRGBO(
+                                                                          56,
+                                                                          182,
+                                                                          255,
+                                                                          1.0),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          16,
+                                                                      color: const Color
+                                                                          .fromRGBO(
+                                                                          56,
+                                                                          182,
+                                                                          255,
+                                                                          1.0))),
+                                                            ));
+                                                  });
                                                 } on FirebaseAuthException catch (error) {
                                                   developer.log(error.code);
-                                                  const Text('Error occured with reset, try again');
+                                                  const Text(
+                                                      'Error occured with reset, try again');
                                                 }
                                               }
                                             },
