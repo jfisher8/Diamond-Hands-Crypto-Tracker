@@ -152,13 +152,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         .clear();
                                                     developer.log(
                                                         'Password reset email sent');
+                                                        Navigator.pop(context);
                                                     showDialog(
                                                         context: context,
                                                         barrierDismissible: true,
                                                         builder: (BuildContext
                                                                 context) =>
                                                             AlertDialog(
-                                                              title: Text(
+                                                              content: Text(
                                                                   'Check your inbox! Reset email sent',
                                                                   style: GoogleFonts.questrial(
                                                                       decorationColor: const Color
