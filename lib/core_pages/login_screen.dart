@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                             AlertDialog(
                                                               actions: [
                                                                 TextButton(onPressed: () {
-
+                                                                  Navigator.pop(context);
                                                                 }, child: const Text('Done'))
                                                               ],
                                                               content: Text(
