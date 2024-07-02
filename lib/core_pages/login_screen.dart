@@ -154,6 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         'Password reset email sent');
                                                     showDialog(
                                                         context: context,
+                                                        barrierDismissible: true,
                                                         builder: (BuildContext
                                                                 context) =>
                                                             AlertDialog(
