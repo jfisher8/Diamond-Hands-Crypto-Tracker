@@ -159,6 +159,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         builder: (BuildContext
                                                                 context) =>
                                                             AlertDialog(
+                                                              actions: [
+                                                                TextButton(onPressed: () {
+
+                                                                }, child: const Text('Done'))
+                                                              ],
                                                               content: Text(
                                                                   'Check your inbox! Reset email sent',
                                                                   style: GoogleFonts.questrial(
