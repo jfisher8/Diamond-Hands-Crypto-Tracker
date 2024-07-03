@@ -76,7 +76,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
               style: Theme.of(context).textTheme.bodySmall,
               onChanged: (value) {
                 setState(() {
-                  searchString = value;
+                  searchController.text = value;
                 });
               },
             )),
@@ -85,7 +85,9 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
               future: futureArticle,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
+                  developer.log('snapshot connection done');
                   if (snapshot.hasData) {
+                    developer.log('snapshot has data');
                     List<Article> articles = snapshot.data;
                     searchController.text.isNotEmpty&&articles.isEmpty ? const Text('No results found') : ListView.builder(
                         itemCount: searchController.text.isNotEmpty ? newsListOnSearch.length : articles.length,
@@ -95,7 +97,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                   .source
                                   .name
                                   .toLowerCase()
-                                  .contains(searchString)
+                                  .contains(searchController.text)
                               ? Padding(
                                   padding: const EdgeInsets.all(5),
                                   child: Column(children: [
@@ -165,7 +167,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                 else if (snapshot.connectionState == ConnectionState.waiting) {
                   return buildLoadingNewsStatus(context);
                 }
-                return buildNewsErrorStatus(context);
+                //it's this error being thrown regardless of data snapshot connection
+                return Text('test');
               }),
         )
       ]),
