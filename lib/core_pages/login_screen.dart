@@ -177,8 +177,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                                       Navigator.pop(
                                                                           context);
                                                                     },
-                                                                    child: const Text(
-                                                                        'Done'))
+                                                                    child: Text(
+                                                                        'Done', style: GoogleFonts.questrial(color: Colors.green)))
                                                               ],
                                                               content: const SizedBox(height: 5)
                                                             ));
