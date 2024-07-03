@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/email_validation.dart';
 import 'package:diamond_hands_crypto_tracker/login_validation/password_validation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -152,21 +153,39 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         .clear();
                                                     developer.log(
                                                         'Password reset email sent');
-                                                        Navigator.pop(context);
+                                                    Navigator.pop(context);
                                                     showDialog(
                                                         context: context,
-                                                        barrierDismissible: false,
+                                                        barrierDismissible:
+                                                            false,
                                                         builder: (BuildContext
                                                                 context) =>
                                                             AlertDialog(
                                                               actions: [
-                                                                TextButton(onPressed: () {
-                                                                  Navigator.pop(context);
-                                                                }, child: const Text('Done'))
+                                                                const SingleChildScrollView(
+                                                                  child:
+                                                                      ListBody(
+                                                                    children: [
+                                                                      Text(
+                                                                          'Check your inbox! Password reset sent')
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                TextButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    },
+                                                                    child: const Text(
+                                                                        'Done'))
                                                               ],
                                                               content: Text(
                                                                   'Check your inbox! Reset email sent',
-                                                                  style: Theme.of(context).textTheme.bodyMedium),
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyMedium),
                                                             ));
                                                   });
                                                 } on FirebaseAuthException catch (error) {
