@@ -180,12 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                                     child: const Text(
                                                                         'Done'))
                                                               ],
-                                                              content: Text(
-                                                                  'Check your inbox! Reset email sent',
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .bodyMedium),
+                                                              content: const SizedBox(height: 5)
                                                             ));
                                                   });
                                                 } on FirebaseAuthException catch (error) {
