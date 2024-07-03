@@ -89,10 +89,13 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                   if (snapshot.hasData) {
                     developer.log('snapshot has data');
                     List<Article> articles = snapshot.data;
+                    developer.log('code gets to the list view');
+                    //issue should surround the below logic before the itemBuilder widget
                     searchController.text.isNotEmpty&&articles.isEmpty ? const Text('No results found') : ListView.builder(
                         itemCount: searchController.text.isNotEmpty ? newsListOnSearch.length : articles.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
+                          developer.log('gets to the item builder');
                           return articles[index]
                                   .source
                                   .name
@@ -159,17 +162,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                   } else if (snapshot.hasError || snapshot.data == null) {
                     developer.log('no data in snapshot');
                     developer.log(snapshot.error.toString());
-                    buildNewsErrorStatus(context);
-                  } else {
-                    return buildLoadingNewsStatus(context);
-                  }
-                }
-                else if (snapshot.connectionState == ConnectionState.waiting) {
-                  return buildLoadingNewsStatus(context);
-                }
-                //it's this error being thrown regardless of data snapshot connection
-                return Text('test');
-              }),
+                    return buildNewsErrorStatus(context);
+              }} return buildLoadingNewsStatus(context);}),
         )
       ]),
     );
