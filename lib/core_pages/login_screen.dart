@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         Navigator.pop(context);
                                                     showDialog(
                                                         context: context,
-                                                        barrierDismissible: true,
+                                                        barrierDismissible: false,
                                                         builder: (BuildContext
                                                                 context) =>
                                                             AlertDialog(
@@ -166,24 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                               ],
                                                               content: Text(
                                                                   'Check your inbox! Reset email sent',
-                                                                  style: GoogleFonts.questrial(
-                                                                      decorationColor: const Color
-                                                                          .fromRGBO(
-                                                                          56,
-                                                                          182,
-                                                                          255,
-                                                                          1.0),
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontSize:
-                                                                          16,
-                                                                      color: const Color
-                                                                          .fromRGBO(
-                                                                          56,
-                                                                          182,
-                                                                          255,
-                                                                          1.0))),
+                                                                  style: Theme.of(context).textTheme.bodyMedium),
                                                             ));
                                                   });
                                                 } on FirebaseAuthException catch (error) {
