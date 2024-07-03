@@ -3,6 +3,6 @@ import 'dart:developer' as developer;
 
 Future<void> resetPassword() async {
   FirebaseAuth auth = FirebaseAuth.instance;
-  await auth.sendPasswordResetEmail;
+  auth.sendPasswordResetEmail;
   developer.log('Password reset email sent');
 }
