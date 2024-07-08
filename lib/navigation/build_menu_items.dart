@@ -10,7 +10,7 @@ import 'dart:developer' as developer;
 
 Widget buildMenuItems(BuildContext context) {
   
-  final String? currentEmail = FirebaseAuth.instance.currentUser!.email;
+  final String? currentEmail = FirebaseAuth.instance.currentUser?.email;
   return Container(
     padding: const EdgeInsets.all(24),
     child: Wrap(

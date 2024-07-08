@@ -2,6 +2,8 @@
 //import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/build_menu_items.dart';
 import 'package:diamond_hands_crypto_tracker/themes/theme_provider.dart';
+import 'package:diamond_hands_crypto_tracker/themes/themes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +15,7 @@ class NavigationMenu extends StatefulWidget {
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
-  bool isOn = false;
+  bool darkModeOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +33,14 @@ class _NavigationMenuState extends State<NavigationMenu> {
                 IconButton(
                     onPressed: () {
                       Provider.of<ThemeProvider>(context, listen: false)
-                          .toggleTheme(isOn);
+                          .toggleTheme(darkModeOn);
                       setState(() {
-                        isOn != true
-                            ? isOn = true
-                            : isOn = false;
+                        darkModeOn == true
+                            ? darkModeOn = false
+                            : darkModeOn = true;
                       });
                     },
-                    icon: isOn == true
+                    icon: darkModeOn == true
                         ? const Icon(Icons.light_mode_rounded)
                         : const Icon(Icons.dark_mode_rounded)),
               ],
