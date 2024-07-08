@@ -148,8 +148,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                               emailResetController
                                                                   .text)
                                                       .then((value) {
-                                                    // emailResetController
-                                                    //     .clear();
+                                                    emailResetController
+                                                        .clear();
                                                     developer.log(
                                                         'Password reset email sent');
                                                     Navigator.pop(context);
