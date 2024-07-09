@@ -6,7 +6,6 @@ import 'package:diamond_hands_crypto_tracker/themes/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:diamond_hands_crypto_tracker/main.dart';
 
 class NavigationMenu extends StatefulWidget {
   const NavigationMenu({super.key});
