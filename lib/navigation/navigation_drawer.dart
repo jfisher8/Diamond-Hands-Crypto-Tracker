@@ -15,7 +15,7 @@ class NavigationMenu extends StatefulWidget {
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
-  bool darkModeOn = false;
+  bool isOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +33,14 @@ class _NavigationMenuState extends State<NavigationMenu> {
                 IconButton(
                     onPressed: () {
                       Provider.of<ThemeProvider>(context, listen: false)
-                          .toggleTheme(darkModeOn);
+                          .toggleTheme(isOn);
                       setState(() {
-                        darkModeOn == true
-                            ? darkModeOn = false
-                            : darkModeOn = true;
+                        isOn == true
+                            ? isOn = false
+                            : isOn = true;
                       });
                     },
-                    icon: darkModeOn == true
+                    icon: isOn == true
                         ? const Icon(Icons.light_mode_rounded)
                         : const Icon(Icons.dark_mode_rounded)),
               ],
