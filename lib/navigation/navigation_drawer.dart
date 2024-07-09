@@ -6,6 +6,7 @@ import 'package:diamond_hands_crypto_tracker/themes/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:diamond_hands_crypto_tracker/main.dart';
 
 class NavigationMenu extends StatefulWidget {
   const NavigationMenu({super.key});
@@ -15,6 +16,7 @@ class NavigationMenu extends StatefulWidget {
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
+
   bool isOn = false;
 
   @override
@@ -31,7 +33,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                    onPressed: () {
+                    onPressed: () async {
                       Provider.of<ThemeProvider>(context, listen: false)
                           .toggleTheme(isOn);
                       setState(() {
