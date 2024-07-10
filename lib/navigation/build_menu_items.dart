@@ -17,7 +17,7 @@ Widget buildMenuItems(BuildContext context) {
       runSpacing: 20,
       children: [
         SizedBox(
-            height: 20,
+            height: 40,
             width: MediaQuery.of(context).size.width,
             child: ListView(
               children: [
