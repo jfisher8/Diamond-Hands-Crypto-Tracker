@@ -11,6 +11,7 @@ import 'dart:developer' as developer;
 Widget buildMenuItems(BuildContext context) {
   
   final String? currentEmail = FirebaseAuth.instance.currentUser!.email;
+  developer.log("Currently logged in as " + currentEmail.toString());
   return Container(
     padding: const EdgeInsets.all(24),
     child: Wrap(
@@ -24,7 +25,7 @@ Widget buildMenuItems(BuildContext context) {
                 Column(
                   children: [
                     currentEmail != null
-                        ? Text('Logged in as ' '$currentEmail')
+                        ? Text('Logged in as ' + currentEmail.toString())
                         : const Text('Welcome to the app',
                             textAlign: TextAlign.center),
                   ],
