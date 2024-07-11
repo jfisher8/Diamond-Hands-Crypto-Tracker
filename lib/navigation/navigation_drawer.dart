@@ -2,7 +2,6 @@
 //import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/build_menu_items.dart';
 import 'package:diamond_hands_crypto_tracker/themes/theme_provider.dart';
-import 'package:diamond_hands_crypto_tracker/themes/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +18,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
   
   bool? isOn;
 
+  @override
   void initState() {
     super.initState();
     restorePersistedPreference();
