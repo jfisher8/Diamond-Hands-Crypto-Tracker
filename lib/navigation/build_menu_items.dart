@@ -24,7 +24,7 @@ Widget buildMenuItems(BuildContext context) {
                 Column(
                   children: [
                     currentEmail != null
-                        ? Text('Logged in as ' '$currentEmail')
+                        ? const Text("You're logged in! Enjoy the app")
                         : const Text('Welcome to the app',
                             textAlign: TextAlign.center),
                   ],
