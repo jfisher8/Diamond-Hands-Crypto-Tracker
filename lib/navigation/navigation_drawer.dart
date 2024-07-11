@@ -2,6 +2,7 @@
 //import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/build_menu_items.dart';
 import 'package:diamond_hands_crypto_tracker/themes/theme_provider.dart';
+import 'package:diamond_hands_crypto_tracker/themes/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,29 @@ class NavigationMenu extends StatefulWidget {
 
 class _NavigationMenuState extends State<NavigationMenu> {
 
-  bool isOn = false;
+  
+  bool? isOn;
+
+  void initState() {
+    super.initState();
+    restorePersistedPreference();
+  }
+
+  void restorePersistedPreference() async {
+    var preferences = await SharedPreferences.getInstance();
+    bool isOn = preferences.getBool('darkMode') ?? false;
+    setState(() {
+      this.isOn = isOn;
+    }); 
+  }
+
+  void persistedPreference() {
+    setState(() async {
+      isOn = isOn;
+      var preferences = await SharedPreferences.getInstance();
+      preferences.setBool('darkMode', isOn!);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +56,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
                 IconButton(
                     onPressed: () async {
                       Provider.of<ThemeProvider>(context, listen: false)
-                          .toggleTheme(isOn);
+                          .toggleTheme(isOn!);
                       setState(() {
                         isOn == true
                             ? isOn = false
