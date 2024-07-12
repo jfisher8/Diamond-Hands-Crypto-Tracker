@@ -2,7 +2,6 @@
     import 'dart:convert';
     import 'package:http/http.dart' as http;
     import 'package:cloud_firestore/cloud_firestore.dart';
-    import 'package:diamond_hands_crypto_tracker/firestore_logic/firestore_class.dart';
     
     Future<List<Coin>> fetchCoin() async {
     coinList = [];
