@@ -1,5 +1,3 @@
-//keeping the below file link in case the widget link breaks and the below does actually need to be there
-//import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/build_menu_items.dart';
 import 'package:diamond_hands_crypto_tracker/themes/theme_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +12,6 @@ class NavigationMenu extends StatefulWidget {
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
-
   
   bool? isOn;
 
