@@ -18,10 +18,10 @@ class _NavigationMenuState extends State<NavigationMenu> {
   @override
   void initState() {
     super.initState();
-    restorePersistedPreference();
+    restoreDarkModeIconState();
   }
 
-  void restorePersistedPreference() async {
+  void restoreDarkModeIconState() async {
     var preferences = await SharedPreferences.getInstance();
     bool isOn = preferences.getBool('darkMode') ?? false;
     setState(() {
@@ -29,7 +29,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
     }); 
   }
 
-  void persistedPreference() {
+  void darkModeIconPersistance() {
     setState(() async {
       isOn = isOn;
       var preferences = await SharedPreferences.getInstance();
