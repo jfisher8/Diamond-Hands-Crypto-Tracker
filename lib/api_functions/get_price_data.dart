@@ -1,4 +1,4 @@
-    import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
+import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
     import 'dart:convert';
     import 'package:http/http.dart' as http;
     import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,12 +11,10 @@
     if (response.statusCode == 200) {
       List<dynamic> values = [];
       values = json.decode(response.body);
+      FirebaseFirestore.instance.collection("coins").add({"coinName": Coin.toJson()});
       if (values.isNotEmpty) {
         for (int i = 0; i < values.length; i++) {
           if (values[i] != null) {
-                final collection =
-            FirebaseFirestore.instance.collection("coins");
-            collection.add(Coin.toJson());
             Map<String, dynamic> map = values[i];
             coinList.add(Coin.fromJson(map));
           }
@@ -27,4 +25,8 @@
       //return coinList;
       throw Exception('Failed to load coins');
     }
+  }
+
+  void saveCoin() {
+    FirebaseFirestore.instance.collection("coins").add(({"coins": coinList}));
   }
