@@ -16,7 +16,7 @@ import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
           if (values[i] != null) {
             Map<String, dynamic> map = values[i];
             coinList.add(Coin.fromJson(map));
-            FirebaseFirestore.instance.collection("coins").add(({"coins": coinList}));
+            FirebaseFirestore.instance.collection("coins").add(({"coins": values}));
             saveCoin();
           }
         }
@@ -29,5 +29,5 @@ import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
   }
 
   void saveCoin() {
-    
+    FirebaseFirestore.instance.collection("coins").add(({"coins": coinList}));
   }
