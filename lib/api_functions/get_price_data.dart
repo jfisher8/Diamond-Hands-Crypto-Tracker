@@ -11,12 +11,13 @@ import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
     if (response.statusCode == 200) {
       List<dynamic> values = [];
       values = json.decode(response.body);
-      FirebaseFirestore.instance.collection("coins").add({"coinName": Coin.toJson()});
       if (values.isNotEmpty) {
         for (int i = 0; i < values.length; i++) {
           if (values[i] != null) {
             Map<String, dynamic> map = values[i];
             coinList.add(Coin.fromJson(map));
+            FirebaseFirestore.instance.collection("coins").add(({"coins": coinList}));
+            saveCoin();
           }
         }
       }
@@ -28,5 +29,5 @@ import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
   }
 
   void saveCoin() {
-    FirebaseFirestore.instance.collection("coins").add(({"coins": coinList}));
+    
   }
