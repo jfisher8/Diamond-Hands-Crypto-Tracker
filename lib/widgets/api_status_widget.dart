@@ -20,7 +20,9 @@ Widget buildCoinsErrorStatus(BuildContext context) {
         SizedBox(height: 40),
         Icon(Icons.error_rounded, size: 75),
         SizedBox(height: 40),
-        Text('Error loading Coin data. Please try again later.', style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+        Text('Error loading Coin data. Please try again later.',
+            style: TextStyle(fontSize: 18, color: Colors.red),
+            textAlign: TextAlign.center),
         SizedBox(height: 80)
       ],
     ),
@@ -47,7 +49,8 @@ Widget buildNewsErrorStatus(BuildContext context) {
         SizedBox(height: 40),
         Icon((Icons.error)),
         SizedBox(height: 40),
-        Text('Error loading News. Please refresh and try again.', textAlign: TextAlign.center),
+        Text('Error loading News. Please refresh and try again.',
+            textAlign: TextAlign.center),
       ],
     ),
   );
@@ -60,7 +63,8 @@ Widget buildExchangesErrorStatus(BuildContext context) {
         SizedBox(height: 40),
         Icon((Icons.error)),
         SizedBox(height: 40),
-        Text('Error loading Exchanges data. Please refresh and try again.', textAlign: TextAlign.center),
+        Text('Error loading Exchanges data. Please refresh and try again.',
+            textAlign: TextAlign.center),
       ],
     ),
   );
