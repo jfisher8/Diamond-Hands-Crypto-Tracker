@@ -20,7 +20,7 @@ Widget buildCoinsErrorStatus(BuildContext context) {
         SizedBox(height: 40),
         Icon(Icons.error_rounded, size: 75),
         SizedBox(height: 40),
-        Text('Error loading Coin data. Please try again later.'),
+        Text('Error loading Coin data. Please try again later.', style: TextStyle(fontSize: 18),),
         SizedBox(height: 80)
       ],
     ),
