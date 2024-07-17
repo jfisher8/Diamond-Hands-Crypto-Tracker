@@ -5,9 +5,13 @@ Widget buildLoadingCoinsStatus(BuildContext context) {
     child: Column(
       children: [
         SizedBox(height: 40),
-        CircularProgressIndicator(),
+        SizedBox(
+          height: 20,
+          child: CircularProgressIndicator(),
+        ),
         SizedBox(height: 40),
-        Text('Loading Coin data...', style: TextStyle(fontSize: 18, color: Colors.red)),
+        Text('Loading Coin data...',
+            style: TextStyle(fontSize: 18, color: Colors.red)),
       ],
     ),
   );
