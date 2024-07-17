@@ -54,7 +54,7 @@ Widget buildNewsErrorStatus(BuildContext context) {
         Icon((Icons.error)),
         SizedBox(height: 40),
         Text('Error loading News. Please refresh and try again.',
-            textAlign: TextAlign.center),
+            textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.red)),
       ],
     ),
   );
