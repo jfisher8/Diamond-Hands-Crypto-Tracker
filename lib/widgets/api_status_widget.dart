@@ -8,7 +8,7 @@ Widget buildLoadingCoinsStatus(BuildContext context) {
         CircularProgressIndicator(),
         SizedBox(height: 40),
         Text('Loading Coin data...',
-            style: TextStyle(fontSize: 18, color: Colors.blue)),
+            style: TextStyle(fontSize: 18, color: Colors.blue), textAlign: TextAlign.center,),
       ],
     ),
   );
