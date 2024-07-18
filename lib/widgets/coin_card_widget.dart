@@ -29,14 +29,6 @@ class CoinCard extends StatelessWidget {
           //TODO: explore adding dark mode check here to select colour of coin widget
           color: Colors.grey[600],
           borderRadius: BorderRadius.circular(20),
-          //experiment with lower amount of boxshadow or remove the boxshadow entirely
-          //commit 2
-          boxShadow: const [
-            BoxShadow(
-              offset: Offset(1, 1),
-              blurRadius: 1,
-            ),
-          ],
         ),
         child: Row(
           children: [
