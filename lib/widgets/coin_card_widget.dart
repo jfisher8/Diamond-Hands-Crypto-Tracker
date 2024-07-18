@@ -26,11 +26,15 @@ class CoinCard extends StatelessWidget {
       child: Container(
         height: 110,
         decoration: BoxDecoration(
+          //TODO: explore adding dark mode check here to select colour of coin widget
+          color: Colors.grey[600],
           borderRadius: BorderRadius.circular(20),
+          //experiment with lower amount of boxshadow or remove the boxshadow entirely
+          //commit 2
           boxShadow: const [
             BoxShadow(
               offset: Offset(1, 1),
-              blurRadius: 2,
+              blurRadius: 1,
             ),
           ],
         ),
@@ -50,8 +54,10 @@ class CoinCard extends StatelessWidget {
                       imageUrl: imageUrl!,
                       placeholder: (imageUrl, error) =>
                           const CircularProgressIndicator(),
+                          //change colour of circular progress indicator above to see if it can be changed
+                          //commit 4
                       errorWidget: (context, imageUrl, error) =>
-                          const Icon(Icons.error)),
+                          const Icon(Icons.error)), //add colour to error widget to represent error - commit 3
                 ),
               ),
             ),
