@@ -49,7 +49,7 @@ class CoinCard extends StatelessWidget {
                           //change colour of circular progress indicator above to see if it can be changed
                           //commit 4
                       errorWidget: (context, imageUrl, error) =>
-                          const Icon(Icons.error)), //add colour to error widget to represent error - commit 3
+                          const Icon(Icons.error, color: Colors.red)), //add colour to error widget to represent error - commit 3
                 ),
               ),
             ),
