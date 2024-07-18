@@ -45,11 +45,9 @@ class CoinCard extends StatelessWidget {
                   child: CachedNetworkImage(
                       imageUrl: imageUrl!,
                       placeholder: (imageUrl, error) =>
-                          const CircularProgressIndicator(),
-                          //change colour of circular progress indicator above to see if it can be changed
-                          //commit 4
+                          const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
                       errorWidget: (context, imageUrl, error) =>
-                          const Icon(Icons.error, color: Colors.red)), //add colour to error widget to represent error - commit 3
+                          const Icon(Icons.error, color: Colors.red)),
                 ),
               ),
             ),
