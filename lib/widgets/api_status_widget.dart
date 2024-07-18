@@ -7,8 +7,11 @@ Widget buildLoadingCoinsStatus(BuildContext context) {
         SizedBox(height: 40),
         CircularProgressIndicator(),
         SizedBox(height: 40),
-        Text('Loading Coin data...',
-            style: TextStyle(fontSize: 18, color: Colors.blue), textAlign: TextAlign.center,),
+        Text(
+          'Loading Coin data...',
+          style: TextStyle(fontSize: 18, color: Colors.blue),
+          textAlign: TextAlign.center,
+        ),
       ],
     ),
   );
@@ -37,7 +40,11 @@ Widget buildLoadingNewsStatus(BuildContext context) {
         SizedBox(height: 40),
         CircularProgressIndicator(),
         SizedBox(height: 40),
-        Text('Loading News data...'),
+        Text(
+          'Loading News data...',
+          style: TextStyle(fontSize: 18, color: Colors.blue),
+          textAlign: TextAlign.center,
+        ),
       ],
     ),
   );
@@ -51,7 +58,8 @@ Widget buildNewsErrorStatus(BuildContext context) {
         Icon((Icons.error)),
         SizedBox(height: 40),
         Text('Error loading News. Please refresh and try again.',
-            textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.red)),
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18, color: Colors.red)),
       ],
     ),
   );
@@ -65,7 +73,8 @@ Widget buildExchangesErrorStatus(BuildContext context) {
         Icon((Icons.error)),
         SizedBox(height: 40),
         Text('Error loading Exchanges data. Please refresh and try again.',
-            textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.red)),
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18, color: Colors.red)),
       ],
     ),
   );
