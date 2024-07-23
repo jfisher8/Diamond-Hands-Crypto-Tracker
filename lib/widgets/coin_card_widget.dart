@@ -68,7 +68,6 @@ class CoinCard extends StatelessWidget {
                   ),
                   Text(
                     symbol!.toUpperCase(),
-                    style: const TextStyle(color: Colors.white)
                   ),
                 ],
               ),
