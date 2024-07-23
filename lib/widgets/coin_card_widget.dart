@@ -47,7 +47,7 @@ class CoinCard extends StatelessWidget {
                       placeholder: (imageUrl, error) =>
                           const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
                       errorWidget: (context, imageUrl, error) =>
-                          const Icon(Icons.error, color: Colors.red)),
+                          const Icon(Icons.error, color: Colors.red, size: 28)),
                 ),
               ),
             ),
