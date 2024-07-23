@@ -70,7 +70,7 @@ Widget buildExchangesErrorStatus(BuildContext context) {
     child: Column(
       children: [
         SizedBox(height: 40),
-        Icon((Icons.error)),
+        Icon(Icons.error_rounded, size: 75, color: Colors.red),
         SizedBox(height: 40),
         Text('Error loading Exchanges data. Please refresh and try again.',
             textAlign: TextAlign.center,
