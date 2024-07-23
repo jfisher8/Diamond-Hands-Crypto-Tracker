@@ -38,7 +38,7 @@ Widget buildLoadingNewsStatus(BuildContext context) {
     child: Column(
       children: [
         SizedBox(height: 40),
-        CircularProgressIndicator(),
+        CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
         SizedBox(height: 40),
         Text(
           'Loading News data...',
