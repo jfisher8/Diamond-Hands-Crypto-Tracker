@@ -24,12 +24,6 @@ class CoinCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
       child: Card(
-        // height: 110,
-        // decoration: BoxDecoration(
-        //   //TODO: explore adding dark mode check here to select colour of coin widget
-        //   color: Colors.grey[600],
-        //   borderRadius: BorderRadius.circular(20),
-        // ),
         child: Row(
           children: [
             Padding(
