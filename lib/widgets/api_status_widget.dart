@@ -87,7 +87,7 @@ Widget buildExchangesLoadingStatus(BuildContext context) {
         SizedBox(height: 40),
         CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
         SizedBox(height: 40),
-        Text('Loading Exchanges data...', textAlign: TextAlign.center),
+        Text('Loading Exchanges data...', textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
       ],
     ),
   );
