@@ -75,7 +75,7 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                           change: coinList[index].change,
                           changePercentage: coinList[index].changePercentage,
                           symbol: coinList[index].symbol,
-                          price: coinList[index].price.toString(),
+                          price: coinList[index].price
                         );
                       });
                 } else {

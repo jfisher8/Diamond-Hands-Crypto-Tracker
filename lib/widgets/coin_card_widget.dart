@@ -15,7 +15,7 @@ class CoinCard extends StatelessWidget {
   final String? name;
   final String? symbol;
   final String? imageUrl;
-  final String? price;
+  final num? price;
   final num? change;
   final num? changePercentage;
 
