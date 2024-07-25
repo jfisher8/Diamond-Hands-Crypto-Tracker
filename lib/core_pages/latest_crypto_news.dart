@@ -82,26 +82,26 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
               },
             )),
         Expanded(
-            child: FutureBuilder(
-                future: futureArticle,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    developer.log('snapshot connection done');
-                    if (snapshot.hasData) {
-                      developer.log('snapshot has data');
-                      List<Article> articles = snapshot.data;
-                      developer.log('code gets to the list view');
-                      //issue should surround the below logic before the itemBuilder widget
-                      searchController.text.isNotEmpty && articles.isNotEmpty
-                          ? const Text('No results found')
-                          : ListView.builder(
-                              itemCount: searchController.text.isNotEmpty
-                                  ? newsListOnSearch.length
-                                  : articles.length,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                developer.log('gets to the item builder');
-                                Padding(
+          child: FutureBuilder(
+              future: futureArticle,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  developer.log('snapshot connection done');
+                  if (snapshot.hasData) {
+                    developer.log('snapshot has data');
+                    List<Article> articles = snapshot.data;
+                    developer.log('code gets to the list view');
+                    //issue should surround the below logic before the itemBuilder widget
+                    if (searchController.text.isNotEmpty && articles.isEmpty) {
+                      return const Text('Nothing here');
+                    } else {
+                      //searchController.text.isNotEmpty&&articles.isEmpty ? const Text('No results found') :
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: articles.length,
+                          itemBuilder: (context, index) {
+                            developer.log('gets to the item builder');
+                            return Padding(
                                     padding: const EdgeInsets.all(5),
                                     child: Column(children: [
                                       Card(
@@ -160,16 +160,17 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                             ],
                                           ))
                                     ]));
-                              });
+                          });
                     }
                   } else if (snapshot.hasError || snapshot.data == null) {
                     developer.log('no data in snapshot');
                     developer.log(snapshot.error.toString());
                     return buildNewsErrorStatus(context);
                   }
-                 return buildNewsErrorStatus(context);
-                 }
-                ))
+                }
+                return buildLoadingNewsStatus(context);
+              }),
+        )
       ]),
     );
   }
