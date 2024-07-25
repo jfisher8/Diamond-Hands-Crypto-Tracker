@@ -114,6 +114,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                   imageUrl: snapshot
                                                       .data[index].imageURL,
                                                   fit: BoxFit.fill,
+                                                  placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                                                   errorWidget:
                                                       (context, url, error) =>
                                                           const Center(
