@@ -34,7 +34,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildAppBar(
-        title: Text('Latest Crypto News', style: Theme.of(context).textTheme.titleLarge),
+        title: Text('Latest Crypto News',
+            style: Theme.of(context).textTheme.titleLarge),
         appBar: AppBar(),
         widgets: [
           FirebaseAuth.instance.currentUser != null
@@ -81,90 +82,94 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
               },
             )),
         Expanded(
-          child: FutureBuilder(
-              future: futureArticle,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  developer.log('snapshot connection done');
-                  if (snapshot.hasData) {
-                    developer.log('snapshot has data');
-                    List<Article> articles = snapshot.data;
-                    developer.log('code gets to the list view');
-                    //issue should surround the below logic before the itemBuilder widget
-                    searchController.text.isNotEmpty&&articles.isEmpty ? const Text('No results found') : ListView.builder(
-                        itemCount: searchController.text.isNotEmpty ? newsListOnSearch.length : articles.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          developer.log('gets to the item builder');
-                          return articles[index]
-                                  .source
-                                  .name
-                                  .toLowerCase()
-                                  .contains(searchController.text)
-                              ? Padding(
-                                  padding: const EdgeInsets.all(5),
-                                  child: Column(children: [
-                                    Card(
-                                        elevation: 30,
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                              height: 200,
-                                              child: CachedNetworkImage(
-                                                imageUrl: snapshot
-                                                    .data[index].imageURL,
-                                                fit: BoxFit.fill,
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        const Center(
-                                                            child: Icon(
-                                                  Icons.error_rounded,
-                                                  color: Colors.red,
-                                                )),
+            child: FutureBuilder(
+                future: futureArticle,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    developer.log('snapshot connection done');
+                    if (snapshot.hasData) {
+                      developer.log('snapshot has data');
+                      List<Article> articles = snapshot.data;
+                      developer.log('code gets to the list view');
+                      //issue should surround the below logic before the itemBuilder widget
+                      searchController.text.isNotEmpty && articles.isNotEmpty
+                          ? const Text('No results found')
+                          : ListView.builder(
+                              itemCount: searchController.text.isNotEmpty
+                                  ? newsListOnSearch.length
+                                  : articles.length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                developer.log('gets to the item builder');
+                                Padding(
+                                    padding: const EdgeInsets.all(5),
+                                    child: Column(children: [
+                                      Card(
+                                          elevation: 30,
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                height: 200,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: snapshot
+                                                      .data[index].imageURL,
+                                                  fit: BoxFit.fill,
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          const Center(
+                                                              child: Icon(
+                                                    Icons.error_rounded,
+                                                    color: Colors.red,
+                                                  )),
+                                                ),
                                               ),
-                                            ),
-                                            ListTile(
-                                              title: Text(
-                                                  snapshot.data[index].title,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium),
-                                              subtitle: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                        snapshot.data[index]
-                                                            .source.name,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodySmall),
-                                                    // Text(article.publishedAt.toString(),
-                                                    //     style: Theme.of(context).textTheme.bodySmall)
-                                                  ]),
-                                              trailing: const Icon(
-                                                  Icons.arrow_forward_rounded),
-                                              onTap: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ReadNewsArticle(
-                                                                article: snapshot
-                                                                        .data[
-                                                                    index])));
-                                              },
-                                            )
-                                          ],
-                                        ))
-                                  ])) : const Text('test');
-                        });
+                                              ListTile(
+                                                title: Text(
+                                                    snapshot.data[index].title,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium),
+                                                subtitle: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                          snapshot.data[index]
+                                                              .source.name,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodySmall),
+                                                      // Text(article.publishedAt.toString(),
+                                                      //     style: Theme.of(context).textTheme.bodySmall)
+                                                    ]),
+                                                trailing: const Icon(Icons
+                                                    .arrow_forward_rounded),
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ReadNewsArticle(
+                                                                  article: snapshot
+                                                                          .data[
+                                                                      index])));
+                                                },
+                                              )
+                                            ],
+                                          ))
+                                    ]));
+                              });
+                    }
                   } else if (snapshot.hasError || snapshot.data == null) {
                     developer.log('no data in snapshot');
                     developer.log(snapshot.error.toString());
                     return buildNewsErrorStatus(context);
-              }} return buildLoadingNewsStatus(context);}),
-        )
+                  }
+                 return buildNewsErrorStatus(context);
+                 }
+                ))
       ]),
     );
   }
