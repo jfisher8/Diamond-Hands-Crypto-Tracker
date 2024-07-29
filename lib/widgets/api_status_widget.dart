@@ -5,7 +5,8 @@ Widget buildLoadingCoinsStatus(BuildContext context) {
     child: Column(
       children: [
         SizedBox(height: 40),
-        CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+        CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
         SizedBox(height: 40),
         Text(
           'Loading Coin data...',
@@ -38,7 +39,8 @@ Widget buildLoadingNewsStatus(BuildContext context) {
     child: Column(
       children: [
         SizedBox(height: 40),
-        CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+        CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
         SizedBox(height: 40),
         Text(
           'Loading News data...',
@@ -72,7 +74,7 @@ Widget buildExchangesErrorStatus(BuildContext context) {
         SizedBox(height: 40),
         Icon(Icons.error_rounded, size: 75, color: Colors.red),
         SizedBox(height: 40),
-        Text('Error loading Exchanges data. Please refresh and try again.',
+        Text('Error loading Exchanges data.\n Please refresh and try again.',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 18, color: Colors.red)),
       ],
@@ -85,9 +87,14 @@ Widget buildExchangesLoadingStatus(BuildContext context) {
     child: Column(
       children: [
         SizedBox(height: 40),
-        CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+        CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
         SizedBox(height: 40),
-        Text('Loading Exchanges data...', textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.blue),),
+        Text(
+          'Loading Exchanges data...',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 18, color: Colors.blue),
+        ),
       ],
     ),
   );
