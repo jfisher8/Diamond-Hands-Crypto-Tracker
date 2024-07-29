@@ -127,6 +127,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                       const Center(
                                                           child: Icon(
                                                 Icons.error_rounded,
+                                                size: 75,
                                                 color: Colors.red,
                                               )),
                                             ),
