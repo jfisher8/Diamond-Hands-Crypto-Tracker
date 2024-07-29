@@ -89,9 +89,6 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                     const Icon(Icons.arrow_forward_rounded),
                                 leading: ConstrainedBox(
                                   constraints: const BoxConstraints(
-                                      minWidth: 66,
-                                      minHeight: 66,
-                                      maxWidth: 66,
                                       maxHeight: 100),
                                   child: CachedNetworkImage(
                                       imageUrl: snapshot.data[index].imageURL,
