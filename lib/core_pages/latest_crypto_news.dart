@@ -106,7 +106,6 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                 padding: const EdgeInsets.all(5),
                                 child: Column(children: [
                                   Card(
-                                      elevation: 30,
                                       child: Column(
                                         children: [
                                           SizedBox(
