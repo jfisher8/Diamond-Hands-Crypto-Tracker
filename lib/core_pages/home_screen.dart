@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             imageUrl:
                                                 snapshot.data[index].imageURL,
                                             placeholder: (url, error) =>
-                                                const CircularProgressIndicator(),
+                                                const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
                                             errorWidget:
                                                 (context, url, error) =>
                                                     const Icon(Icons.error,
