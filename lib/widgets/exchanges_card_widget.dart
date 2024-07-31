@@ -31,7 +31,7 @@ class ExchangesCard extends StatelessWidget {
               child: CachedNetworkImage(
                   imageUrl: image,
                   placeholder: (imageUrl, error) =>
-                      const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                      const CircularProgressIndicator(),
                   errorWidget: (context, imageUrl, error) => const Icon(
                       Icons.error_outline_rounded,
                       color: Colors.red)),
