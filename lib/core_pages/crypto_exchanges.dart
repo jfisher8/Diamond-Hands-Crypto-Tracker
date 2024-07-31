@@ -31,7 +31,8 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BuildAppBar(
-          title: Text('Crypto Exchanges', style: Theme.of(context).textTheme.titleLarge),
+          title: Text('Crypto Exchanges',
+              style: Theme.of(context).textTheme.titleLarge),
           appBar: AppBar(),
           widgets: [
             FirebaseAuth.instance.currentUser != null
@@ -81,26 +82,30 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                       MaterialPageRoute(
                                           builder: (context) =>
                                               CryptoExchangesDetails(
-                                                exchanges: snapshot
-                                                    .data[index],
+                                                exchanges: snapshot.data[index],
                                               )));
                                 },
                                 trailing:
                                     const Icon(Icons.arrow_forward_rounded),
                                 leading: ConstrainedBox(
-                                  constraints: const BoxConstraints(
-                                      maxHeight: 100),
+                                  constraints:
+                                      const BoxConstraints(maxHeight: 100),
                                   child: CachedNetworkImage(
                                       imageUrl: snapshot.data[index].imageURL,
                                       placeholder: (imageUrl, error) =>
-                                          const CircularProgressIndicator(),
+                                          const CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                      Colors.blue)),
                                       errorWidget: (context, imageUrl, error) =>
                                           const Icon(
                                               Icons.error_outline_rounded,
                                               color: Colors.red)),
                                 ),
                                 title: Text(snapshot.data[index].name),
-                                subtitle: Text(snapshot.data[index].yearEstablished.toString()),
+                                subtitle: Text(snapshot
+                                    .data[index].yearEstablished
+                                    .toString()),
                               ),
                             ));
                       });
