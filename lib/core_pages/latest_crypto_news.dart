@@ -171,7 +171,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                       developer.log('no data in snapshot');
                       developer.log(snapshot.error.toString());
                       return buildNewsErrorStatus(context);
-                }}}))
+                }} return buildLoadingNewsStatus(context);}))
       ]),
     );
   }
