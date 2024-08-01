@@ -79,7 +79,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
               style: Theme.of(context).textTheme.bodySmall,
               onChanged: (value) {
                 setState(() {
-                  //newsListOnSearch = articles.where((element) => element.toLowerCase().contains(value.toLowerCase())).cast<String>().toList();
+                  newsListOnSearch = articles.where((element) => element.toLowerCase().contains(value.toLowerCase())).toList();
                   searchController.text = value;
                 });
               },
@@ -91,9 +91,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                 //if (snapshot.connectionState == ConnectionState.done) {
                   //developer.log('snapshot connection done');
                   //if (snapshot.hasData) {
-                    developer.log('snapshot has data');
                     List<Article> articles = snapshot.data;
-                    developer.log('code gets to the list view');
                     if (searchController.text.isNotEmpty && newsListOnSearch.isEmpty) {
                       return Text('No results found');
                     } else {
