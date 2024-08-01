@@ -87,18 +87,17 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
           child: FutureBuilder(
               future: futureArticle,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  developer.log('snapshot connection done');
-                  if (snapshot.hasData) {
+                //if (snapshot.connectionState == ConnectionState.done) {
+                  //developer.log('snapshot connection done');
+                  //if (snapshot.hasData) {
                     developer.log('snapshot has data');
                     List<Article> articles = snapshot.data;
                     developer.log('code gets to the list view');
-                    //issue should surround the below logic before the itemBuilder widget
                     if (searchController.text.isNotEmpty && articles.isEmpty) {
-                      return const Text('Nothing here');
+                      return Text('No results found');
                     } else {
-                      //searchController.text.isNotEmpty&&articles.isEmpty ? const Text('No results found') :
-                      return ListView.builder(
+                    return 
+                      ListView.builder(
                           shrinkWrap: true,
                           itemCount: articles.length,
                           itemBuilder: (context, index) {
@@ -169,17 +168,16 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                       ))
                                 ]));
                           });
-                    }
-                  } else if (snapshot.hasError || snapshot.data == null) {
+              
+              //    } else if (snapshot.hasError || snapshot.data == null) {
                     developer.log('no data in snapshot');
                     developer.log(snapshot.error.toString());
                     return buildNewsErrorStatus(context);
                   }
-                }
-                return buildLoadingNewsStatus(context);
-              }),
+             //   return buildLoadingNewsStatus(context);
+              },
         )
-      ]),
+      )]),
     );
   }
 }
