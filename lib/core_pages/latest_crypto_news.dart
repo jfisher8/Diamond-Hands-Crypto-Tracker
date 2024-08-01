@@ -67,10 +67,10 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search_rounded),
+                  prefixIcon: const Icon(Icons.search_rounded),
                   labelText: 'Search articles by publisher...',
                   labelStyle: Theme.of(context).textTheme.bodyMedium,
-                  enabledBorder: const OutlineInputBorder(                    
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue),
                   ),
                   focusedBorder: const OutlineInputBorder(
@@ -85,98 +85,98 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
               },
             )),
         Expanded(
-          child: FutureBuilder(
-              future: futureArticle,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                //if (snapshot.connectionState == ConnectionState.done) {
-                  //developer.log('snapshot connection done');
-                  //if (snapshot.hasData) {
-                    List<Article> articles = snapshot.data;
-                    if (searchController.text.isNotEmpty && newsListOnSearch.isEmpty) {
-                      return Text('No results found');
-                    } else {
-                    return 
-                      ListView.builder(
+            child: FutureBuilder(
+                future: futureArticle,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    developer.log('snapshot connection done');
+                    if (snapshot.hasData) {
+                      List<Article> articles = snapshot.data;
+                      return ListView.builder(
                           shrinkWrap: true,
                           itemCount: articles.length,
                           itemBuilder: (context, index) {
-                            developer.log('gets to the item builder');
-                            return Padding(
+                            return articles[index]
+                                  .source
+                                  .name
+                                  .toLowerCase()
+                                  .contains(searchController.text) ?
+                            Padding(
                                 padding: const EdgeInsets.all(5),
                                 child: Column(children: [
                                   Card(
                                       child: Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 200,
-                                            child: CachedNetworkImage(
-                                              imageUrl:
-                                                  snapshot.data[index].imageURL,
-                                              fit: BoxFit.fill,
-                                              placeholder: (context, url) =>
-                                                  const Center(
-                                                      child: CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                      Color>(
-                                                                  Colors
-                                                                      .blue))),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      const Center(
-                                                          child: Icon(
-                                                Icons.error_rounded,
-                                                size: 75,
-                                                color: Colors.red,
-                                              )),
-                                            ),
-                                          ),
-                                          ListTile(
-                                            title: Text(
-                                                snapshot.data[index].title,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium),
-                                            subtitle: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                      snapshot.data[index]
-                                                          .source.name,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodySmall),
-                                                  Text(snapshot.data[index].publishedAt,
-                                                      style: Theme.of(context).textTheme.bodySmall)
-                                                ]),
-                                            trailing: const Icon(
-                                                Icons.arrow_forward_rounded),
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          ReadNewsArticle(
-                                                              article:
-                                                                  snapshot.data[
-                                                                      index])));
-                                            },
-                                          )
-                                        ],
-                                      ))
-                                ]));
-                          });
-              
-              //    } else if (snapshot.hasError || snapshot.data == null) {
-                    developer.log('no data in snapshot');
-                    developer.log(snapshot.error.toString());
-                    return buildNewsErrorStatus(context);
+                                    children: [
+                                      SizedBox(
+                                        height: 200,
+                                        child: CachedNetworkImage(
+                                          imageUrl:
+                                              snapshot.data[index].imageURL,
+                                          fit: BoxFit.fill,
+                                          placeholder: (context, url) =>
+                                              const Center(
+                                                  child: CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                                  Color>(
+                                                              Colors.blue))),
+                                          errorWidget: (context, url, error) =>
+                                              const Center(
+                                                  child: Icon(
+                                            Icons.error_rounded,
+                                            size: 75,
+                                            color: Colors.red,
+                                          )),
+                                        ),
+                                      ),
+                                      ListTile(
+                                        title: Text(snapshot.data[index].title,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium),
+                                        subtitle: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  snapshot
+                                                      .data[index].source.name,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall),
+                                              Text(
+                                                  snapshot
+                                                      .data[index].publishedAt,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall)
+                                            ]),
+                                        trailing: const Icon(
+                                            Icons.arrow_forward_rounded),
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ReadNewsArticle(
+                                                          article: snapshot
+                                                              .data[index])));
+                                        },
+                                      )
+                                    ],
+                                  )) //commit 3
+                                ])) : Container());
+            });
+                    } else if (snapshot.hasError || snapshot.data == null) {
+                      developer.log('no data in snapshot');
+                      developer.log(snapshot.error.toString());
+                      return buildNewsErrorStatus(context);
+                    }
+                    return buildLoadingNewsStatus(context);
                   }
-             //   return buildLoadingNewsStatus(context);
-              },
-        )
-      )]),
+                  //return buildNewsErrorStatus(context);
+                }))
+      ]),
     );
   }
 }
