@@ -164,18 +164,14 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                         },
                                       )
                                     ],
-                                  )) //commit 3
-                                ])) : Container());
+                                  ))
+                                ])) : Container();
             });
                     } else if (snapshot.hasError || snapshot.data == null) {
                       developer.log('no data in snapshot');
                       developer.log(snapshot.error.toString());
                       return buildNewsErrorStatus(context);
-                    }
-                    return buildLoadingNewsStatus(context);
-                  }
-                  //return buildNewsErrorStatus(context);
-                }))
+                }}}))
       ]),
     );
   }
