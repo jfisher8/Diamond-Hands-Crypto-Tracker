@@ -33,4 +33,6 @@ class Article {
         publishedAt: json['publishedAt']
       );
   }
+
+  toLowerCase() {}
 }
