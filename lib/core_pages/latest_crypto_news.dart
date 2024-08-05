@@ -144,12 +144,6 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodySmall),
-                                              // Text(
-                                              //     snapshot
-                                              //         .data[index].publishedAt,
-                                              //     style: Theme.of(context)
-                                              //         .textTheme
-                                              //         .bodySmall)
                                             ]),
                                         trailing: const Icon(
                                             Icons.arrow_forward_rounded),
