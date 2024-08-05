@@ -10,7 +10,6 @@ import 'dart:developer' as developer;
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/read_news_article.dart';
-import 'package:intl/intl.dart';
 
 class LatestCryptoNews extends StatefulWidget {
   const LatestCryptoNews({super.key});
