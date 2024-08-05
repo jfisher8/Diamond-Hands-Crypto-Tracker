@@ -109,9 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  final String latestPrice = snapshot
-                                      .data[index].price
-                                      .toStringAsFixed(2);
                                   return SizedBox(
                                     width: 150,
                                     height: 150,
