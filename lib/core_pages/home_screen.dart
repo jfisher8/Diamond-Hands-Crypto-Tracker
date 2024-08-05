@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
-                                        Text('£$latestPrice',
+                                        Text('£${snapshot.data[index].price.toStringAsFixed(2)}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
