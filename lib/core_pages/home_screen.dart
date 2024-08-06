@@ -37,7 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: BuildAppBar(
-          title: Text('Diamond Hands Crypto Tracker', style: Theme.of(context).textTheme.titleLarge),
+          title: Text('Diamond Hands Crypto Tracker',
+              style: Theme.of(context).textTheme.titleLarge),
           appBar: AppBar(),
           widgets: [
             FirebaseAuth.instance.currentUser != null
@@ -118,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             imageUrl:
                                                 snapshot.data[index].imageURL,
                                             placeholder: (url, error) =>
-                                                const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                                                buildLoadingIcon(context),
                                             errorWidget:
                                                 (context, url, error) =>
                                                     const Icon(Icons.error,
@@ -129,7 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
-                                        Text('£${snapshot.data[index].price.toStringAsFixed(2)}',
+                                        Text(
+                                            '£${snapshot.data[index].price.toStringAsFixed(2)}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
