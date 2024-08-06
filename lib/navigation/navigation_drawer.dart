@@ -65,7 +65,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
                         : const Icon(Icons.dark_mode_rounded)),
               ],
             ),
-            //SizedBox(height: 50),
             Card(
               elevation: 30,
               shape: RoundedRectangleBorder(
