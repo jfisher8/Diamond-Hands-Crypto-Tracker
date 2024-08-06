@@ -99,3 +99,9 @@ Widget buildExchangesLoadingStatus(BuildContext context) {
     ),
   );
 }
+
+Widget buildLoadingIcon(BuildContext context) {
+  return const CircularProgressIndicator(
+    
+  );
+}
