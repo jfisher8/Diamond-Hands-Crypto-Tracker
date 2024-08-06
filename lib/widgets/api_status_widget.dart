@@ -102,6 +102,6 @@ Widget buildExchangesLoadingStatus(BuildContext context) {
 
 Widget buildLoadingIcon(BuildContext context) {
   return const CircularProgressIndicator(
-    
+    valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(56, 182, 255, 1.0)),
   );
 }
