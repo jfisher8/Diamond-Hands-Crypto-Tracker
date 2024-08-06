@@ -39,7 +39,7 @@ class CoinCard extends StatelessWidget {
                   child: CachedNetworkImage(
                       imageUrl: imageUrl!,
                       placeholder: (imageUrl, error) =>
-                          const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+                          const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(56, 182, 255, 1.0))),
                       errorWidget: (context, imageUrl, error) =>
                           const Icon(Icons.error, color: Colors.red, size: 28)),
                 ),
