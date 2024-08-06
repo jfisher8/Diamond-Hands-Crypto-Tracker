@@ -78,6 +78,8 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
                             email: emailController.text,
                             password: passwordController.text)
                         .then((value) => developer.log('New account created'));
+                        await Future.delayed(const Duration(seconds: 0));
+                        if (!context.mounted) return;
                     Navigator.push(
                         context,
                         MaterialPageRoute(
