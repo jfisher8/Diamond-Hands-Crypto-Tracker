@@ -96,75 +96,79 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                           itemCount: articles.length,
                           itemBuilder: (context, index) {
                             return articles[index]
-                                  .source
-                                  .name
-                                  .toLowerCase()
-                                  .contains(searchController.text) ?
-                            Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: Column(children: [
-                                  Card(
-                                      child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 200,
-                                        child: CachedNetworkImage(
-                                          imageUrl:
-                                              snapshot.data[index].imageURL,
-                                          fit: BoxFit.fill,
-                                          placeholder: (context, url) =>
-                                              const Center(
-                                                  child: CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                              Colors.blue))),
-                                          errorWidget: (context, url, error) =>
-                                              const Center(
-                                                  child: Icon(
-                                            Icons.error_rounded,
-                                            size: 75,
-                                            color: Colors.red,
-                                          )),
-                                        ),
-                                      ),
-                                      ListTile(
-                                        title: Text(snapshot.data[index].title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium),
-                                        subtitle: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                  snapshot
-                                                      .data[index].source.name,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall),
-                                            ]),
-                                        trailing: const Icon(
-                                            Icons.arrow_forward_rounded),
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ReadNewsArticle(
-                                                          article: snapshot
-                                                              .data[index])));
-                                        },
-                                      )
-                                    ],
-                                  ))
-                                ])) : Container();
-            });
+                                    .source
+                                    .name
+                                    .toLowerCase()
+                                    .contains(searchController.text)
+                                ? Padding(
+                                    padding: const EdgeInsets.all(5),
+                                    child: Column(children: [
+                                      Card(
+                                          child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 200,
+                                            child: CachedNetworkImage(
+                                              imageUrl:
+                                                  snapshot.data[index].imageURL,
+                                              fit: BoxFit.fill,
+                                              placeholder: (context, url) =>
+                                                  Center(
+                                                      child: buildLoadingIcon(
+                                                          context)),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Center(
+                                                          child: Icon(
+                                                Icons.error_rounded,
+                                                size: 75,
+                                                color: Colors.red,
+                                              )),
+                                            ),
+                                          ),
+                                          ListTile(
+                                            title: Text(
+                                                snapshot.data[index].title,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium),
+                                            subtitle: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                      snapshot.data[index]
+                                                          .source.name,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodySmall),
+                                                ]),
+                                            trailing: const Icon(
+                                                Icons.arrow_forward_rounded),
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ReadNewsArticle(
+                                                              article:
+                                                                  snapshot.data[
+                                                                      index])));
+                                            },
+                                          )
+                                        ],
+                                      ))
+                                    ]))
+                                : Container();
+                          });
                     } else if (snapshot.hasError || snapshot.data == null) {
                       developer.log('no data in snapshot');
                       developer.log(snapshot.error.toString());
                       return buildNewsErrorStatus(context);
-                }} return buildLoadingNewsStatus(context);}))
+                    }
+                  }
+                  return buildLoadingNewsStatus(context);
+                }))
       ]),
     );
   }

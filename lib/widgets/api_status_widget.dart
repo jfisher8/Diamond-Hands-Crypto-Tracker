@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 Widget buildLoadingCoinsStatus(BuildContext context) {
   return const Center(
