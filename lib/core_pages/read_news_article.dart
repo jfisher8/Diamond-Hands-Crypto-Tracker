@@ -50,10 +50,10 @@ class ReadNewsArticle extends StatelessWidget {
         Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-          //TODO: add the appropriate styling to such
           child: CachedNetworkImage(
               imageUrl: article.imageURL.toString(),
-              placeholder: (context, url) => buildLoadingIcon(context)),
+              placeholder: (context, url) => buildLoadingIcon(context),
+              errorWidget: (context, url, error) => const Icon(Icons.error)),
         ),
         Text(
           article.title,
