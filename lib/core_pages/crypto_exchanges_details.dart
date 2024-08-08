@@ -51,7 +51,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: exchanges.imageURL,
                         placeholder: (context, url) => buildLoadingIcon(context),
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                        errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red),
                         )),
                   const Padding(padding: EdgeInsets.all(5)),
                   Text(exchanges.name, style: const TextStyle(fontSize: 28)),

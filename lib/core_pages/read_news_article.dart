@@ -49,6 +49,8 @@ class ReadNewsArticle extends StatelessWidget {
         Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+          //TODO: add the error and placeholder widgets here, as separate commits
+          //TODO: add the appropriate styling to such
           child: CachedNetworkImage(imageUrl: article.imageURL.toString()),
         ),
         Text(
