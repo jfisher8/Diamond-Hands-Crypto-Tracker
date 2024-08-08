@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/api_status_widget.dart';
 
 class CoinCard extends StatelessWidget {
   const CoinCard({
@@ -22,90 +23,93 @@ class CoinCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
-      child: Card(
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                height: 60,
-                width: 60,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: CachedNetworkImage(
-                      imageUrl: imageUrl!,
-                      placeholder: (imageUrl, error) =>
-                          const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(56, 182, 255, 1.0))),
-                      errorWidget: (context, imageUrl, error) =>
-                          const Icon(Icons.error, color: Colors.red, size: 28)),
+        padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
+        child: Card(
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  height: 60,
+                  width: 60,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: CachedNetworkImage(
+                        imageUrl: imageUrl!,
+                        placeholder: (imageUrl, error) =>
+                            buildLoadingIcon(context),
+                        errorWidget: (context, imageUrl, error) => const Icon(
+                            Icons.error,
+                            color: Colors.red,
+                            size: 28)),
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      name!,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        name!,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      symbol!.toUpperCase(),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      "£${price!.toStringAsFixed(2)}",
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  Text(
-                    symbol!.toUpperCase(),
-                  ),
-                ],
+                    Text(
+                      change!.toDouble() < 0
+                          ? change!.toDouble().toStringAsFixed(2)
+                          : '+£${change!.toDouble().toStringAsFixed(2)}',
+                      style: TextStyle(
+                        color:
+                            change!.toDouble() < 0 ? Colors.red : Colors.green,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      changePercentage!.toDouble() < 0
+                          ? '${changePercentage!.toDouble().toStringAsFixed(2)}%'
+                          : '+${changePercentage!.toDouble().toStringAsFixed(2)}%',
+                      style: TextStyle(
+                        color: changePercentage!.toDouble() < 0
+                            ? Colors.red
+                            : Colors.green,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    "£${price!.toStringAsFixed(2)}",
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    change!.toDouble() < 0
-                        ? change!.toDouble().toStringAsFixed(2)
-                        : '+£${change!.toDouble().toStringAsFixed(2)}',
-                    style: TextStyle(
-                      color: change!.toDouble() < 0 ? Colors.red : Colors.green,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    changePercentage!.toDouble() < 0
-                        ? '${changePercentage!.toDouble().toStringAsFixed(2)}%'
-                        : '+${changePercentage!.toDouble().toStringAsFixed(2)}%',
-                    style: TextStyle(
-                      color: changePercentage!.toDouble() < 0
-                          ? Colors.red
-                          : Colors.green,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-    ));
+            ],
+          ),
+        ));
   }
 }
