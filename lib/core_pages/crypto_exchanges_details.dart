@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/api_status_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
@@ -47,7 +48,10 @@ class CryptoExchangesDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Center(
-                      child: CachedNetworkImage(imageUrl: exchanges.imageURL)),
+                      child: CachedNetworkImage(
+                        imageUrl: exchanges.imageURL,
+                        placeholder: (context, url) => buildLoadingIcon(context),
+                        )),
                   const Padding(padding: EdgeInsets.all(5)),
                   Text(exchanges.name, style: const TextStyle(fontSize: 28)),
                 ],
