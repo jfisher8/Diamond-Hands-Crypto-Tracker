@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/api_status_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
@@ -49,9 +50,10 @@ class ReadNewsArticle extends StatelessWidget {
         Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-          //TODO: add the error and placeholder widgets here, as separate commits
           //TODO: add the appropriate styling to such
-          child: CachedNetworkImage(imageUrl: article.imageURL.toString()),
+          child: CachedNetworkImage(
+              imageUrl: article.imageURL.toString(),
+              placeholder: (context, url) => buildLoadingIcon(context)),
         ),
         Text(
           article.title,
