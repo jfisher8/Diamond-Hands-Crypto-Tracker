@@ -92,11 +92,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                       const BoxConstraints(maxHeight: 100),
                                   child: CachedNetworkImage(
                                       imageUrl: snapshot.data[index].imageURL,
-                                      placeholder: (imageUrl, error) =>
-                                          const CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                      Colors.blue)),
+                                      placeholder:(context, url) => buildLoadingIcon(context),
                                       errorWidget: (context, imageUrl, error) =>
                                           const Icon(
                                               Icons.error_outline_rounded,
