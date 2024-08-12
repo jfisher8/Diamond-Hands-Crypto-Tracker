@@ -93,11 +93,8 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                   child: CachedNetworkImage(
                                       imageUrl: snapshot.data[index].imageURL,
                                       placeholder:(context, url) => buildLoadingIcon(context),
-                                      errorWidget: (context, imageUrl, error) =>
-                                          const Icon(
-                                              Icons.error_outline_rounded,
-                                              color: Colors.red)),
-                                ),
+                                      errorWidget: (context, imageUrl, error) => buildErrorIcon(context)
+                                )),
                                 title: Text(snapshot.data[index].name),
                                 subtitle: Text(snapshot
                                     .data[index].yearEstablished
