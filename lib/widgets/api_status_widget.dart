@@ -108,6 +108,6 @@ Widget buildLoadingIcon(BuildContext context) {
 
 Widget buildErrorIcon(BuildContext context) {
   return const Icon(
-   Icons.error,
+   Icons.error_outline_rounded,
   );
 }
