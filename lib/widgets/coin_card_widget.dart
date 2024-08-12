@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:diamond_hands_crypto_tracker/widgets/api_status_widget.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 
 class CoinCard extends StatelessWidget {
   const CoinCard({
