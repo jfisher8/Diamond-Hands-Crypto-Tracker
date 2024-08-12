@@ -105,3 +105,9 @@ Widget buildLoadingIcon(BuildContext context) {
     valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(56, 182, 255, 1.0)),
   );
 }
+
+Widget buildErrorIcon(BuildContext context) {
+  return const Icon(
+   Icons.error,
+  );
+}
