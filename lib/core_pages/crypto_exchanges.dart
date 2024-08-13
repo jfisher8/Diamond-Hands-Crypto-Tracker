@@ -88,17 +88,22 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                 trailing:
                                     const Icon(Icons.arrow_forward_rounded),
                                 leading: ConstrainedBox(
-                                  constraints:
-                                      const BoxConstraints(maxHeight: 100),
-                                  child: CachedNetworkImage(
-                                      imageUrl: snapshot.data[index].imageURL,
-                                      placeholder:(context, url) => buildLoadingIcon(context),
-                                      errorWidget: (context, imageUrl, error) => buildErrorIcon(context)
-                                )),
+                                    constraints:
+                                        const BoxConstraints(maxHeight: 100),
+                                    child: CachedNetworkImage(
+                                        imageUrl: snapshot.data[index].imageURL,
+                                        placeholder: (context, url) =>
+                                            buildLoadingIcon(context),
+                                        errorWidget:
+                                            (context, imageUrl, error) =>
+                                                buildErrorIcon(context))),
                                 title: Text(snapshot.data[index].name),
-                                subtitle: Text(snapshot
-                                    .data[index].yearEstablished
-                                    .toString()),
+                                subtitle:
+                                    snapshot.data[index].yearEstablished == null
+                                        ? const Text("")
+                                        : Text(snapshot
+                                            .data[index].yearEstablished
+                                            .toString()),
                               ),
                             ));
                       });
