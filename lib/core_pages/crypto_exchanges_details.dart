@@ -15,7 +15,8 @@ class CryptoExchangesDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BuildAppBar(
-          title: Text('Diamond Hands Crypto Tracker', style: Theme.of(context).textTheme.titleLarge),
+          title: Text('Diamond Hands Crypto Tracker',
+              style: Theme.of(context).textTheme.titleLarge),
           appBar: AppBar(),
           widgets: [
             FirebaseAuth.instance.currentUser != null
@@ -49,17 +50,20 @@ class CryptoExchangesDetails extends StatelessWidget {
                 children: [
                   Center(
                       child: CachedNetworkImage(
-                        imageUrl: exchanges.imageURL,
-                        placeholder: (context, url) => buildLoadingIcon(context),
-                        errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red, size: 20),
-                        )),
+                    imageUrl: exchanges.imageURL,
+                    placeholder: (context, url) => buildLoadingIcon(context),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error, color: Colors.red, size: 20),
+                  )),
                   const Padding(padding: EdgeInsets.all(5)),
                   Text(exchanges.name, style: const TextStyle(fontSize: 28)),
                 ],
               ),
               const SizedBox(height: 20),
-              Text("Established in ${exchanges.yearEstablished}",
-                  style: Theme.of(context).textTheme.bodyLarge),
+              exchanges.yearEstablished == null
+                  ? const Text("")
+                  : Text("Established in ${exchanges.yearEstablished}",
+                      style: Theme.of(context).textTheme.bodyLarge),
             ],
           ),
         ));
