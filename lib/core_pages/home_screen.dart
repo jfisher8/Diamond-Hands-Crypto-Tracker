@@ -121,9 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
-                                                (context, url, error) =>
-                                                    const Icon(Icons.error,
-                                                        color: Colors.red)),
+                                                (context, url, error) => buildErrorIcon(context)),
                                         const SizedBox(height: 5),
                                         Text(snapshot.data[index].name,
                                             textAlign: TextAlign.center,
