@@ -1,4 +1,5 @@
 import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/exchanges_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
@@ -74,38 +75,46 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                         return Padding(
                             padding: const EdgeInsets.only(
                                 top: 15, left: 10, right: 10),
-                            child: Card(
-                              child: ListTile(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CryptoExchangesDetails(
-                                                exchanges: snapshot.data[index],
-                                              )));
-                                },
-                                trailing:
-                                    const Icon(Icons.arrow_forward_rounded),
-                                leading: ConstrainedBox(
-                                    constraints:
-                                        const BoxConstraints(maxHeight: 100),
-                                    child: CachedNetworkImage(
-                                        imageUrl: snapshot.data[index].imageURL,
-                                        placeholder: (context, url) =>
-                                            buildLoadingIcon(context),
-                                        errorWidget:
-                                            (context, imageUrl, error) =>
-                                                buildErrorIcon(context))),
-                                title: Text(snapshot.data[index].name),
-                                subtitle:
-                                    snapshot.data[index].yearEstablished == null
-                                        ? const Text("")
-                                        : Text(snapshot
-                                            .data[index].yearEstablished
-                                            .toString()),
-                              ),
-                            ));
+                            child: ExchangesCard(
+                                name: snapshot.data[index].name,
+                                yearEstablished:
+                                    snapshot.data[index].yearEstablished,
+                                url: snapshot.data[index].url,
+                                image: snapshot.data[index].imageURL)
+
+                            // Card(
+                            //   child: ListTile(
+                            //     onTap: () {
+                            //       Navigator.push(
+                            //           context,
+                            //           MaterialPageRoute(
+                            //               builder: (context) =>
+                            //                   CryptoExchangesDetails(
+                            //                     exchanges: snapshot.data[index],
+                            //                   )));
+                            //     },
+                            //     trailing:
+                            //         const Icon(Icons.arrow_forward_rounded),
+                            //     leading: ConstrainedBox(
+                            //         constraints:
+                            //             const BoxConstraints(maxHeight: 100),
+                            //         child: CachedNetworkImage(
+                            //             imageUrl: snapshot.data[index].imageURL,
+                            //             placeholder: (context, url) =>
+                            //                 buildLoadingIcon(context),
+                            //             errorWidget:
+                            //                 (context, imageUrl, error) =>
+                            //                     buildErrorIcon(context))),
+                            //     title: Text(snapshot.data[index].name),
+                            //     subtitle:
+                            //         snapshot.data[index].yearEstablished == null
+                            //             ? const Text("")
+                            //             : Text(snapshot
+                            //                 .data[index].yearEstablished
+                            //                 .toString()),
+                            //   ),
+                            // )
+                            );
                       });
                 } else {
                   return buildExchangesErrorStatus(context);

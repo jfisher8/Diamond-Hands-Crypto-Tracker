@@ -11,7 +11,7 @@ class ExchangesCard extends StatelessWidget {
       required this.image});
 
   final String name;
-  final String yearEstablished;
+  final int? yearEstablished;
   final String url;
   final String image;
 
@@ -37,7 +37,7 @@ class ExchangesCard extends StatelessWidget {
                       color: Colors.red)),
             ),
             title: Text(name),
-            subtitle: Text(yearEstablished),
+            subtitle: yearEstablished != null ? Text(yearEstablished.toString()) : const Text(""),
           ),
         ));
   }
