@@ -53,7 +53,7 @@ class ReadNewsArticle extends StatelessWidget {
           child: CachedNetworkImage(
               imageUrl: article.imageURL.toString(),
               placeholder: (context, url) => buildLoadingIcon(context),
-              errorWidget: (context, url, error) => const Icon(Icons.error)),
+              errorWidget: (context, url, error) => buildErrorIcon(context)),
         ),
         Text(
           article.title,
