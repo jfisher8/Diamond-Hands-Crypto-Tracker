@@ -6,10 +6,8 @@ import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges_details.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class CryptoExchanges extends StatefulWidget {
   const CryptoExchanges({super.key});
