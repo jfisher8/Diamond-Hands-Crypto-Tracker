@@ -26,6 +26,8 @@ class ExchangesCard extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
             },
             trailing: const Icon(Icons.arrow_forward_rounded),
+            title: Text(name),
+            subtitle: yearEstablished != null ? Text(yearEstablished.toString()) : const Text(""),
             leading: ConstrainedBox(
               constraints: const BoxConstraints(
                   minWidth: 66, minHeight: 66, maxWidth: 66, maxHeight: 100),
@@ -34,9 +36,7 @@ class ExchangesCard extends StatelessWidget {
                   placeholder: (imageUrl, error) => buildLoadingIcon(context),
                   errorWidget: (context, imageUrl, error) => buildErrorIcon(context)
             ),
-            title: Text(name),
-            subtitle: yearEstablished != null ? Text(yearEstablished.toString()) : const Text(""),
           ),
-        ));
+        )));
   }
 }
