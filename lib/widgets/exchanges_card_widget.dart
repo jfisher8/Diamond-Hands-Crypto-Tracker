@@ -26,7 +26,7 @@ class ExchangesCard extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
             },
             trailing: const Icon(Icons.arrow_forward_rounded),
-            title: Text(name),
+            title: yearEstablished != null ? Text(name) : Text("\n$name"),
             subtitle: yearEstablished != null ? Text(yearEstablished.toString()) : const Text(""),
             leading: ConstrainedBox(
               constraints: const BoxConstraints(
