@@ -74,7 +74,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                       itemBuilder: (context, index) {
                         return Padding(
                             padding: const EdgeInsets.only(
-                                top: 15, left: 10, right: 10),
+                                top: 5, left: 10, right: 10),
                             child: ExchangesCard(
                                 name: snapshot.data[index].name,
                                 yearEstablished:
