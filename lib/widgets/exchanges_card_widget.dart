@@ -32,9 +32,7 @@ class ExchangesCard extends StatelessWidget {
               child: CachedNetworkImage(
                   imageUrl: image,
                   placeholder: (imageUrl, error) => buildLoadingIcon(context),
-                  errorWidget: (context, imageUrl, error) => const Icon(
-                      Icons.error_outline_rounded,
-                      color: Colors.red)),
+                  errorWidget: (context, imageUrl, error) => buildErrorIcon(context)
             ),
             title: Text(name),
             subtitle: yearEstablished != null ? Text(yearEstablished.toString()) : const Text(""),
