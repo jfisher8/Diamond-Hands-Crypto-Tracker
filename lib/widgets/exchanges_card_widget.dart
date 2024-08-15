@@ -28,9 +28,9 @@ class ExchangesCard extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_rounded),
             title: yearEstablished != null ? Text(name) : Text("\n$name"),
             subtitle: yearEstablished != null ? Text(yearEstablished.toString()) : const Text(""),
-            leading: ConstrainedBox(
-              constraints: const BoxConstraints(
-                  minWidth: 66, minHeight: 66, maxHeight: 100),
+            leading: SizedBox(
+              height: 50,
+              width: 50,
               child: CachedNetworkImage(
                   imageUrl: image,
                   placeholder: (imageUrl, error) => buildLoadingIcon(context),
