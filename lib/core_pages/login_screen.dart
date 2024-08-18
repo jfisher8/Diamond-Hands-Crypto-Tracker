@@ -76,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       passwordTextField("Enter Password", Icons.lock_rounded,
                           true, passwordController),
                       const SizedBox(height: 20),
+                      
                       primaryLoginButton(context, true, () async {
                         if (_key.currentState!.validate()) {
                           try {
@@ -104,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       }),
-                      Text(message, style: const TextStyle(color: Colors.red)),
+                      //Text(message, style: const TextStyle(color: Colors.red)),
                       TextButton(
                           onPressed: () {
                             showDialog(
