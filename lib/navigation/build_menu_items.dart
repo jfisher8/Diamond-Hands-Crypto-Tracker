@@ -3,6 +3,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dar
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +25,7 @@ Widget buildMenuItems(BuildContext context) {
                 Column(
                   children: [
                     currentEmail != null
-                        ? const Text("You're logged in! Enjoy the app")
+                        ? Text("You're logged in as $currentEmail")
                         : const Text('Welcome to the app',
                             textAlign: TextAlign.center),
                   ],
