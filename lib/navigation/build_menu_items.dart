@@ -17,8 +17,7 @@ Widget buildMenuItems(BuildContext context) {
       runSpacing: 20,
       children: [
         SizedBox(
-          //TODO: change the below height value to 30 or 40 to allow for currentUser email to be displayed in the UI
-            height: 20,
+            height: 40,
             width: MediaQuery.of(context).size.width,
             child: ListView(
               children: [
