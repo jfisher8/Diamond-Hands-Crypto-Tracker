@@ -3,7 +3,6 @@ import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dar
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +17,7 @@ Widget buildMenuItems(BuildContext context) {
       runSpacing: 20,
       children: [
         SizedBox(
+          //TODO: change the below height value to 30 or 40 to allow for currentUser email to be displayed in the UI
             height: 20,
             width: MediaQuery.of(context).size.width,
             child: ListView(
