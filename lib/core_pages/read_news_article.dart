@@ -74,6 +74,7 @@ class ReadNewsArticle extends StatelessWidget {
         currentSession != null
             ? saveForLaterButton(context, () {
                 //ontap logic here, should save article to list
+                ScaffoldMessenger.of(context).showSnackBar(articleSavedConfirmation);
               })
             : loginAndSaveButton(context, () {
                 Navigator.push(
