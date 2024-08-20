@@ -16,6 +16,8 @@ class ReadNewsArticle extends StatelessWidget {
 
   final String? currentSession = FirebaseAuth.instance.currentUser?.email;
 
+  final articleSavedConfirmation = const SnackBar(content: Text('SnackBar test'));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
