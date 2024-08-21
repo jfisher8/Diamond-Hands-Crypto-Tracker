@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
@@ -16,17 +17,20 @@ class ReadNewsArticle extends StatelessWidget {
 
   final String? currentSession = FirebaseAuth.instance.currentUser?.email;
 
-  final articleSavedConfirmation = SnackBar(
-      content: Text('Article saved!'),
-      backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
-      duration: Duration(seconds: 2),
-      action: SnackBarAction(label: 'View Saved Articles', onPressed: () { 
-        //add nav route here
-      }),
-      );
-
   @override
   Widget build(BuildContext context) {
+    final articleSavedConfirmation = SnackBar(
+      content: const Text('Article saved!'),
+      backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
+      duration: Duration(seconds: 2),
+      action: SnackBarAction(
+          label: 'View Saved Articles',
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => const HomeScreen())));
+          }),
+    );
+
     return Scaffold(
       appBar: BuildAppBar(
         title: Text('Diamond Hands Crypto Tracker',
