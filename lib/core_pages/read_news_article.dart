@@ -16,7 +16,14 @@ class ReadNewsArticle extends StatelessWidget {
 
   final String? currentSession = FirebaseAuth.instance.currentUser?.email;
 
-  final articleSavedConfirmation = const SnackBar(content: Text('Article saved!'), backgroundColor: Color.fromRGBO(56, 182, 255, 1.0), duration: Duration(seconds: 2));
+  final articleSavedConfirmation = SnackBar(
+      content: Text('Article saved!'),
+      backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
+      duration: Duration(seconds: 2),
+      action: SnackBarAction(label: 'View Saved Articles', onPressed: () { 
+        //add nav route here
+      }),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +81,8 @@ class ReadNewsArticle extends StatelessWidget {
         currentSession != null
             ? saveForLaterButton(context, () {
                 //ontap logic here, should save article to list
-                ScaffoldMessenger.of(context).showSnackBar(articleSavedConfirmation);
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(articleSavedConfirmation);
               })
             : loginAndSaveButton(context, () {
                 Navigator.push(
