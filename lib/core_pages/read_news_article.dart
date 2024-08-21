@@ -16,7 +16,7 @@ class ReadNewsArticle extends StatelessWidget {
 
   final String? currentSession = FirebaseAuth.instance.currentUser?.email;
 
-  final articleSavedConfirmation = const SnackBar(content: Text('Article saved!'), backgroundColor: Color.fromRGBO(56, 182, 255, 1.0));
+  final articleSavedConfirmation = const SnackBar(content: Text('Article saved!'), backgroundColor: Color.fromRGBO(56, 182, 255, 1.0), duration: Duration(seconds: 2));
 
   @override
   Widget build(BuildContext context) {
