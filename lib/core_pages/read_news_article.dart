@@ -19,17 +19,18 @@ class ReadNewsArticle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final articleSavedConfirmation = SnackBar(
-      content: const Text('Article saved!'),
-      backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
-      duration: Duration(seconds: 2),
-      action: SnackBarAction(
-          label: 'View Saved Articles',
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: ((context) => const HomeScreen())));
-          }),
-    );
+final snackBar = SnackBar(
+  content: const Text('Yay! A SnackBar!'),
+  duration: Duration(seconds: 2),
+  action: SnackBarAction(
+    label: 'Undo',
+    onPressed: () {
+      // Some code to undo the change.
+    },
+  ),
+);
+
+    
 
     return Scaffold(
       appBar: BuildAppBar(
@@ -86,7 +87,7 @@ class ReadNewsArticle extends StatelessWidget {
             ? saveForLaterButton(context, () {
                 //ontap logic here, should save article to list
                 ScaffoldMessenger.of(context)
-                    .showSnackBar(articleSavedConfirmation);
+                    .showSnackBar(snackBar);
               })
             : loginAndSaveButton(context, () {
                 Navigator.push(
