@@ -21,9 +21,10 @@ class ReadNewsArticle extends StatelessWidget {
   Widget build(BuildContext context) {
     final articleSavedConfirmation = SnackBar(
       content: const Text('Article Saved'),
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       action: SnackBarAction(
-        label: 'Undo',
+        //TODO check why label length changes the height of snackbar widget
+        label: 'See Saved',
         onPressed: () {
           // Some code to undo the change.
         },
