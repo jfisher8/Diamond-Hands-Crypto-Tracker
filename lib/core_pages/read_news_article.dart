@@ -19,18 +19,16 @@ class ReadNewsArticle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-final snackBar = SnackBar(
-  content: const Text('Yay! A SnackBar!'),
-  duration: Duration(seconds: 2),
-  action: SnackBarAction(
-    label: 'Undo',
-    onPressed: () {
-      // Some code to undo the change.
-    },
-  ),
-);
-
-    
+    final articleSavedConfirmation = SnackBar(
+      content: const Text('Article Saved'),
+      duration: Duration(seconds: 2),
+      action: SnackBarAction(
+        label: 'Undo',
+        onPressed: () {
+          // Some code to undo the change.
+        },
+      ),
+    );
 
     return Scaffold(
       appBar: BuildAppBar(
@@ -86,8 +84,7 @@ final snackBar = SnackBar(
         currentSession != null
             ? saveForLaterButton(context, () {
                 //ontap logic here, should save article to list
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(snackBar);
+                ScaffoldMessenger.of(context).showSnackBar(articleSavedConfirmation);
               })
             : loginAndSaveButton(context, () {
                 Navigator.push(
