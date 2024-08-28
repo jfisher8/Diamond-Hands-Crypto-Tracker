@@ -27,7 +27,7 @@ class ReadNewsArticle extends StatelessWidget {
         //TODO check why label length changes the height of snackbar widget
         label: 'See Saved',
         onPressed: () {
-          // Some code to undo the change.
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const FavouritesScreen()));
         },
       ),
     );
