@@ -30,6 +30,7 @@ class ReadNewsArticle extends StatelessWidget {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const FavouritesScreen()));
         },
+        backgroundColor: Colors.black,
       ),
     );
 
