@@ -20,9 +20,9 @@ class ReadNewsArticle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final articleSavedConfirmation = SnackBar(
-      content: Text('Article Saved'),
-      duration: Duration(seconds: 2),
-      backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
+      content: const Text('Article Saved'),
+      duration: const Duration(seconds: 4),
+      backgroundColor: const Color.fromRGBO(56, 182, 255, 1.0),
       action: SnackBarAction(
         //TODO check why label length changes the height of snackbar widget
         label: 'See Saved',
