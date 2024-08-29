@@ -99,7 +99,7 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                                 buildErrorIcon(context))),
                                 title:
                                     snapshot.data[index].yearEstablished == null
-                                        ? Text("\n" + snapshot.data[index].name)
+                                        ? Text('\n ${snapshot.data[index].name}')
                                         : Text(snapshot.data[index].name),
                                 subtitle:
                                     snapshot.data[index].yearEstablished == null
