@@ -97,7 +97,10 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                                         errorWidget:
                                             (context, imageUrl, error) =>
                                                 buildErrorIcon(context))),
-                                title: Text(snapshot.data[index].name),
+                                title:
+                                    snapshot.data[index].yearEstablished == null
+                                        ? Text(snapshot.data[index].name + "\n")
+                                        : Text(snapshot.data[index].name),
                                 subtitle:
                                     snapshot.data[index].yearEstablished == null
                                         ? const Text("")
