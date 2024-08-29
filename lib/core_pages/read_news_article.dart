@@ -25,6 +25,8 @@ class ReadNewsArticle extends StatelessWidget {
       action: SnackBarAction(
         //TODO check why label length changes the height of snackbar widget
         label: 'See Saved',
+        //TODO consider adding a different background colour to the snackbar and change the textColour thereafter
+        //for readability
         textColor: Colors.green[800],
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const FavouritesScreen()));
