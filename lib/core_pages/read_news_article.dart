@@ -22,9 +22,9 @@ class ReadNewsArticle extends StatelessWidget {
       content: const Text('Article Saved'),
       duration: const Duration(seconds: 4),
       backgroundColor: const Color.fromRGBO(56, 182, 255, 1.0),
-      action: SnackBarAction(
+      action: SnackBarAction(        
         label: 'See Saved',
-        textColor: Colors.white,
+        textColor: Colors.blue[900],
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const FavouritesScreen()));
         },
