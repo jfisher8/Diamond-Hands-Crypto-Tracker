@@ -21,7 +21,7 @@ class ReadNewsArticle extends StatelessWidget {
     final articleSavedConfirmation = SnackBar(
       content: const Text('Article Saved'),
       duration: const Duration(seconds: 4),
-      backgroundColor: const Color.fromRGBO(56, 182, 255, 1.0),
+      backgroundColor: Colors.green[600],
       action: SnackBarAction(
         label: 'See Saved',
         textColor: Colors.blue[900],
