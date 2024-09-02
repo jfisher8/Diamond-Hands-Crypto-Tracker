@@ -22,78 +22,86 @@ class ReadNewsArticle extends StatelessWidget {
       content: const Text('Article Saved'),
       duration: const Duration(seconds: 4),
       backgroundColor: const Color.fromRGBO(56, 182, 255, 1.0),
-      action: SnackBarAction(        
+      action: SnackBarAction(
         label: 'See Saved',
         textColor: Colors.blue[900],
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const FavouritesScreen()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const FavouritesScreen()));
         },
       ),
     );
 
     return Scaffold(
-      appBar: BuildAppBar(
-        title: Text('Diamond Hands Crypto Tracker',
-            style: Theme.of(context).textTheme.titleLarge),
-        appBar: AppBar(automaticallyImplyLeading: true),
-        widgets: [
-          FirebaseAuth.instance.currentUser != null
-              ? IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FavouritesScreen()),
-                    );
-                  },
-                  icon: const Icon(Icons.bookmark_rounded, color: Colors.black))
-              : IconButton(
-                  onPressed: () {
+        appBar: BuildAppBar(
+          title: Text('Diamond Hands Crypto Tracker',
+              style: Theme.of(context).textTheme.titleLarge),
+          appBar: AppBar(automaticallyImplyLeading: true),
+          widgets: [
+            FirebaseAuth.instance.currentUser != null
+                ? IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FavouritesScreen()),
+                      );
+                    },
+                    icon:
+                        const Icon(Icons.bookmark_rounded, color: Colors.black))
+                : IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()),
+                      );
+                    },
+                    icon: const Icon(Icons.login_rounded, color: Colors.black)),
+          ],
+        ),
+        body: SafeArea(
+          child: Center(
+              child: Column(children: [
+            Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100)),
+              child: CachedNetworkImage(
+                  imageUrl: article.imageURL.toString(),
+                  placeholder: (context, url) => buildLoadingIcon(context),
+                  errorWidget: (context, url, error) =>
+                      buildErrorIcon(context)),
+            ),
+            Text(
+              article.title,
+              style: Theme.of(context).textTheme.bodyLarge,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 10),
+            Text(article.source.name.toString()),
+            const SizedBox(height: 10),
+            Text(article.description.toString(), textAlign: TextAlign.center),
+            const SizedBox(height: 40),
+            newsArticleReadMoreButton(
+                context, () => launchUrl(Uri.parse(article.url))),
+            //const SizedBox(height: 20),
+            const Text("or, if you're short on time..."),
+            currentSession != null
+                ? saveForLaterButton(context, () {
+                    //ontap logic here, should save article to list
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(articleSavedConfirmation);
+                  })
+                : loginAndSaveButton(context, () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const LoginScreen()),
                     );
-                  },
-                  icon: const Icon(Icons.login_rounded, color: Colors.black)),
-        ],
-      ),
-      body: Center(
-          child: Column(children: [
-        Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-          child: CachedNetworkImage(
-              imageUrl: article.imageURL.toString(),
-              placeholder: (context, url) => buildLoadingIcon(context),
-              errorWidget: (context, url, error) => buildErrorIcon(context)),
-        ),
-        Text(
-          article.title,
-          style: Theme.of(context).textTheme.bodyLarge,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 10),
-        Text(article.source.name.toString()),
-        const SizedBox(height: 10),
-        Text(article.description.toString(), textAlign: TextAlign.center),
-        const SizedBox(height: 40),
-        newsArticleReadMoreButton(
-            context, () => launchUrl(Uri.parse(article.url))),
-        //const SizedBox(height: 20),
-        const Text("or, if you're short on time..."),
-        currentSession != null
-            ? saveForLaterButton(context, () {
-                //ontap logic here, should save article to list
-                ScaffoldMessenger.of(context).showSnackBar(articleSavedConfirmation);
-              })
-            : loginAndSaveButton(context, () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
-                );
-              })
-      ])),
-    );
+                  })
+          ])),
+        ));
   }
 }
