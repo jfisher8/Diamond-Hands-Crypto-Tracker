@@ -106,11 +106,12 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                       Card(
                                           child: Column(
                                         children: [
+                                          snapshot.data[index].imageURL == null ? Icon(Icons.error) :
                                           SizedBox(
-                                            height: 200,
+                                            height: 200, 
                                             child: CachedNetworkImage(
                                               imageUrl:
-                                                  snapshot.data[index].imageURL ?? Icon(Icons.error),
+                                                  snapshot.data[index].imageURL,
                                               fit: BoxFit.fill,
                                               placeholder: (context, url) =>
                                                   Center(
