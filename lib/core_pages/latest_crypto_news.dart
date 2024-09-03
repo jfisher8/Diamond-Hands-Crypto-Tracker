@@ -106,27 +106,34 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                       Card(
                                           child: Column(
                                         children: [
-                                          snapshot.data[index].imageURL == null ? Icon(Icons.error) :
-                                          SizedBox(
-                                            height: 200, 
-                                            child: CachedNetworkImage(
-                                              imageUrl:
-                                                  snapshot.data[index].imageURL,
-                                              fit: BoxFit.fill,
-                                              placeholder: (context, url) =>
-                                                  Center(
-                                                      child: buildLoadingIcon(
-                                                          context)),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      const Center(
-                                                          child: Icon(
-                                                Icons.error_rounded,
-                                                size: 75,
-                                                color: Colors.red,
-                                              )),
-                                            ),
-                                          ),
+                                          snapshot.data[index].imageURL == null
+                                              ? buildErrorIcon(context)
+                                              : SizedBox(
+                                                  height: 200,
+                                                  child: snapshot.data[index]
+                                                              .imageURL ==
+                                                          null
+                                                      ? buildErrorIcon(context)
+                                                      : CachedNetworkImage(
+                                                          imageUrl: snapshot
+                                                              .data[index]
+                                                              .imageURL,
+                                                          fit: BoxFit.fill,
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              Center(
+                                                                  child: buildLoadingIcon(
+                                                                      context)),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              const Center(
+                                                                  child: Icon(
+                                                            Icons.error_rounded,
+                                                            size: 75,
+                                                            color: Colors.red,
+                                                          )),
+                                                        ),
+                                                ),
                                           ListTile(
                                             title: Text(
                                                 snapshot.data[index].title,
