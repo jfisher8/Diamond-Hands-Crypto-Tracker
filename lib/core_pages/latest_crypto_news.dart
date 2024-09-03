@@ -110,7 +110,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                             height: 200,
                                             child: CachedNetworkImage(
                                               imageUrl:
-                                                  snapshot.data[index].imageURL == null ? Icon(Icons.error) : snapshot.data[index].imageURL,
+                                                  snapshot.data[index].imageURL ?? Icon(Icons.error),
                                               fit: BoxFit.fill,
                                               placeholder: (context, url) =>
                                                   Center(
