@@ -113,11 +113,12 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                     null
                                                 ? const Column(children: [
                                                   SizedBox(height: 70),
+                                                  Center(child: 
                                                   Icon(
                                                         Icons.error,
                                                         size: 50,
                                                         color: Colors.red,
-                                                      ),
+                                                      )),
                                                       SizedBox(height: 10),
                                                     Text("Error loading image")
                                                   ])
