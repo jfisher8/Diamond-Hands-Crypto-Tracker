@@ -112,15 +112,19 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                         .data[index].imageURL ==
                                                     null
                                                 ? const Column(children: [
-                                                  SizedBox(height: 70),
-                                                  Center(child: 
-                                                  Icon(
-                                                        Icons.error,
-                                                        size: 50,
-                                                        color: Colors.red,
-                                                      )),
-                                                      SizedBox(height: 10),
-                                                    Text("Error loading image")
+                                                    SizedBox(height: 70),
+                                                    Center(
+                                                        child: Icon(
+                                                      Icons.error,
+                                                      size: 50,
+                                                      color: Colors.red,
+                                                    )),
+                                                    SizedBox(height: 10),
+                                                    Text(
+                                                      "Error loading image",
+                                                      style: TextStyle(
+                                                          color: Colors.red),
+                                                    )
                                                   ])
                                                 : CachedNetworkImage(
                                                     imageUrl: snapshot
