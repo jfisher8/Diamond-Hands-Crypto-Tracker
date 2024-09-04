@@ -118,6 +118,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                         size: 50,
                                                         color: Colors.red,
                                                       ),
+                                                      SizedBox(height: 10),
                                                     Text("Error loading image")
                                                   ])
                                                 : CachedNetworkImage(
