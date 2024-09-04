@@ -111,14 +111,15 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                             child: snapshot
                                                         .data[index].imageURL ==
                                                     null
-                                                ? const SizedBox(
+                                                ? const Column(children: [const SizedBox(
                                                     height: 200,
                                                     width: 200,
                                                     child: Icon(
                                                       Icons.error,
-                                                      size: 50
+                                                      size: 50,
+                                                      color: Colors.red,
                                                       ),
-                                                  )
+                                                  )])
                                                 : CachedNetworkImage(
                                                     imageUrl: snapshot
                                                         .data[index].imageURL,
