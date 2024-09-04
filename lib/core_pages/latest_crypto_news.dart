@@ -106,9 +106,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                       Card(
                                           child: Column(
                                         children: [
-                                          snapshot.data[index].imageURL == null
-                                              ? buildErrorIcon(context)
-                                              : SizedBox(
+                                          // snapshot.data[index].imageURL == null,
+                                          SizedBox(
                                                   height: 200,
                                                   child: snapshot.data[index]
                                                               .imageURL ==
