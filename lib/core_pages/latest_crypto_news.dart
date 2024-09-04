@@ -112,6 +112,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                         .data[index].imageURL ==
                                                     null
                                                 ? const Column(children: [
+                                                  SizedBox(height: 70),
                                                   Icon(
                                                         Icons.error,
                                                         size: 50,
