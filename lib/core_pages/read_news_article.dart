@@ -65,7 +65,6 @@ class ReadNewsArticle extends StatelessWidget {
         body: SafeArea(
             child: Center(
                 child: Column(children: [
-            Card(child: 
               SizedBox(
                 height: 200,
                 child: article?.imageURL == null
@@ -95,7 +94,7 @@ class ReadNewsArticle extends StatelessWidget {
                           color: Colors.red,
                         )),
                       ),
-              )),
+              ),
               Text(
                 article!.title,
                 style: Theme.of(context).textTheme.bodyLarge,
