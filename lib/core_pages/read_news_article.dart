@@ -63,68 +63,69 @@ class ReadNewsArticle extends StatelessWidget {
           ],
         ),
         body: SafeArea(
-            child: Center(
-                child: Column(children: [
-              SizedBox(
-                height: 200,
-                child: article?.imageURL == null
-                    ? const Column(children: [
-                        SizedBox(height: 70),
-                        Center(
-                            child: Icon(
-                          Icons.error,
-                          size: 50,
-                          color: Colors.red,
-                        )),
-                        SizedBox(height: 10),
-                        Text(
-                          "Error loading image",
-                          style: TextStyle(color: Colors.red),
-                        )
-                      ])
-                    : CachedNetworkImage(
-                        imageUrl: article!.imageURL.toString(),
-                        fit: BoxFit.fill,
-                        placeholder: (context, url) =>
-                            Center(child: buildLoadingIcon(context)),
-                        errorWidget: (context, url, error) => const Center(
-                            child: Icon(
-                          Icons.error_rounded,
-                          size: 75,
-                          color: Colors.red,
-                        )),
-                      ),
-              ),
-              Text(
-                article!.title,
-                style: Theme.of(context).textTheme.bodyLarge,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              Text(article!.source.name.toString()),
-              const SizedBox(height: 10),
-              Text(article!.description.toString(),
-                  textAlign: TextAlign.center),
-              const SizedBox(height: 40),
-              newsArticleReadMoreButton(
-                  context, () => launchUrl(Uri.parse(article!.url))),
-              //const SizedBox(height: 20),
-              const Text("or, if you're short on time..."),
-              currentSession != null
-                  ? saveForLaterButton(context, () {
-                      //ontap logic here, should save article to list
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(articleSavedConfirmation);
-                    })
-                  : loginAndSaveButton(context, () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginScreen()),
-                      );
-                    })
-            ])),
-          
+          child: Center(
+              child: Column(children: [
+            SizedBox(
+              height: 200,
+              child: article?.imageURL == null
+                  ? const Column(children: [
+                      SizedBox(height: 70),
+                      Center(
+                          child: Icon(
+                        Icons.error,
+                        size: 50,
+                        color: Colors.red,
+                      )),
+                      SizedBox(height: 10),
+                      Text(
+                        "Error loading image",
+                        style: TextStyle(color: Colors.red),
+                      )
+                    ])
+                  : CachedNetworkImage(
+                      imageUrl: article!.imageURL.toString(),
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) =>
+                          Center(child: buildLoadingIcon(context)),
+                      errorWidget: (context, url, error) => const Center(
+                          child: Icon(
+                        Icons.error_rounded,
+                        size: 75,
+                        color: Colors.red,
+                      )),
+                    ),
+            ),
+            Text(
+              article!.title,
+              style: Theme.of(context).textTheme.bodyLarge,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 10),
+            Text(article!.source.name.toString()),
+            const SizedBox(height: 10),
+            article?.description == null
+                ? const Text("No article description provided")
+                : Text(article!.description.toString(),
+                    textAlign: TextAlign.center),
+            const SizedBox(height: 40),
+            newsArticleReadMoreButton(
+                context, () => launchUrl(Uri.parse(article!.url))),
+            //const SizedBox(height: 20),
+            const Text("or, if you're short on time..."),
+            currentSession != null
+                ? saveForLaterButton(context, () {
+                    //ontap logic here, should save article to list
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(articleSavedConfirmation);
+                  })
+                : loginAndSaveButton(context, () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
+                    );
+                  })
+          ])),
         ));
   }
 }
