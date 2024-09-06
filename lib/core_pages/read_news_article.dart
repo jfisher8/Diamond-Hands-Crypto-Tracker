@@ -12,7 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ReadNewsArticle extends StatelessWidget {
   ReadNewsArticle({super.key, required this.article});
-  final Article article;
+  final Article? article;
 
   final String? currentSession = FirebaseAuth.instance.currentUser?.email;
 
@@ -68,24 +68,39 @@ class ReadNewsArticle extends StatelessWidget {
             Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100)),
-              child: CachedNetworkImage(
-                  imageUrl: article.imageURL.toString(),
-                  placeholder: (context, url) => buildLoadingIcon(context),
-                  errorWidget: (context, url, error) =>
-                      buildErrorIcon(context)),
+              child: article?.imageURL.toString() == null
+                  ? const Column(children: [
+                      SizedBox(height: 70),
+                      Center(
+                          child: Icon(
+                        Icons.error,
+                        size: 50,
+                        color: Colors.red,
+                      )),
+                      SizedBox(height: 10),
+                      Text(
+                        "Error loading image",
+                        style: TextStyle(color: Colors.red),
+                      )
+                    ])
+                  : CachedNetworkImage(
+                      imageUrl: article!.imageURL.toString(),
+                      placeholder: (context, url) => buildLoadingIcon(context),
+                      errorWidget: (context, url, error) =>
+                          buildErrorIcon(context)),
             ),
             Text(
-              article.title,
+              article!.title,
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),
-            Text(article.source.name.toString()),
+            Text(article!.source.name.toString()),
             const SizedBox(height: 10),
-            Text(article.description.toString(), textAlign: TextAlign.center),
+            Text(article!.description.toString(), textAlign: TextAlign.center),
             const SizedBox(height: 40),
             newsArticleReadMoreButton(
-                context, () => launchUrl(Uri.parse(article.url))),
+                context, () => launchUrl(Uri.parse(article!.url))),
             //const SizedBox(height: 20),
             const Text("or, if you're short on time..."),
             currentSession != null
