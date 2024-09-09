@@ -111,14 +111,10 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                             child: snapshot
                                                         .data[index].imageURL ==
                                                     null
-                                                ? const Column(children: [
+                                                ? Column(children: [
                                                     SizedBox(height: 70),
                                                     Center(
-                                                        child: Icon(
-                                                      Icons.error,
-                                                      size: 50,
-                                                      color: Colors.red,
-                                                    )),
+                                                      child: Image.asset('assets/diamond_hands_logo.png')),
                                                     SizedBox(height: 10),
                                                     Text(
                                                       "Error loading image",
