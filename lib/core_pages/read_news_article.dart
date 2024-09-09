@@ -104,7 +104,7 @@ class ReadNewsArticle extends StatelessWidget {
             Text(article!.source.name.toString()),
             const SizedBox(height: 10),
             article?.description == null
-                ? const Text("No article description provided")
+                ? Container()
                 : Text(article!.description.toString(),
                     textAlign: TextAlign.center),
             const SizedBox(height: 40),
