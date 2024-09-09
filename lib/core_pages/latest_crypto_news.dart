@@ -114,7 +114,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                 ? Column(children: [
                                                     SizedBox(height: 70),
                                                     Center(
-                                                      child: Image.asset('assets/diamond_hands_logo.png')),
+                                                      child: Image.asset('assets/diamond_hands_logo.png', height: 125, width: 125)),
                                                     SizedBox(height: 10),
                                                     Text(
                                                       "Error loading image",
