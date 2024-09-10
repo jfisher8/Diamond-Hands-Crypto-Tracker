@@ -119,7 +119,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                     Text(
                                                       "Article image placeholder",
                                                       style: TextStyle(
-                                                          color: Colors.red),
+                                                          color: Color.fromRGBO(56, 182, 255, 1.0)),
                                                     )
                                                   ])
                                                 : CachedNetworkImage(
