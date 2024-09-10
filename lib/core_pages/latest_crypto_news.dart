@@ -117,7 +117,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                       child: Image.asset('assets/diamond_hands_logo.png', height: 100, width: 100)),
                                                     SizedBox(height: 10),
                                                     Text(
-                                                      "Error loading image",
+                                                      "Article image placeholder",
                                                       style: TextStyle(
                                                           color: Colors.red),
                                                     )
