@@ -112,11 +112,11 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                         .data[index].imageURL ==
                                                     null
                                                 ? Column(children: [
-                                                    SizedBox(height: 40),
+                                                    const SizedBox(height: 40),
                                                     Center(
                                                       child: Image.asset('assets/diamond_hands_logo.png', height: 100, width: 100)),
-                                                    SizedBox(height: 10),
-                                                    Text(
+                                                    const SizedBox(height: 10),
+                                                    const Text(
                                                       "Article image placeholder",
                                                       style: TextStyle(
                                                           color: Color.fromRGBO(56, 182, 255, 1.0)),
