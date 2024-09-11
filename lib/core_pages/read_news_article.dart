@@ -68,18 +68,16 @@ class ReadNewsArticle extends StatelessWidget {
             SizedBox(
               height: 200,
               child: article?.imageURL == null
-                  ? const Column(children: [
-                      SizedBox(height: 70),
+                  ? Column(children: [
+                      const SizedBox(height: 40),
                       Center(
-                          child: Icon(
-                        Icons.error,
-                        size: 50,
-                        color: Colors.red,
-                      )),
-                      SizedBox(height: 10),
-                      Text(
-                        "Error loading image",
-                        style: TextStyle(color: Colors.red),
+                          child: Image.asset('assets/diamond_hands_logo.png',
+                              height: 100, width: 100)),
+                      const SizedBox(height: 10),
+                      const Text(
+                        "Article image placeholder",
+                        style:
+                            TextStyle(color: Color.fromRGBO(56, 182, 255, 1.0)),
                       )
                     ])
                   : CachedNetworkImage(
