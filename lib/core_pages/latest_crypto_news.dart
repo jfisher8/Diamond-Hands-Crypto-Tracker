@@ -78,8 +78,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
               style: Theme.of(context).textTheme.bodySmall,
               onChanged: (value) {
                 setState(() {
-                  // newsListOnSearch = articles.where((element) => element.toLowerCase().contains(value.toLowerCase())).toList();
-                  // searchController.text = value;
+                  searchController.text = value;
                 });
               },
             )),
