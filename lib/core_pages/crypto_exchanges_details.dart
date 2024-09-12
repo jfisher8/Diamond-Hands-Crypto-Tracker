@@ -41,7 +41,8 @@ class CryptoExchangesDetails extends StatelessWidget {
                     icon: const Icon(Icons.login_rounded, color: Colors.black)),
           ],
         ),
-        body: Center(
+        body: SafeArea(
+            child: Center(
           child: Column(
             children: [
               const SizedBox(height: 40),
@@ -65,9 +66,10 @@ class CryptoExchangesDetails extends StatelessWidget {
                   : Text("Established in ${exchanges.yearEstablished}",
                       style: Theme.of(context).textTheme.bodyLarge),
               const SizedBox(height: 20),
-              Text(exchanges.description.toString(), textAlign: TextAlign.center),
+              Text(exchanges.description.toString(),
+                  textAlign: TextAlign.center),
             ],
           ),
-        ));
+        )));
   }
 }
