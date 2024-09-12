@@ -3,7 +3,7 @@ class Exchanges {
   late int? yearEstablished;
   late String url;
   late String imageURL;
-  late String description;
+  late String? description;
 
   Exchanges(
       {required this.name,
