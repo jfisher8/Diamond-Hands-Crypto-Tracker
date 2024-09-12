@@ -65,7 +65,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                   : Text("Established in ${exchanges.yearEstablished}",
                       style: Theme.of(context).textTheme.bodyLarge),
               const SizedBox(height: 20),
-              Text(exchanges.description.toString()),
+              Text(exchanges.description.toString(), textAlign: TextAlign.center),
             ],
           ),
         ));
