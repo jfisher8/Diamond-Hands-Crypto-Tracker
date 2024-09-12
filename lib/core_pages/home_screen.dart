@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         drawer: const NavigationMenu(),
-        body: SingleChildScrollView(
+        body: SafeArea(child: SingleChildScrollView(
             child: Column(children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -233,6 +233,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   return buildNewsErrorStatus(context);
                 }),
           ]),
-        ])));
+        ]))));
   }
 }
