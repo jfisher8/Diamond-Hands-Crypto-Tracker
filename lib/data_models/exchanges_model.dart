@@ -3,10 +3,14 @@ class Exchanges {
   late int? yearEstablished;
   late String url;
   late String imageURL;
+  late String description;
 
-  Exchanges({
-    required this.name, required this.yearEstablished, required this.url, required this.imageURL
-  });
+  Exchanges(
+      {required this.name,
+      required this.yearEstablished,
+      required this.url,
+      required this.imageURL,
+      required this.description});
 
   Exchanges.fromJson(Map<String, dynamic> json) {
     name = json['name'];
