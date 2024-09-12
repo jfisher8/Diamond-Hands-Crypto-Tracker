@@ -17,6 +17,7 @@ class Exchanges {
     yearEstablished = json['year_established'];
     url = json['url'];
     imageURL = json['image'];
+    description = json['description'];
   }
 }
 
