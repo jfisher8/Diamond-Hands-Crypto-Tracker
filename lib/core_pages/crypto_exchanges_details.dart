@@ -67,7 +67,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge),
               const SizedBox(height: 20),
               Text(exchanges.description.toString(),
-                  textAlign: TextAlign.center),
+                  textAlign: TextAlign.justify),
             ],
           ),
         )));
