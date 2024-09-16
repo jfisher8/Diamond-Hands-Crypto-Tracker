@@ -43,33 +43,33 @@ class CryptoExchangesDetails extends StatelessWidget {
         ),
         body: SafeArea(
             child: Center(
-          child: Column(
+                child: Column(children: [
+          const SizedBox(height: 40),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                      child: CachedNetworkImage(
-                    imageUrl: exchanges.imageURL,
-                    placeholder: (context, url) => buildLoadingIcon(context),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error, color: Colors.red, size: 20),
-                  )),
-                  const Padding(padding: EdgeInsets.all(5)),
-                  Text(exchanges.name, style: const TextStyle(fontSize: 28)),
-                ],
-              ),
-              const SizedBox(height: 20),
-              exchanges.yearEstablished == null
-                  ? const Text("")
-                  : Text("Established in ${exchanges.yearEstablished}",
-                      style: Theme.of(context).textTheme.bodyLarge),
-              const SizedBox(height: 20),
-              Card( child:
-              Text(exchanges.description.toString(),
-                  textAlign: TextAlign.justify)),
-            ]
-        ))));
+              Center(
+                  child: CachedNetworkImage(
+                imageUrl: exchanges.imageURL,
+                placeholder: (context, url) => buildLoadingIcon(context),
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.error, color: Colors.red, size: 20),
+              )),
+              const Padding(padding: EdgeInsets.all(5)),
+              Text(exchanges.name, style: const TextStyle(fontSize: 28)),
+            ],
+          ),
+          const SizedBox(height: 20),
+          exchanges.yearEstablished == null
+              ? const Text("")
+              : Text("Established in ${exchanges.yearEstablished}",
+                  style: Theme.of(context).textTheme.bodyLarge),
+          const SizedBox(height: 20),
+          Card(
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  child: Text(exchanges.description.toString(),
+                      textAlign: TextAlign.justify))),
+        ]))));
   }
 }
