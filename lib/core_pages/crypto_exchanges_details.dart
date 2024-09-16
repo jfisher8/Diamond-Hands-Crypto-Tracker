@@ -67,7 +67,7 @@ class CryptoExchangesDetails extends StatelessWidget {
           const SizedBox(height: 20),
           Card(
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                   child: Text(exchanges.description.toString(),
                       textAlign: TextAlign.justify))),
         ]))));
