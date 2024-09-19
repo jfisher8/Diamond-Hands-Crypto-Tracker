@@ -67,14 +67,16 @@ class CryptoExchangesDetails extends StatelessWidget {
           const SizedBox(height: 20),
           exchanges.description == null || exchanges.description!.isEmpty
               ? const Text("")
-              : Card(
-                  elevation: 10,
-                  child: Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-                      child: Column(children: [
-                        Text(exchanges.description.toString(),
-                            textAlign: TextAlign.justify),
-                      ]))),
+              : Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  child: Card(
+                      elevation: 10,
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                          child: Column(children: [
+                            Text(exchanges.description.toString(),
+                                textAlign: TextAlign.justify),
+                          ])))),
         ]))));
   }
 }
