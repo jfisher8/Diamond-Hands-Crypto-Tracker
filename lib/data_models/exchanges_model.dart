@@ -5,6 +5,7 @@ class Exchanges {
   late String imageURL;
   late String? description;
   late int? trustScore;
+  late String? country;
 
   Exchanges(
       {required this.name,
@@ -12,7 +13,8 @@ class Exchanges {
       required this.url,
       required this.imageURL,
       required this.description,
-      required this.trustScore});
+      required this.trustScore,
+      required this.country});
 
   Exchanges.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -21,6 +23,7 @@ class Exchanges {
     imageURL = json['image'];
     description = json['description'];
     trustScore = json['trust_score'];
+    country = json['country'];
   }
 }
 
