@@ -66,7 +66,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge),
           const SizedBox(height: 20),
           exchanges.description == null
-              ? Container()
+              ? const Text("test")
               : Card(
                   elevation: 10,
                   child: Padding(
