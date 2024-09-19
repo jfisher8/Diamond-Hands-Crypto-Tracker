@@ -6,7 +6,7 @@ import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
-import 'package:diamond_hands_crypto_tracker/widgets/read_more_widget.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/external_link_button_widgets.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/save_for_later_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
