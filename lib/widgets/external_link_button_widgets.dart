@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
   return Container(
@@ -28,6 +29,16 @@ Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
 
 //TODO: replicate the CoinCard widget to see if it's possible to dynamically add the
 //crypto exchange's name to the button component below
+
+class ExchangesButton extends StatelessWidget{
+  const ExchangesButton({
+    super.key,
+    required this.name
+  })
+
+  
+}
+
 Container cryptoExchangesReadMoreButton(BuildContext context, Function onTap) {
   return Container(
     width: 250,
