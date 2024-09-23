@@ -34,9 +34,18 @@ class ExchangesButton extends StatelessWidget{
   const ExchangesButton({
     super.key,
     required this.name
-  })
+  });
 
-  
+  final String? name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 250,
+      height: 50,
+      
+    );
+  }
 }
 
 Container cryptoExchangesReadMoreButton(BuildContext context, Function onTap) {
