@@ -33,10 +33,12 @@ Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
 class ExchangesButton extends StatelessWidget{
   const ExchangesButton({
     super.key,
-    required this.name
+    required this.name,
+    required this.URL,
   });
 
   final String? name;
+  final String? URL;
 
   @override
   Widget build(BuildContext context) {
