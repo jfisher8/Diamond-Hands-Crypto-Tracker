@@ -30,8 +30,8 @@ Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
 //TODO: replicate the CoinCard widget to see if it's possible to dynamically add the
 //crypto exchange's name to the button component below
 
-class ExchangesButton extends StatelessWidget{
-  const ExchangesButton({
+class ExchangesLinkButton extends StatelessWidget{
+  const ExchangesLinkButton({
     super.key,
     required this.name,
     required this.URL,
