@@ -80,7 +80,10 @@ class CryptoExchangesDetails extends StatelessWidget {
                                 textAlign: TextAlign.justify),
                           ])))),
           ElevatedButton(
-              onPressed: ,//TODO: add onPressed link here
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
               child: Text("Learn more about " + exchanges.name))
         ]))));
   }
