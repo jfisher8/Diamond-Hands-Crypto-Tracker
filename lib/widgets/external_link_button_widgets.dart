@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
   return Container(

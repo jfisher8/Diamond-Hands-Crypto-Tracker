@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/external_link_button_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 import 'package:flutter/material.dart';
@@ -79,12 +80,13 @@ class CryptoExchangesDetails extends StatelessWidget {
                             Text(exchanges.description.toString(),
                                 textAlign: TextAlign.justify),
                           ])))),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
-              },
-              child: Text("Learn more about " + exchanges.name))
-        ]))));
+                          cryptoExchangesReadMoreButton(context, (){})])
+          // ElevatedButton(
+          //     onPressed: () {
+          //       Navigator.push(context,
+          //           MaterialPageRoute(builder: (context) => HomeScreen()));
+          //     },
+          //     child: Text("Learn more about " + exchanges.name))
+        )));
   }
 }
