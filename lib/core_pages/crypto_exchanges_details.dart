@@ -80,10 +80,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                             Text(exchanges.description.toString(),
                                 textAlign: TextAlign.justify),
                           ])))),
-                          cryptoExchangesReadMoreButton(context, (){
-                            Text("Learn more about" + exchanges.name);
-                            //add link here
-                          })])
+                          cryptoExchangesReadMoreButton(name: exchanges.name)])
           // ElevatedButton(
           //     onPressed: () {
           //       Navigator.push(context,
