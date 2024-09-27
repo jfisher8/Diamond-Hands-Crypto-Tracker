@@ -81,12 +81,6 @@ class CryptoExchangesDetails extends StatelessWidget {
                                 textAlign: TextAlign.justify),
                           ])))),
                           cryptoExchangesReadMoreButton(name: exchanges.name)])
-          // ElevatedButton(
-          //     onPressed: () {
-          //       Navigator.push(context,
-          //           MaterialPageRoute(builder: (context) => HomeScreen()));
-          //     },
-          //     child: Text("Learn more about " + exchanges.name))
         )));
   }
 }
