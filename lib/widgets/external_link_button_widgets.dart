@@ -25,8 +25,8 @@ Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
   );
 }
 
-class cryptoExchangesReadMoreButton extends StatelessWidget {
-  const cryptoExchangesReadMoreButton({
+class CryptoExchangesReadMoreButton extends StatelessWidget {
+  const CryptoExchangesReadMoreButton({
     super.key,
     required this.name,
   });

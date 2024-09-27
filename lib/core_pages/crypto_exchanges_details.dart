@@ -78,7 +78,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                             Text(exchanges.description.toString(),
                                 textAlign: TextAlign.justify),
                           ])))),
-                          cryptoExchangesReadMoreButton(name: exchanges.name)])
+                          CryptoExchangesReadMoreButton(name: exchanges.name)])
         )));
   }
 }
