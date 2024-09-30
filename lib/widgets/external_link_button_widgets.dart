@@ -29,9 +29,11 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
   const CryptoExchangesReadMoreButton({
     super.key,
     required this.name,
+    required this.url,
   });
 
   final String? name;
+  final String? url;
 
   @override
   Widget build(BuildContext context) {
