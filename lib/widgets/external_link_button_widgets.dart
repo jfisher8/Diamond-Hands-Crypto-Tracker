@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
   return Container(
@@ -44,7 +45,7 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
       child: ElevatedButton(
         onPressed: () {
-          //link here
+          launchUrl(Uri.parse(url.toString()));
         },
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith((states) {
