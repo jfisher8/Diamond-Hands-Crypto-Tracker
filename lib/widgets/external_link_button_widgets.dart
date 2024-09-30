@@ -39,7 +39,6 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250,
       height: 50,
       margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
@@ -55,7 +54,7 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
               return const Color.fromRGBO(56, 182, 255, 1.0);
             }),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
             )),
         child: Text('Learn more about $name',
             style: Theme.of(context).textTheme.bodyLarge),
