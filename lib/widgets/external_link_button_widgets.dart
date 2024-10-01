@@ -42,7 +42,8 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
       height: 50,
       margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
-      child: ElevatedButton(
+      child: ElevatedButton.icon(
+        icon: Icon(Icons.open_in_new_rounded),
         onPressed: () {
           launchUrl(Uri.parse(url.toString()));
         },
@@ -56,7 +57,7 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
             )),
-        child: Text('Learn more about $name',
+        label: Text('Learn more about $name',
             style: Theme.of(context).textTheme.bodyLarge),
       ),
     );
