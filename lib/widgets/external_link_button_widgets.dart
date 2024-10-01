@@ -39,27 +39,31 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
-      child: ElevatedButton.icon(
-        icon: const Icon(Icons.open_in_new_rounded, color: Colors.white),
-        onPressed: () {
-          launchUrl(Uri.parse(url.toString()));
-        },
-        style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.pressed)) {
+        height: 50,
+        margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
+        child: ElevatedButton(
+          //icon: const Icon(Icons.open_in_new_rounded, color: Colors.white),
+          onPressed: () {
+            launchUrl(Uri.parse(url.toString()));
+          },
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.pressed)) {
+                  return const Color.fromRGBO(56, 182, 255, 1.0);
+                }
                 return const Color.fromRGBO(56, 182, 255, 1.0);
-              }
-              return const Color.fromRGBO(56, 182, 255, 1.0);
-            }),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
-            )),
-        label: Text('Learn more about $name',
-            style: Theme.of(context).textTheme.bodyLarge),
-      ),
-    );
+              }),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)))),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text('Learn more about $name',
+                  style: Theme.of(context).textTheme.bodyLarge)
+            ],
+          ),
+        ));
   }
 }
