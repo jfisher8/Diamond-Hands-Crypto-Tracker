@@ -43,7 +43,7 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
       child: ElevatedButton.icon(
-        icon: Icon(Icons.open_in_new_rounded),
+        icon: const Icon(Icons.open_in_new_rounded, color: Colors.white),
         onPressed: () {
           launchUrl(Uri.parse(url.toString()));
         },
