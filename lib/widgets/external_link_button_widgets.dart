@@ -33,8 +33,8 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
     required this.url,
   });
 
-  final String? name;
-  final String? url;
+  final String name;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
