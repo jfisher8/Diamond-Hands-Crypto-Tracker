@@ -57,7 +57,7 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)))),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Learn more about $name',
                   style: Theme.of(context).textTheme.bodyLarge)
