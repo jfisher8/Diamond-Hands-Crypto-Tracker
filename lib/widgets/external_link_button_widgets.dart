@@ -62,7 +62,7 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
               Text('Learn more about $name',
                   style: Theme.of(context).textTheme.bodyLarge),
                   const Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                  const Icon(Icons.open_in_new_rounded)
+                  const Icon(Icons.open_in_new_rounded, color: Colors.white)
             ],
           ),
         ));
