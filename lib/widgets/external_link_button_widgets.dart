@@ -63,7 +63,7 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
               Text('Learn more about $name',
                   style: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black)),
                   const Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                  const Icon(Icons.open_in_new_rounded, color: Colors.black)
+                  const Icon(Icons.open_in_new_rounded, color: Colors.black, size: 20)
             ],
           ),
         ));
