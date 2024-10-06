@@ -24,7 +24,7 @@ Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
           )),
       child: Text('Read more...',
           style: GoogleFonts.mavenPro(
-              fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black)),
+              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
     ),
   );
 }
