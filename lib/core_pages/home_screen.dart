@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
+import 'package:diamond_hands_crypto_tracker/firestore_logic/get_coin_data_from_firebase.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     futureArticle = getArticleData();
     futureCoin = fetchCoin();
+    FirestoreService();
   }
 
   @override

@@ -48,12 +48,25 @@ Future<List<Coin>> fetchCoin() async {
           Map<String, dynamic> filteredData = {
             "price": value["current_price"],
             "image": value["image"],
+            "coinID": value["id"]
           };
 
-          await FirebaseFirestore.instance
+          QuerySnapshot querySnapshot = await FirebaseFirestore.instance
               .collection("coins")
-              .doc(value["id"])
-              .set(filteredData);
+              .where("id", isEqualTo: value["coinID"])
+              .get();
+          
+          if (querySnapshot.docs.isNotEmpty) {
+            String existingDocumentID = querySnapshot.docs.first.id;
+            await FirebaseFirestore.instance.collection("coins").doc(existingDocumentID).update(filteredData);
+          } else {
+            await FirebaseFirestore.instance.collection("coins").add(filteredData);
+          }
+
+          // await FirebaseFirestore.instance
+          //     .collection("coins")
+          //     .doc(value["id"])
+          //     .set(filteredData);
         }
       }
     }
