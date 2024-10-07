@@ -61,28 +61,52 @@ Future<List<Coin>> fetchCoin() async {
 
           if (querySnapshot.docs.isNotEmpty) {
             developer.log("querySnapshot isn't empty");
+            //Get tthe existing document's ID
             String existingDocumentID = querySnapshot.docs.first.id;
-            await FirebaseFirestore.instance
-                .collection("coins")
-                .doc(existingDocumentID)
-                .update(filteredData);
-            developer.log("Crypto price date updated in Firebase");
-          } else {
-            await FirebaseFirestore.instance
-                .collection("coins")
-                .doc(value["id"])
-                .set(filteredData);
+
+            //Get the current document's data
+            DocumentSnapshot existingDocument = querySnapshot.docs.first;
+            Map<String, dynamic> existingData =
+                existingDocument.data() as Map<String, dynamic>;
+
+            //Initialise boolean variable to compare fields in filteredData with
+            //those in existingData
+            bool hasChanged = false;
+
+            //Check if any field in filteredData is different to the value in existingData
+            filteredData.forEach((key, value) {
+              if (existingData[key] != value) {
+                hasChanged = true;
+              }
+            });
+
+            //Update the document in Firebase, only if there are changes
+            if (hasChanged == true) {
+              await FirebaseFirestore.instance
+                  .collection("coins")
+                  .doc(existingDocumentID)
+                  .update(filteredData);
+              developer.log("Crypto price date updated in Firebase");
+            } else if (hasChanged == false) {
+              developer.log("No changes found, skipping update");
+            } else {
+              await FirebaseFirestore.instance
+                  .collection("coins")
+                  .doc(value["id"])
+                  .set(filteredData);
+            }
+            // await FirebaseFirestore.instance
+            //     .collection("coins")
+            //     .doc(value["id"])
+            //     .set(filteredData);
+            // developer.log("Filtered data has been set within collection");
           }
-          await FirebaseFirestore.instance
-              .collection("coins")
-              .doc(value["id"])
-              .set(filteredData);
-          developer.log("Filtered data has been set within collection");
         }
       }
+      return coinList;
+    } else {
+      throw Exception('Failed to load coins');
     }
-    return coinList;
-  } else {
-    throw Exception('Failed to load coins');
   }
+  throw Exception('Failed to load coins');
 }
