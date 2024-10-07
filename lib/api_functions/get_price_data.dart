@@ -45,7 +45,7 @@ Future<List<Coin>> fetchCoin() async {
       for (var value in values) {
         if (value != null) {
           coinList.add(Coin.fromJson(value));
-          developer.log(value.toString());
+          //developer.log(value.toString());
 
           Map<String, dynamic> filteredData = {
             "price": value["current_price"],
@@ -61,7 +61,7 @@ Future<List<Coin>> fetchCoin() async {
 
           if (querySnapshot.docs.isNotEmpty) {
             developer.log("querySnapshot isn't empty");
-            //Get tthe existing document's ID
+            //Get the existing document's ID
             String existingDocumentID = querySnapshot.docs.first.id;
 
             //Get the current document's data
