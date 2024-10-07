@@ -31,6 +31,7 @@ import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:developer' as developer;
 
 Future<List<Coin>> fetchCoin() async {
   List<Coin> coinList = [];
@@ -44,29 +45,51 @@ Future<List<Coin>> fetchCoin() async {
       for (var value in values) {
         if (value != null) {
           coinList.add(Coin.fromJson(value));
+          developer.log(value.toString());
 
           Map<String, dynamic> filteredData = {
             "price": value["current_price"],
             "image": value["image"],
-            "coinID": value["id"]
+            "name" : value["name"]
+            //"id": value["id"]
           };
+
+          // QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          //     .collection("coins")
+          //     .where("id", isEqualTo: value["id"])
+          //     .get();
+
+          // // if (querySnapshot.docs.isNotEmpty) {
+          // //   String existingDocumentID = querySnapshot.docs.first.id;
+          // //   await FirebaseFirestore.instance.collection("coins").doc(existingDocumentID).update(filteredData);
+          // // } else {
+          // //   await FirebaseFirestore.instance.collection("coins").add(filteredData);
+          // // }
 
           QuerySnapshot querySnapshot = await FirebaseFirestore.instance
               .collection("coins")
-              .where("id", isEqualTo: value["coinID"])
+              .where("id", isEqualTo: value["id"])
               .get();
-          
+
           if (querySnapshot.docs.isNotEmpty) {
+            developer.log("querySnapshot isn't empty");
             String existingDocumentID = querySnapshot.docs.first.id;
-            await FirebaseFirestore.instance.collection("coins").doc(existingDocumentID).update(filteredData);
+            await FirebaseFirestore.instance
+                .collection("coins")
+                .doc(existingDocumentID)
+                .update(filteredData);
+            developer.log("Crypto price date updated in Firebase");
           } else {
-            await FirebaseFirestore.instance.collection("coins").add(filteredData);
+            await FirebaseFirestore.instance
+                .collection("coins")
+                .add(filteredData);
           }
 
-          // await FirebaseFirestore.instance
-          //     .collection("coins")
-          //     .doc(value["id"])
-          //     .set(filteredData);
+          await FirebaseFirestore.instance
+              .collection("coins")
+              .doc(value["id"])
+              .set(filteredData);
+          developer.log("Filtered data has been set within collection");
         }
       }
     }
