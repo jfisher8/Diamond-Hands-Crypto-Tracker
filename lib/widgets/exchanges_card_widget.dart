@@ -23,7 +23,7 @@ class ExchangesCard extends StatelessWidget {
         child: Card(
           child: ListTile(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(collectionName: 'coins', documentId: 'id')));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
             },
             trailing: const Icon(Icons.arrow_forward_rounded),
             title: yearEstablished != null ? Text(name) : Text("\n$name"),

@@ -83,7 +83,7 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const HomeScreen(collectionName: 'coins', documentId: 'id'))));
+                            builder: ((context) => const HomeScreen())));
                   } on FirebaseAuthException catch (error) {
                     errorMessage = error.message!;
                   }
@@ -94,7 +94,7 @@ class _SignUpOnboardingScreenState extends State<SignUpOnboardingScreen> {
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) => const HomeScreen(collectionName: 'coins', documentId: 'id')))),
+                        builder: ((context) => const HomeScreen()))),
                 style: TextButton.styleFrom(
                     foregroundColor: const Color.fromRGBO(56, 182, 255, 1.0)),
                 child: const Text('Skip and continue to app'),

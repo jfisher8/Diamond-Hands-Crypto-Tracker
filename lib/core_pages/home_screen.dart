@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_price_data.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
@@ -17,11 +16,7 @@ import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 import 'package:diamond_hands_crypto_tracker/firestore_logic/get_coin_data_from_firebase.dart';
 
 class HomeScreen extends StatefulWidget {
-  
-  final String collectionName;
-  final String documentId;
-
-  const HomeScreen({super.key, required this.collectionName, required this.documentId});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -36,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     futureArticle = getArticleData();
     futureCoin = fetchCoin();
-    FirestoreService();
+    //FirestoreService();
   }
 
   @override
@@ -99,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              FutureBuilder<Map<String, dynamic>?>(
-                future: FirestoreService().getDocumentFieldsById('coins', 'id'),
+              FutureBuilder<List<Coin>>(
+                future: futureCoin,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return buildLoadingCoinsStatus(context);

@@ -16,7 +16,6 @@ class FirestoreService {
         Map<String, dynamic> selectedFields = {
           "price": documentData["price"],
           "image": documentData["image"],
-          "name" : documentData["name"]
         };
         developer.log(selectedFields.toString());
         return selectedFields;

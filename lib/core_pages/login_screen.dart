@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const HomeScreen(collectionName: '', documentId: '',))));
+                                            const HomeScreen())));
                             developer.log('Logged in successfully');
                           } on FirebaseAuthException catch (error) {
                             developer.log(error.code);
