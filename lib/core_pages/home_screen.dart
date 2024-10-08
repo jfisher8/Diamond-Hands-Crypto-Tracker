@@ -16,7 +16,11 @@ import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 import 'package:diamond_hands_crypto_tracker/firestore_logic/get_coin_data_from_firebase.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  
+  final String collectionName;
+  final String documentId;
+
+  const HomeScreen({super.key, required this.collectionName, required this.documentId});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -94,8 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              FutureBuilder<List<Coin>>(
-                future: futureCoin,
+              FutureBuilder<Map<String, dynamic>?>(
+                future: FirestoreService().getDocumentFieldsById(Coins),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return buildLoadingCoinsStatus(context);
