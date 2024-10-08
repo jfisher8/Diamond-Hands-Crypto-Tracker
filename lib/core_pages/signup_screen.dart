@@ -89,7 +89,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const HomeScreen())));
+                            builder: ((context) => const HomeScreen(collectionName: 'coins', documentId: 'id'))));
                   } on FirebaseAuthException catch (error) {
                     errorMessage = error.message!;
                   }

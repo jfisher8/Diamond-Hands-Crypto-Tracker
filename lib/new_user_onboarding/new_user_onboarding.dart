@@ -114,7 +114,7 @@ class NewUserOnboarding extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const HomeScreen()));
+                        builder: (context) => const HomeScreen(collectionName: 'coins', documentId: 'id')));
               },
               child: Text('Skip',
                   style: GoogleFonts.mavenPro(

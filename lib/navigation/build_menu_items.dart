@@ -38,7 +38,7 @@ Widget buildMenuItems(BuildContext context) {
           title: const Text('Home'),
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+                MaterialPageRoute(builder: (context) => const HomeScreen(collectionName: 'coins', documentId: 'id')));
           },
         ),
         ListTile(
@@ -87,7 +87,7 @@ Widget buildMenuItems(BuildContext context) {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
+                          builder: (context) => const HomeScreen(collectionName: 'coins', documentId: 'id')));
                 },
               )
             : //if nobody is logged in, show default list tile
