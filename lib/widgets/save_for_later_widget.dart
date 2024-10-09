@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Container saveForLaterButton(BuildContext context, Function onTap) {
   return Container(
@@ -20,7 +21,8 @@ Container saveForLaterButton(BuildContext context, Function onTap) {
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           )),
-      child: Text('Save for Later', style: Theme.of(context).textTheme.bodyLarge),
+      child: Text('Save for Later', style: GoogleFonts.mavenPro(
+              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
     ),
   );
 }
