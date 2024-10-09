@@ -93,7 +93,6 @@ Future<List<Coin>> fetchCoin() async {
               await FirebaseFirestore.instance
                   .collection("coins")
                   .add(filteredData);
-                  //.(filteredData);
             }
             await FirebaseFirestore.instance
                 .collection("coins")

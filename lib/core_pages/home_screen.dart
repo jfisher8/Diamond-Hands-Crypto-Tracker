@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             errorWidget:
                                                 (context, url, error) => buildErrorIcon(context)),
                                         const SizedBox(height: 5),
-                                        Text(snapshot.data[index].name,
+                                        Text(snapshot.data!['name'],
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
