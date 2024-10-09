@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     futureArticle = getArticleData();
     futureCoin = fetchCoin();
-    //FirestoreService();
+    FirestoreService();
   }
 
   @override
@@ -94,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              FutureBuilder<List<Coin>>(
-                future: futureCoin,
+              FutureBuilder<Map<String, dynamic>?>(
+                future: FirestoreService().getDocumentFieldsById('coins', 'bitcoin'),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return buildLoadingCoinsStatus(context);
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         CachedNetworkImage(
                                             imageUrl:
-                                                snapshot.data[index].imageURL,
+                                                snapshot.data!['image'],
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 .textTheme
                                                 .bodyLarge),
                                         Text(
-                                            '£${snapshot.data[index].price.toStringAsFixed(2)}',
+                                            '£${snapshot.data!['price'].toStringAsFixed(2)}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
