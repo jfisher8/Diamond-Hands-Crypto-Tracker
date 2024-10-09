@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     futureArticle = getArticleData();
     futureCoin = fetchCoin();
-    FirestoreService();
+    //FirestoreService();
   }
 
   @override
@@ -94,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              FutureBuilder<Map<String, dynamic>?>(
-                future: FirestoreService().getDocumentFieldsById('coins', 'bitcoin'),
+              FutureBuilder<List<Coin>>(
+                future: futureCoin,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return buildLoadingCoinsStatus(context);
@@ -119,19 +119,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         CachedNetworkImage(
                                             imageUrl:
-                                                snapshot.data!['image'],
+                                                snapshot.data[index].imageURL,
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
                                                 (context, url, error) => buildErrorIcon(context)),
                                         const SizedBox(height: 5),
-                                        Text(snapshot.data!['name'],
+                                        Text(snapshot.data[index].name,
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
                                         Text(
-                                            '£${snapshot.data!['price'].toStringAsFixed(2)}',
+                                            '£${snapshot.data[index].price.toStringAsFixed(2)}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)

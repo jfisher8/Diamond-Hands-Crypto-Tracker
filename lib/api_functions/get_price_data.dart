@@ -51,7 +51,7 @@ Future<List<Coin>> fetchCoin() async {
             "price": value["current_price"],
             "image": value["image"],
             "name": value["name"],
-            //"id": value["id"]
+            "id": value["id"]
           };
 
           QuerySnapshot querySnapshot = await FirebaseFirestore.instance
