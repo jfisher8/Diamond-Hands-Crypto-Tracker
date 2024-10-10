@@ -92,12 +92,14 @@ Future<List<Coin>> fetchCoin() async {
             } else {
               await FirebaseFirestore.instance
                   .collection("coins")
-                  .add(filteredData);
+                  .doc(value["id"])
+                  .set(filteredData);
             }
-            await FirebaseFirestore.instance
-                .collection("coins")
-                .add(filteredData);
-            developer.log("Filtered data has been set within collection");
+            // await FirebaseFirestore.instance
+            //     .collection("coins")
+            //     .doc(value["id"])
+            //     .set(filteredData);
+            // developer.log("Filtered data has been set within collection");
           }
         }
       }
