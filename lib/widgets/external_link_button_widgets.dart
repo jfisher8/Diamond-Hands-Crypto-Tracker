@@ -28,7 +28,7 @@ Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
             Text('Read more...',
                 style: GoogleFonts.mavenPro(
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: 16,
                     color: Colors.black)),
             const Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
             const Icon(Icons.open_in_new_rounded, color: Colors.black, size: 20)
