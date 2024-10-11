@@ -51,18 +51,21 @@ Future<List<Coin>> fetchCoin() async {
             "price": value["current_price"],
             "image": value["image"],
             "name": value["name"],
-            "id": value["id"]
+            //"id": value["id"]
           };
+          developer.log("code gets past filtered data function");
 
           QuerySnapshot querySnapshot = await FirebaseFirestore.instance
               .collection("coins")
               .where("id", isEqualTo: value["id"])
               .get();
+              developer.log("querySnapshot function works");
 
           if (querySnapshot.docs.isNotEmpty) {
             developer.log("querySnapshot isn't empty");
             //Get the existing document's ID
             String existingDocumentID = querySnapshot.docs.first.id;
+            developer.log("code is past docs.isNotEmpty");
 
             //Get the current document's data
             DocumentSnapshot existingDocument = querySnapshot.docs.first;
