@@ -59,7 +59,7 @@ Future<List<Coin>> fetchCoin() async {
               .collection("coins")
               .where("id", isEqualTo: value["id"])
               .get();
-              developer.log("querySnapshot function works");
+          developer.log("querySnapshot function works");
 
           if (querySnapshot.docs.isNotEmpty) {
             developer.log("querySnapshot isn't empty");
@@ -99,12 +99,12 @@ Future<List<Coin>> fetchCoin() async {
                   .doc(value["id"])
                   .set(filteredData);
             }
+          } else if (querySnapshot.docs.isEmpty) {
             await FirebaseFirestore.instance
                 .collection("coins")
                 .add(filteredData);
             developer.log("Filtered data has been set within collection");
           }
-          developer.log("The query snapshot IS EMPTY");
         }
       }
       return coinList;
