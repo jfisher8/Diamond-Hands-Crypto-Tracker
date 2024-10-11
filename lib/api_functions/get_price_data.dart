@@ -63,6 +63,7 @@ Future<List<Coin>> fetchCoin() async {
 
           if (querySnapshot.docs.isNotEmpty) {
             developer.log("querySnapshot isn't empty");
+            developer.log("found ${querySnapshot.docs.length}");
             //Get the existing document's ID
             String existingDocumentID = querySnapshot.docs.first.id;
             developer.log("code is past docs.isNotEmpty");
@@ -103,6 +104,7 @@ Future<List<Coin>> fetchCoin() async {
                 .add(filteredData);
             developer.log("Filtered data has been set within collection");
           }
+          developer.log("The query snapshot IS EMPTY");
         }
       }
       return coinList;
