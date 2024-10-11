@@ -51,7 +51,7 @@ Future<List<Coin>> fetchCoin() async {
             "price": value["current_price"],
             "image": value["image"],
             "name": value["name"],
-            //"id": value["id"]
+            "id": value["id"]
           };
           developer.log("code gets past filtered data function");
 
@@ -98,6 +98,10 @@ Future<List<Coin>> fetchCoin() async {
                   .doc(value["id"])
                   .set(filteredData);
             }
+            await FirebaseFirestore.instance
+                .collection("coins")
+                .add(filteredData);
+            developer.log("Filtered data has been set within collection");
           }
         }
       }
