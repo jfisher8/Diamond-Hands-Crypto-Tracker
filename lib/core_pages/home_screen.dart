@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         CachedNetworkImage(
                                             imageUrl:
-                                                snapshot.data[index].imageURL,
+                                                "${documentData['image']}",
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
