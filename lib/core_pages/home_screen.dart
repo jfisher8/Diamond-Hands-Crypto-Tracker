@@ -129,13 +129,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                             errorWidget:
                                                 (context, url, error) => buildErrorIcon(context)),
                                         const SizedBox(height: 5),
-                                        Text(snapshot.data[index].name,
+                                        Text("${documentData['name']}",
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
                                         Text(
-                                            '£${snapshot.data[index].price.toStringAsFixed(2)}',
+                                            '£${documentData['price'].toStringAsFixed(2)}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
