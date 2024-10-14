@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_price_data.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     futureArticle = getArticleData();
     futureCoin = fetchCoin();
-    //FirestoreService();
+    FirestoreService();
   }
 
   @override
@@ -94,13 +95,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              FutureBuilder<List<Coin>>(
-                future: futureCoin,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
+              StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance.collection('coins').snapshots(),
+                builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return buildLoadingCoinsStatus(context);
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
+                      final documents = snapshot.data!.docs;
                       return Padding(
                         padding: const EdgeInsets.all(10),
                         child: InkWell(
@@ -112,6 +114,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
+                                  Map<String, dynamic> documentData = documents[index].data() as Map<String, dynamic>;
+                                  String documentID = documents[index].id;
                                   return SizedBox(
                                     width: 150,
                                     height: 150,
@@ -139,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   );
                                 },
-                                itemCount: snapshot.data.length,
+                                itemCount: documents.length,
                               )),
                         ),
                       );
