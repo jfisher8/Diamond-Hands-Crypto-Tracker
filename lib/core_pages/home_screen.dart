@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   Map<String, dynamic> documentData = documents[index].data() as Map<String, dynamic>;
-                                  String documentID = documents[index].id;
+                                  //String documentID = documents[index].id;
                                   return SizedBox(
                                     width: 150,
                                     height: 150,
