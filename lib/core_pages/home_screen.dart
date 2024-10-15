@@ -103,7 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     return buildLoadingCoinsStatus(context);
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
-                      final documents = snapshot.data!.docs;
+                      final doc = snapshot.docs[index];
+                      String coinName = doc["name"];
                       return Padding(
                         padding: const EdgeInsets.all(10),
                         child: InkWell(
@@ -116,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   //Map<String, dynamic> documentData = documents[index].data() as Map<String, dynamic>;
-                                  developer.log(documents.length.toString());
+                                  //developer.log(documents.length.toString());
                                   //String documentID = documents[index].id;
                                   return SizedBox(
                                     width: 150,
@@ -125,19 +126,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         CachedNetworkImage(
                                             imageUrl:
-                                                "${documents}",
+                                                doc.image,
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
                                                 (context, url, error) => buildErrorIcon(context)),
                                         const SizedBox(height: 5),
-                                        Text("${documents}",
+                                        Text(coinName,
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
                                         Text(
-                                            '£${documents}',
+                                            doc.price,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
@@ -145,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   );
                                 },
-                                itemCount: documents.length,
+                                itemCount: doc.length,
                               )),
                         ),
                       );
