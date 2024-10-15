@@ -99,12 +99,13 @@ class _HomeScreenState extends State<HomeScreen> {
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance.collection('coins').snapshots(),
                 builder: (context, snapshot) {
+                  developer.log("it gets past stream of streambuilder");
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return buildLoadingCoinsStatus(context);
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
-                      final doc = snapshot.docs[index];
-                      String coinName = doc["name"];
+                      final doc = snapshot!.data;
+                      String coinName = "";
                       return Padding(
                         padding: const EdgeInsets.all(10),
                         child: InkWell(
@@ -126,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         CachedNetworkImage(
                                             imageUrl:
-                                                doc.image,
+                                                "",
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
@@ -138,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 .textTheme
                                                 .bodyLarge),
                                         Text(
-                                            doc.price,
+                                            "doc.pric",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
@@ -146,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   );
                                 },
-                                itemCount: doc.length,
+                                itemCount: 4,
                               )),
                         ),
                       );
