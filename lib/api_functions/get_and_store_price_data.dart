@@ -49,8 +49,8 @@ Future<List<Coin>> fetchCoin() async {
           developer.log("json values added to coinList");
 
           Map<String, dynamic> filteredData = {
-            //"price": value["current_price"],
-            //"image": value["image"],
+            "price": value["current_price"],
+            "image": value["image"],
             "name": value["name"],
             "id": value["id"]
           };
