@@ -45,7 +45,7 @@ Future<List<Coin>> fetchCoin() async {
       for (var value in values) {
         if (value != null) {
           coinList.add(Coin.fromJson(value));
-          //developer.log(value.toString());
+          developer.log(value.toString());
           developer.log("json values added to coinList");
 
           Map<String, dynamic> filteredData = {

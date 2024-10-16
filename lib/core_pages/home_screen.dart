@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         CachedNetworkImage(
                                             imageUrl:
-                                                "",
+                                                doc!.toString(),
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
