@@ -46,7 +46,7 @@ Future<List<Coin>> fetchCoin() async {
         if (value != null) {
           coinList.add(Coin.fromJson(value));
           developer.log(value.toString());
-          developer.log("json values added to coinList");
+          developer.log("STEP 1: json values added to coinList");
 
           Map<String, dynamic> filteredData = {
             "price": value["current_price"],
@@ -54,25 +54,26 @@ Future<List<Coin>> fetchCoin() async {
             "name": value["name"],
             "id": value["id"]
           };
-          developer.log("code gets past filtered data function");
+          developer.log("STEP 2: json is filtered");
 
           QuerySnapshot querySnapshot = await FirebaseFirestore.instance
               .collection("coins")
               .where("id", isEqualTo: value["id"])
               .get();
-          developer.log("querySnapshot function works");
+          developer.log("STEP 3: querySnapshot function works");
 
           if (querySnapshot.docs.isNotEmpty) {
-            developer.log("querySnapshot isn't empty");
-            developer.log("found ${querySnapshot.docs.length}");
+            developer.log("STEP 4: querySnapshot isn't empty");
+            //developer.log("found ${querySnapshot.docs.length}");
             //Get the existing document's ID
             String existingDocumentID = querySnapshot.docs.first.id;
-            developer.log("code is past docs.isNotEmpty");
+            //developer.log("code is past docs.isNotEmpty");
 
             //Get the current document's data
             DocumentSnapshot existingDocument = querySnapshot.docs.first;
             Map<String, dynamic> existingData =
                 existingDocument.data() as Map<String, dynamic>;
+                developer.log("STEP 5: gets current document's data");
 
             //Initialise boolean variable to compare fields in filteredData with
             //those in existingData
