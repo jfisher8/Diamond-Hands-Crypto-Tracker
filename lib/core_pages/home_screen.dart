@@ -104,8 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     return buildLoadingCoinsStatus(context);
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
-                      final doc = snapshot!.data;
-                      String coinName = "";
+                      final doc = snapshot.data;
+                      String coinName = "test";
                       return Padding(
                         padding: const EdgeInsets.all(10),
                         child: InkWell(
