@@ -97,9 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              FutureBuilder(
+              FutureBuilder<List<Coin>>(
                 future: futureCoin,
-                builder: (BuildContext, AsyncSnapshot snapshot) {
+                builder: (buildContext, AsyncSnapshot snapshot) {
                   developer.log("it gets past stream of streambuilder");
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return buildLoadingCoinsStatus(context);
