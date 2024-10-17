@@ -105,8 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     return buildLoadingCoinsStatus(context);
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
-                      final doc = snapshot.data;
-                      String coinName = "test";
+                      //final doc = snapshot.data;
+                      //String coinName = "test";
                       return Padding(
                         padding: const EdgeInsets.all(10),
                         child: InkWell(
@@ -127,7 +127,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Column(
                                       children: [
                                         CachedNetworkImage(
-                                            imageUrl: snapshot.data[index].imageURL,
+                                            imageUrl:
+                                                snapshot.data[index].imageURL,
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
@@ -139,7 +140,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
-                                        Text("£${snapshot.data[index].price.toStringAsFixed(2)}",
+                                        Text(
+                                            "£${snapshot.data[index].price.toStringAsFixed(2)}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
