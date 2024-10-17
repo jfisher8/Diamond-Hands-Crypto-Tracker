@@ -127,19 +127,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Column(
                                       children: [
                                         CachedNetworkImage(
-                                            imageUrl: doc!.toString(),
+                                            imageUrl: snapshot.data[index].imageUrl,
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
                                                 (context, url, error) =>
                                                     buildErrorIcon(context)),
                                         const SizedBox(height: 5),
-                                        Text(coinName,
+                                        Text(snapshot.data[index].name,
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
-                                        Text("doc.pric",
+                                        Text(snapshot.data[index].price,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   );
                                 },
-                                itemCount: 4,
+                                itemCount: snapshot.data.length,
                               )),
                         ),
                       );
