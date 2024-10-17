@@ -68,8 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         drawer: const NavigationMenu(),
-        body: SafeArea(child: SingleChildScrollView(
-            child: Column(children: <Widget>[
+        body: SafeArea(
+            child: SingleChildScrollView(
+                child: Column(children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
@@ -96,9 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collection('coins').snapshots(),
-                builder: (context, snapshot) {
+              FutureBuilder(
+                future: futureCoin,
+                builder: (BuildContext, AsyncSnapshot snapshot) {
                   developer.log("it gets past stream of streambuilder");
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return buildLoadingCoinsStatus(context);
@@ -126,20 +127,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Column(
                                       children: [
                                         CachedNetworkImage(
-                                            imageUrl:
-                                                doc!.toString(),
+                                            imageUrl: doc!.toString(),
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
-                                                (context, url, error) => buildErrorIcon(context)),
+                                                (context, url, error) =>
+                                                    buildErrorIcon(context)),
                                         const SizedBox(height: 5),
                                         Text(coinName,
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
-                                        Text(
-                                            "doc.pric",
+                                        Text("doc.pric",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
