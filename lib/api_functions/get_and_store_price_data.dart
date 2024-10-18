@@ -16,7 +16,7 @@
 //         if (values[i] != null) {
 //           Map<String, dynamic> map = values[i];
 //           coinList.add(Coin.fromJson(map));
-//           //TODO: check the below code to see if it can be amended so that the firebase saves
+//           //check the below code to see if it can be amended so that the firebase saves
 //           //ACTUALLY DO WHAT THEY ARE MEANT TO
 //           // FirebaseFirestore.instance
 //           //     .collection("coins")
@@ -49,7 +49,7 @@ Future<List<Coin>> fetchCoin() async {
       for (var value in values) {
         if (value != null) {
           coinList.add(Coin.fromJson(value));
-          developer.log(value.toString());
+          //developer.log(value.toString());
           developer.log("STEP 1: json values added to coinList");
 
           Map<String, dynamic> filteredData = {
@@ -61,14 +61,14 @@ Future<List<Coin>> fetchCoin() async {
           developer.log("STEP 2: json is filtered");
 
           QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-              .collection("cointest")
+              .collection("coins")
               .where("id", isEqualTo: value["id"])
               .get();
           developer.log("STEP 3: querySnapshot function works");
 
           if (querySnapshot.docs.isEmpty) {
             await FirebaseFirestore.instance
-                .collection("cointest")
+                .collection("coins")
                 .add(filteredData);
             developer.log("Filtered data has been set within collection");
           } else if (querySnapshot.docs.isNotEmpty) {
@@ -97,7 +97,7 @@ Future<List<Coin>> fetchCoin() async {
             //Update the document in Firebase, only if there are changes
             if (hasChanged == true) {
               await FirebaseFirestore.instance
-                  .collection("cointest")
+                  .collection("coins")
                   .doc(existingDocumentID)
                   .update(filteredData);
               developer.log("Crypto price date updated in Firebase");
@@ -105,7 +105,7 @@ Future<List<Coin>> fetchCoin() async {
               developer.log("No changes found, skipping update");
             } else {
               await FirebaseFirestore.instance
-                  .collection("cointest")
+                  .collection("coins")
                   .doc(value["id"])
                   .set(filteredData);
             }

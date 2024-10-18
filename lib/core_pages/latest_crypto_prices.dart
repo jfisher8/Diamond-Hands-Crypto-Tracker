@@ -56,6 +56,7 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
           ],
         ),
         drawer: const NavigationMenu(),
+        //TODO: replace the FutureBuilder with Firebase logic so it pulls from coins collection
         body: FutureBuilder(
             future: fetchCoin(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
