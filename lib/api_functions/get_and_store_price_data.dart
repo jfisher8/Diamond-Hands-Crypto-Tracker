@@ -61,19 +61,18 @@ Future<List<Coin>> fetchCoin() async {
           developer.log("STEP 2: json is filtered");
 
           QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-              .collection("coins")
+              .collection("cointest")
               .where("id", isEqualTo: value["id"])
               .get();
           developer.log("STEP 3: querySnapshot function works");
 
           if (querySnapshot.docs.isEmpty) {
             await FirebaseFirestore.instance
-                .collection("coins")
+                .collection("cointest")
                 .add(filteredData);
             developer.log("Filtered data has been set within collection");
           } else if (querySnapshot.docs.isNotEmpty) {
             developer.log("STEP 4: querySnapshot isn't empty");
-            //developer.log("found ${querySnapshot.docs.length}");
             //Get the existing document's ID
             String existingDocumentID = querySnapshot.docs.first.id;
             //developer.log("code is past docs.isNotEmpty");
@@ -98,7 +97,7 @@ Future<List<Coin>> fetchCoin() async {
             //Update the document in Firebase, only if there are changes
             if (hasChanged == true) {
               await FirebaseFirestore.instance
-                  .collection("coins")
+                  .collection("cointest")
                   .doc(existingDocumentID)
                   .update(filteredData);
               developer.log("Crypto price date updated in Firebase");
@@ -106,25 +105,19 @@ Future<List<Coin>> fetchCoin() async {
               developer.log("No changes found, skipping update");
             } else {
               await FirebaseFirestore.instance
-                  .collection("coins")
+                  .collection("cointest")
                   .doc(value["id"])
                   .set(filteredData);
             }
-            await FirebaseFirestore.instance
-                .collection("coins")
-                .add(filteredData);
-            developer.log("Filtered data has been set within collection");
-            // } else if (querySnapshot.docs.isEmpty) {
-            //   await FirebaseFirestore.instance
-            //       .collection("coins")
-            //       .add(filteredData);
-            //   developer.log("Filtered data has been set within collection");
-            //   //developer.log("The query snapshot IS EMPTY");
+            // await FirebaseFirestore.instance
+            //     .collection("cointest")
+            //     .add(filteredData);
+            // developer.log("Filtered data has been set within collection");
           }
         }
       }
       return coinList;
     }
   }
-  throw Exception('Failed to load coins');
+  throw Exception('Failed to load cointest');
 }
