@@ -66,7 +66,12 @@ Future<List<Coin>> fetchCoin() async {
               .get();
           developer.log("STEP 3: querySnapshot function works");
 
-          if (querySnapshot.docs.isNotEmpty) {
+          if (querySnapshot.docs.isEmpty) {
+            await FirebaseFirestore.instance
+                .collection("coins")
+                .add(filteredData);
+            developer.log("Filtered data has been set within collection");
+          } else if (querySnapshot.docs.isNotEmpty) {
             developer.log("STEP 4: querySnapshot isn't empty");
             //developer.log("found ${querySnapshot.docs.length}");
             //Get the existing document's ID
@@ -77,7 +82,7 @@ Future<List<Coin>> fetchCoin() async {
             DocumentSnapshot existingDocument = querySnapshot.docs.first;
             Map<String, dynamic> existingData =
                 existingDocument.data() as Map<String, dynamic>;
-                developer.log("STEP 5: gets current document's data");
+            developer.log("STEP 5: gets current document's data");
 
             //Initialise boolean variable to compare fields in filteredData with
             //those in existingData
@@ -109,18 +114,16 @@ Future<List<Coin>> fetchCoin() async {
                 .collection("coins")
                 .add(filteredData);
             developer.log("Filtered data has been set within collection");
-          } else if (querySnapshot.docs.isEmpty) {
-          await FirebaseFirestore.instance
-              .collection("coins")
-              .add(filteredData);
-          developer.log("Filtered data has been set within collection");
-          //developer.log("The query snapshot IS EMPTY");
+            // } else if (querySnapshot.docs.isEmpty) {
+            //   await FirebaseFirestore.instance
+            //       .collection("coins")
+            //       .add(filteredData);
+            //   developer.log("Filtered data has been set within collection");
+            //   //developer.log("The query snapshot IS EMPTY");
           }
         }
       }
       return coinList;
-    } else {
-      throw Exception('Failed to load coins');
     }
   }
   throw Exception('Failed to load coins');
