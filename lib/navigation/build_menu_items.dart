@@ -38,7 +38,7 @@ Widget buildMenuItems(BuildContext context) {
           title: const Text('Home'),
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+                MaterialPageRoute(builder: (context) => const CryptoExchanges()));
           },
         ),
         ListTile(
