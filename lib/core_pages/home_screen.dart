@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
-//import 'package:diamond_hands_crypto_tracker/firestore_logic/get_coin_data_from_firebase.dart';
 import 'dart:developer' as developer;
 
 class HomeScreen extends StatefulWidget {
@@ -97,14 +96,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              FutureBuilder<List<Coin>>(
-                future: futureCoin,
-                builder: (buildContext, AsyncSnapshot snapshot) {
+              StreamBuilder(
+                stream: FirebaseFirestore.instance.collection('coins').snapshots(),
+                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                   developer.log("it gets past stream of streambuilder");
                   if (snapshot.connectionState == ConnectionState.waiting) {
+                    developer.log("snapshot connection state is waiting");
                     return buildLoadingCoinsStatus(context);
                   } else if (snapshot.connectionState == ConnectionState.done) {
+                    developer.log("Connection state is done");
                     if (snapshot.hasData) {
+                      developer.log("the snapshot does have data");
                       //final doc = snapshot.data;
                       //String coinName = "test";
                       return Padding(
@@ -118,6 +120,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
+                                  developer.log(" Doc image link is: ${snapshot.data!.docs[index]['image']}");
+                                  developer.log(" Doc price data is: ${snapshot.data!.docs[index]['price']}");
                                   //Map<String, dynamic> documentData = documents[index].data() as Map<String, dynamic>;
                                   //developer.log(documents.length.toString());
                                   //String documentID = documents[index].id;
@@ -128,20 +132,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         CachedNetworkImage(
                                             imageUrl:
-                                                snapshot.data[index].imageURL,
+                                                snapshot.data!.docs[index]['image'],
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
                                                 (context, url, error) =>
                                                     buildErrorIcon(context)),
                                         const SizedBox(height: 5),
-                                        Text(snapshot.data[index].name,
+                                        Text(snapshot.data!.docs[index]['name'],
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
                                         Text(
-                                            "£${snapshot.data[index].price.toStringAsFixed(2)}",
+                                            "£${snapshot.data!.docs[index]['price'].toStringAsFixed(2)}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
@@ -149,11 +153,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   );
                                 },
-                                itemCount: snapshot.data.length,
+                                itemCount: 4,
                               )),
                         ),
                       );
                     } else if (snapshot.hasError) {
+                      developer.log("snapshot DOES have an error");
                       return buildCoinsErrorStatus(context);
                     }
                   }
