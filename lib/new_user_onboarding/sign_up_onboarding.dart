@@ -1,5 +1,4 @@
 // import 'package:diamond_hands_crypto_tracker/login_validation/text_field_valdiation.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/login_signup_widgets.dart';

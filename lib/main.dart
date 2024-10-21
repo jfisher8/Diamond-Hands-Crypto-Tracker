@@ -1,4 +1,3 @@
-import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/new_user_onboarding/new_user_onboarding.dart';
 import 'package:diamond_hands_crypto_tracker/themes/theme_provider.dart';

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 

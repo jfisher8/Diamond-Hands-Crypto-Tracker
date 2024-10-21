@@ -89,7 +89,7 @@ import 'dart:developer' as developer;
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) { //if the snapshot does not have data
-                    return Column(children: const <Widget>[ //return a column with multiple widget children
+                    return const Column(children: <Widget>[ //return a column with multiple widget children
                       CircularProgressIndicator(), //display circular progress indicator
                       SizedBox(height: 5), //with a sized box with a height of 5 to add separation
                       Center(child: Text("Loading...")) //add a central text widget underneath stating that the data is loading
