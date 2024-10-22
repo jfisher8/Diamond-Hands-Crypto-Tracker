@@ -130,8 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   String price = doc["price"];
                                   String image = doc["image"];
                                   String name = doc["name"];
-                                  developer.log(name);
-                                  developer.log(price);
+                                  developer.log(name.toString());
+                                  developer.log(price.toString());
                                   //Map<String, dynamic> documentData = documents[index].data() as Map<String, dynamic>;
                                   //developer.log(documents.length.toString());
                                   //String documentID = documents[index].id;
@@ -171,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   }
                   developer.log("for some reason there's an error");
-                  developer.log(snapshot.error.toString());
+                  developer.log("Snapshot error: " + snapshot.error.toString());
                   return buildCoinsErrorStatus(context);
                 },
               ),
