@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              StreamBuilder<QuerySnapshot>(
+              StreamBuilder(
                 stream: FirebaseFirestore
                     .instance
                     .collection("coins")
@@ -125,13 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   //docs is returning null for some reason
-                                  final doc = snapshot.data!.docs[index];
-                                  developer.log(snapshot.data!.docs.toString());
-                                  String price = doc["price"];
-                                  String image = doc["image"];
-                                  String name = doc["name"];
-                                  developer.log(name.toString());
-                                  developer.log(price.toString());
+                                  var doc = snapshot.data!.docs[index].data();
                                   //Map<String, dynamic> documentData = documents[index].data() as Map<String, dynamic>;
                                   //developer.log(documents.length.toString());
                                   //String documentID = documents[index].id;
@@ -141,19 +135,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Column(
                                       children: [
                                         CachedNetworkImage(
-                                            imageUrl: image,
+                                            imageUrl: doc['image'].toString(),
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
                                                 (context, url, error) =>
                                                     buildErrorIcon(context)),
                                         const SizedBox(height: 5),
-                                        Text(name,
+                                        Text(doc['name'],
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
-                                        Text("£${price.toString}",
+                                        Text("£${doc['price']}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
@@ -171,6 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   }
                   developer.log("for some reason there's an error");
+                  developer.log(snapshot.data.toString());
                   developer.log("Snapshot error: " + snapshot.error.toString());
                   return buildCoinsErrorStatus(context);
                 },
