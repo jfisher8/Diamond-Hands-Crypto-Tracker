@@ -124,7 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
+                                  //docs is returning null for some reason
                                   final doc = snapshot.data!.docs[index];
+                                  developer.log(snapshot.data!.docs.toString());
                                   String price = doc["price"];
                                   String image = doc["image"];
                                   String name = doc["name"];
@@ -159,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   );
                                 },
-                                itemCount: 4,
+                                itemCount: 6,
                               )),
                         ),
                       );
