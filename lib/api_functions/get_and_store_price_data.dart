@@ -82,6 +82,7 @@ Future<List<Coin>> fetchCoin() async {
             Map<String, dynamic> existingData =
                 existingDocument.data() as Map<String, dynamic>;
             developer.log("STEP 5: gets current document's data");
+            developer.log(existingDocument.data().toString());
 
             //Initialise boolean variable to compare fields in filteredData with
             //those in existingData

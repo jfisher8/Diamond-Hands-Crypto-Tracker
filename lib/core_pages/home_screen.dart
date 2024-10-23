@@ -26,18 +26,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Future<List<Article>> futureArticle;
-  late Future<List<Coin>> futureCoin;
+  //late Future<List<Coin>> futureCoin;
 
   @override
   void initState() {
     super.initState();
     futureArticle = getArticleData();
-    futureCoin = fetchCoin();
+    //futureCoin = fetchCoin();
     //FirestoreService();
   }
 
   @override
   Widget build(BuildContext context) {
+        final fetchData = FirebaseFirestore.instance.collection("coins");
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: BuildAppBar(
@@ -97,12 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             children: [
               StreamBuilder(
-                stream: FirebaseFirestore
-                    .instance
-                    .collection("coins")
-                    .snapshots(),
-                //stream: FirebaseFirestore.instance.collection("coins").snapshots(),
+                stream: fetchData.snapshots(),
                 builder: (context, snapshot) {
+                  developer.log(FirebaseFirestore.instance.collection("coins").toString());
                   developer.log("it gets past stream of streambuilder");
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     developer.log("snapshot connection state is waiting");
@@ -111,8 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     developer.log("Connection state is done");
                     if (snapshot.hasData) {
                       developer.log("the snapshot does have data");
-                      //final doc = snapshot.data;
-                      //String coinName = "test";
                       return Padding(
                         padding: const EdgeInsets.all(10),
                         child: InkWell(
@@ -123,12 +119,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     const SizedBox(width: 10),
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
+                                itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
+                                  developer.log('snapshot length: ' + snapshot.data!.docs.length.toString());
                                   //docs is returning null for some reason
-                                  var doc = snapshot.data!.docs[index].data();
-                                  //Map<String, dynamic> documentData = documents[index].data() as Map<String, dynamic>;
-                                  //developer.log(documents.length.toString());
-                                  //String documentID = documents[index].id;
+                                  var doc = snapshot.data!.docs[index];
                                   return SizedBox(
                                     width: 150,
                                     height: 150,
@@ -155,7 +150,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   );
                                 },
-                                itemCount: 6,
                               )),
                         ),
                       );
