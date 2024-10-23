@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              StreamBuilder(
+              StreamBuilder<QuerySnapshot>(
                 stream: fetchData.snapshots(),
                 builder: (context, snapshot) {
                   developer.log(FirebaseFirestore.instance.collection("coins").toString());
@@ -128,21 +128,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: 150,
                                     height: 150,
                                     child: Column(
+                                      key: Key(doc.id),
                                       children: [
                                         CachedNetworkImage(
-                                            imageUrl: doc['image'].toString(),
+                                            imageUrl: doc["image"],
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
                                                 (context, url, error) =>
                                                     buildErrorIcon(context)),
                                         const SizedBox(height: 5),
-                                        Text(doc['name'],
+                                        Text(doc["name"],
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
-                                        Text("£${doc['price']}",
+                                        Text("£${doc["price"]}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)
