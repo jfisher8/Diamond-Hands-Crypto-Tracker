@@ -20,7 +20,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  //TODO: add googleSignIn logic here in the future
 
   //initialise void initState() and add google sign in listener
   //set the state so currentUser = account

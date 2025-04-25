@@ -19,7 +19,7 @@ class LatestCryptoPrices extends StatefulWidget {
 class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
   @override
   void initState() {
-    fetchCoin();
+    //fetchCoin();
     setState(() {
       coinList;
     });

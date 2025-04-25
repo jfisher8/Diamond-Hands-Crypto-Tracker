@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:diamond_hands_crypto_tracker/api_functions/get_and_store_price_data.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
@@ -10,7 +8,6 @@ import 'package:diamond_hands_crypto_tracker/core_pages/read_news_article.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
-import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
@@ -121,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 scrollDirection: Axis.horizontal,
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
-                                  developer.log('snapshot length: ' + snapshot.data!.docs.length.toString());
+                                  developer.log('snapshot length: ${snapshot.data!.docs.length}');
                                   //docs is returning null for some reason
                                   var doc = snapshot.data!.docs[index];
                                   return SizedBox(
@@ -161,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   developer.log("for some reason there's an error");
                   developer.log(snapshot.data.toString());
-                  developer.log("Snapshot error: " + snapshot.error.toString());
+                  developer.log("Snapshot error: ${snapshot.error}");
                   return buildCoinsErrorStatus(context);
                 },
               ),

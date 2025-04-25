@@ -78,11 +78,15 @@ Future<List<Coin>> fetchCoin() async {
             //developer.log("code is past docs.isNotEmpty");
 
             //Get the current document's data
+            List<Map<String, dynamic>> docsData = querySnapshot.docs
+                .map((doc) => doc.data() as Map<String, dynamic>)
+                .toList();
+
             DocumentSnapshot existingDocument = querySnapshot.docs.first;
             Map<String, dynamic> existingData =
                 existingDocument.data() as Map<String, dynamic>;
             developer.log("STEP 5: gets current document's data");
-            developer.log(existingDocument.data().toString());
+            //developer.log(existingDocument.data().toString());
 
             //Initialise boolean variable to compare fields in filteredData with
             //those in existingData
@@ -110,10 +114,6 @@ Future<List<Coin>> fetchCoin() async {
                   .doc(value["id"])
                   .set(filteredData);
             }
-            // await FirebaseFirestore.instance
-            //     .collection("cointest")
-            //     .add(filteredData);
-            // developer.log("Filtered data has been set within collection");
           }
         }
       }
