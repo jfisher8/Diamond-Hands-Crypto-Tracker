@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_news.dart';
+import 'package:diamond_hands_crypto_tracker/api_functions/get_and_store_price_data.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/latest_crypto_prices.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/read_news_article.dart';
@@ -23,19 +25,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Future<List<Article>> futureArticle;
-  //late Future<List<Coin>> futureCoin;
+  late Future<List<Coin>> futureCoin;
 
   @override
   void initState() {
     super.initState();
     futureArticle = getArticleData();
-    //futureCoin = fetchCoin();
+    futureCoin = fetchCoin();
     //FirestoreService();
   }
 
   @override
   Widget build(BuildContext context) {
-        final fetchData = FirebaseFirestore.instance.collection("coins");
+    final fetchData = FirebaseFirestore.instance.collection("coins");
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: BuildAppBar(
@@ -67,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: const NavigationMenu(),
         body: SingleChildScrollView(
-                child: Column(children: <Widget>[
+            child: Column(children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
@@ -94,10 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              StreamBuilder<QuerySnapshot>(
-                stream: fetchData.snapshots(),
+              FutureBuilder(
+                future: fetchCoin(),
                 builder: (context, snapshot) {
-                  developer.log(FirebaseFirestore.instance.collection("coins").toString());
                   developer.log("it gets past stream of streambuilder");
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     developer.log("snapshot connection state is waiting");
@@ -116,31 +117,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                     const SizedBox(width: 10),
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
-                                itemCount: snapshot.data!.docs.length,
+                                itemCount: snapshot.data!.length,
                                 itemBuilder: (context, index) {
-                                  developer.log('snapshot length: ${snapshot.data!.docs.length}');
-                                  //docs is returning null for some reason
-                                  var doc = snapshot.data!.docs[index];
+                                  //var docData = snapshot.data!.[index].data() as Map<String, dynamic>;
+                                  //developer.log("docData: $docData");
+                                  //developer.log('snapshot length: ${snapshot.data!.docs.length}');
                                   return SizedBox(
                                     width: 150,
                                     height: 150,
                                     child: Column(
-                                      key: Key(doc.id),
                                       children: [
                                         CachedNetworkImage(
-                                            imageUrl: doc["image"],
+                                            imageUrl:
+                                                snapshot.data![index].imageURL,
                                             placeholder: (url, error) =>
                                                 buildLoadingIcon(context),
                                             errorWidget:
                                                 (context, url, error) =>
                                                     buildErrorIcon(context)),
                                         const SizedBox(height: 5),
-                                        Text(doc["name"],
+                                        Text(snapshot.data![index].name,
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge),
-                                        Text("£${doc["price"]}",
+                                        Text("£${snapshot.data![index].price.toString()}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge)

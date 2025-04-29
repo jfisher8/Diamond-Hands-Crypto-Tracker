@@ -1,5 +1,6 @@
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as developer;
 import 'package:diamond_hands_crypto_tracker/widgets/coin_card_widget.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
@@ -66,6 +67,7 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                 if (snapshot.hasError) {
                   return buildCoinsErrorStatus(context);
                 } else if (snapshot.hasData) {
+                  developer.log(snapshot.data.toString());
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount: coinList.length,
