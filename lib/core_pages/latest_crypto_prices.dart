@@ -69,8 +69,8 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                 stream: _coinStream(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    developer.log('coinStream waits on crypto prices screen');
-                    developer.log('Crypto prices screen snapshot data: ${snapshot.data}');
+                    //developer.log('coinStream waits on crypto prices screen');
+                    //developer.log('Crypto prices screen snapshot data: ${snapshot.data}');
                     return Center(child: buildLoadingCoinsStatus(context));
                   }
                   if (snapshot.connectionState == ConnectionState.done) {

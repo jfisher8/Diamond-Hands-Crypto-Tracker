@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         .map((snapshot) {
       for (var doc in snapshot.docs) {
         //developer.log("Firestore doc data: ${doc.data()}");
-        developer.log('_coinStream running as intended');
+        //developer.log('_coinStream running as intended');
       }
       return snapshot.docs
           .map((doc) => Coin.fromFirestore(doc.data()))
