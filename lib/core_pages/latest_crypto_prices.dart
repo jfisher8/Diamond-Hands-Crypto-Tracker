@@ -65,33 +65,39 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
           ],
         ),
         drawer: const NavigationMenu(),
-        body: StreamBuilder(
-            stream: _coinStream(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return buildLoadingCoinsStatus(context);
-              } else if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasError) {
-                  return buildCoinsErrorStatus(context);
-                } else if (snapshot.hasData) {
-                  developer.log(snapshot.data.toString());
-                  return ListView.builder(
+        body: StreamBuilder<List<Coin>>(
+                stream: _coinStream(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    developer.log('coinStream waits on crypto prices screen');
+                    developer.log('Crypto prices screen snapshot data: ${snapshot.data}');
+                    return Center(child: buildLoadingCoinsStatus(context));
+                  }
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    developer.log('Connection state is done');
+                    developer.log('Snapshot data connection is done: ${snapshot.data.toString()}');
+                  }
+                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    developer.log('Snapshot data:${snapshot.data}');
+                    return Center(child: buildCoinsErrorStatus(context));
+                  }
+                  final coins = snapshot.data!;
+                  return ListView.separated(
+                    separatorBuilder:(context, index) => const SizedBox(width: 10),
+                    shrinkWrap: true,
                       scrollDirection: Axis.vertical,
-                      itemCount: coinList.length,
+                      itemCount: coins.length,
                       itemBuilder: (context, index) {
+                        final coin = coins[index];
+                        //developer.log('Coins: $coins');
                         return CoinCard(
-                            name: coinList[index].name,
-                            imageUrl: coinList[index].imageURL,
-                            change: coinList[index].change,
-                            changePercentage: coinList[index].changePercentage,
-                            symbol: coinList[index].symbol,
-                            price: coinList[index].price);
+                            name: coin.name,
+                            imageUrl: coin.imageURL,
+                            change: coin.change,
+                            changePercentage: coin.changePercentage,
+                            symbol: coin.symbol.toString(),
+                            price: coin.price);
                       });
-                } else {
-                  return buildCoinsErrorStatus(context);
-                }
-              }
-              return buildCoinsErrorStatus(context);
-            }));
+                }));
   }
 }

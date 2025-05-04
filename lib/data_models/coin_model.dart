@@ -4,8 +4,8 @@ class Coin {
   String imageURL;
   num price;
   num? change;
-  num? changePercentage;
-  dynamic reference;
+  num changePercentage;
+  //dynamic reference;
 
   Coin({
     required this.name,
@@ -30,11 +30,11 @@ class Coin {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'symbol': symbol,
+      //'symbol': symbol,
       'image': imageURL,
       'current_price': price,
-      'price_change_24h': change,
-      'price_change_percentage_24h': changePercentage
+      //'price_change_24h': change,
+      //'price_change_percentage_24h': changePercentage
     };
 }
 
