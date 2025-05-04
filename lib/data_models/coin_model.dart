@@ -30,11 +30,11 @@ class Coin {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      //'symbol': symbol,
+      'symbol': symbol,
       'image': imageURL,
       'current_price': price,
-      //'price_change_24h': change,
-      //'price_change_percentage_24h': changePercentage
+      'price_change_24h': change,
+      'price_change_percentage_24h': changePercentage
     };
 }
 
