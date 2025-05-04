@@ -42,10 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
         .collection('coins')
         .snapshots()
         .map((snapshot) {
-      for (var doc in snapshot.docs) {
-        //developer.log("Firestore doc data: ${doc.data()}");
-        //developer.log('_coinStream running as intended');
-      }
+      // <--- UNCOMMENT THE BELOW FOR DEBUGGING ONLY --->
+      // for (var doc in snapshot.docs) {
+      //   //developer.log("Firestore doc data: ${doc.data()}");
+      //   //developer.log('_coinStream running as intended');
+      // }
       return snapshot.docs
           .map((doc) => Coin.fromFirestore(doc.data()))
           .toList();
@@ -71,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                     icon:
-                        const Icon(Icons.bookmark_rounded, color: Colors.black))
+                        const Icon(Icons.bookmark_outline_rounded, color: Colors.black))
                 : IconButton(
                     onPressed: () {
                       Navigator.push(

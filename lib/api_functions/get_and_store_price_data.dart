@@ -11,7 +11,7 @@ class CoinService {
   static void startPolling() {
     if (_pollingTimer == null) {
       fetchAndUpdateCoins();
-      _pollingTimer = Timer.periodic(const Duration(seconds: 40), (_) async {
+      _pollingTimer = Timer.periodic(const Duration(minutes: 2), (_) async {
         await fetchAndUpdateCoins();
         developer.log('fetchAndUpdateCoins has been called');
       });

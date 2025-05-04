@@ -47,7 +47,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                           builder: (context) => const FavouritesScreen()),
                     );
                   },
-                  icon: const Icon(Icons.bookmark_rounded, color: Colors.black))
+                  icon: const Icon(Icons.bookmark_outline_rounded, color: Colors.black))
               : IconButton(
                   onPressed: () {
                     Navigator.push(

@@ -30,7 +30,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                       );
                     },
                     icon:
-                        const Icon(Icons.bookmark_rounded, color: Colors.black))
+                        const Icon(Icons.bookmark_outline_rounded, color: Colors.black))
                 : IconButton(
                     onPressed: () {
                       Navigator.push(
