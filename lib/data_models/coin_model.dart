@@ -1,10 +1,10 @@
 class Coin {
   String name;
-  String symbol;
+  String? symbol;
   String imageURL;
   num price;
-  num change;
-  num changePercentage;
+  num? change;
+  num? changePercentage;
   dynamic reference;
 
   Coin({
@@ -16,12 +16,6 @@ class Coin {
     required this.changePercentage,
   });
 
-  factory Coin.fromSnapshot(snapshot) {
-    final model = Coin.fromJson(snapshot.data() as Map<String, dynamic>);
-    model.reference = snapshot.reference.id;
-    return model;
-  }
-
   factory Coin.fromJson(Map<String, dynamic> json) {
     return Coin(
         name: json['name'],
@@ -32,8 +26,26 @@ class Coin {
         changePercentage: json['price_change_percentage_24h']);
   }
 
-  static Map<String, dynamic> toJson() {
-    throw Exception('No data from firestore');
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'symbol': symbol,
+      'image': imageURL,
+      'current_price': price,
+      'price_change_24h': change,
+      'price_change_percentage_24h': changePercentage
+    };
+}
+
+factory Coin.fromFirestore(Map<String, dynamic> json) {
+    return Coin(
+        name: json['name'] ?? '',
+        symbol: json['symbol'],
+        imageURL: json['image'] ?? '',
+        price: (json['price'] as num?)?.toDouble() ?? 0.0,
+        change: json['price_change_24h'],
+        changePercentage: json['price_change_percentage_24h']);
   }
 }
 

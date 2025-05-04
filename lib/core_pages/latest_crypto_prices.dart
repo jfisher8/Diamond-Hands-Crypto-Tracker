@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
@@ -7,7 +8,6 @@ import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
-import 'package:diamond_hands_crypto_tracker/api_functions/get_and_store_price_data.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 
 class LatestCryptoPrices extends StatefulWidget {
@@ -27,11 +27,19 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
     super.initState();
   }
 
+  Stream<List<Coin>> _coinStream() {
+    return FirebaseFirestore.instance.collection('coins').snapshots().map(
+        (snapshot) => snapshot.docs
+            .map((doc) => Coin.fromFirestore(doc.data()))
+            .toList());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BuildAppBar(
-          title: Text('Latest Crypto Prices', style: Theme.of(context).textTheme.titleLarge),
+          title: Text('Latest Crypto Prices',
+              style: Theme.of(context).textTheme.titleLarge),
           appBar: AppBar(),
           widgets: [
             FirebaseAuth.instance.currentUser != null
@@ -57,9 +65,8 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
           ],
         ),
         drawer: const NavigationMenu(),
-        //TODO: replace the FutureBuilder with Firebase logic so it pulls from coins collection
-        body: FutureBuilder(
-            future: fetchCoin(),
+        body: StreamBuilder(
+            stream: _coinStream(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return buildLoadingCoinsStatus(context);
@@ -73,20 +80,18 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                       itemCount: coinList.length,
                       itemBuilder: (context, index) {
                         return CoinCard(
-                          name: coinList[index].name,
-                          imageUrl: coinList[index].imageURL,
-                          change: coinList[index].change,
-                          changePercentage: coinList[index].changePercentage,
-                          symbol: coinList[index].symbol,
-                          price: coinList[index].price
-                        );
+                            name: coinList[index].name,
+                            imageUrl: coinList[index].imageURL,
+                            change: coinList[index].change,
+                            changePercentage: coinList[index].changePercentage,
+                            symbol: coinList[index].symbol,
+                            price: coinList[index].price);
                       });
                 } else {
                   return buildCoinsErrorStatus(context);
                 }
               }
               return buildCoinsErrorStatus(context);
-            }
-            ));
+            }));
   }
 }
