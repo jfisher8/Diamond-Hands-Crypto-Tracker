@@ -4,15 +4,38 @@ import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/saved_articles_screen.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/external_link_button_widgets.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/save_for_later_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:developer' as developer;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ReadNewsArticle extends StatelessWidget {
   ReadNewsArticle({super.key, required this.article});
   final Article? article;
+
+Future<void> saveArticle(Article article) async {
+  final uid = FirebaseAuth.instance.currentUser?.uid;
+  if (uid == null) throw Exception("User not logged in");
+
+  final docRef = FirebaseFirestore.instance
+      .collection('users')
+      .doc(article.url.hashCode.toString());
+
+  await docRef.set({
+    'articleTitle': article.title,
+    'url': article.url,
+    'imageUrl': article.imageURL,
+        'email': FirebaseAuth.instance.currentUser?.email,
+    //'source': article.source,
+    'savedAt': FieldValue.serverTimestamp(),
+  }, SetOptions(merge: true));
+  developer.log('Article saved to Firestore successfully');
+}
+
 
   final String? currentSession = FirebaseAuth.instance.currentUser?.email;
 
@@ -105,14 +128,14 @@ class ReadNewsArticle extends StatelessWidget {
                 ? Container()
                 : Text(article!.description.toString(),
                     textAlign: TextAlign.center),
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             newsArticleReadMoreButton(
                 context, () => launchUrl(Uri.parse(article!.url))),
             //const SizedBox(height: 20),
             const Text("or, if you're short on time..."),
             currentSession != null
                 ? saveForLaterButton(context, () {
-                    //ontap logic here, should save article to list
+                    saveArticle(article!);
                     ScaffoldMessenger.of(context)
                         .showSnackBar(articleSavedConfirmation);
                   })

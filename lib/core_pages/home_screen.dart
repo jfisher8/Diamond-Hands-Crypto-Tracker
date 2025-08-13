@@ -12,7 +12,7 @@ import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/read_news_article.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_article_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/favourites_screen.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/saved_articles_screen.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 import 'dart:developer' as developer;
 
