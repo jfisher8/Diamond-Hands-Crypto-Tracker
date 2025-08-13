@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   .textTheme
                                                   .bodyLarge),
                                           Text(
-                                              "£${coin.price.toStringAsFixed(2)}")
+                                              "£${coin.price?.toStringAsFixed(2)}")
                                         ],
                                       ));
                                 },

@@ -16,7 +16,7 @@ class CoinCard extends StatelessWidget {
   final String? name;
   final String? symbol;
   final String? imageUrl;
-  final num price;
+  final num? price;
   final num? change;
   final num? changePercentage;
 
@@ -76,7 +76,7 @@ class CoinCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      "£${price.toStringAsFixed(2)}",
+                      "£${price?.toStringAsFixed(2)}",
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

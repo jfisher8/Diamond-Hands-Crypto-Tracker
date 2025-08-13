@@ -47,7 +47,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                           builder: (context) => const FavouritesScreen()),
                     );
                   },
-                  icon: const Icon(Icons.bookmark_outline_rounded, color: Colors.black))
+                  icon: const Icon(Icons.bookmark_outline_rounded,
+                      color: Colors.black))
               : IconButton(
                   onPressed: () {
                     Navigator.push(
@@ -77,8 +78,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                   )),
               style: Theme.of(context).textTheme.bodySmall,
               onChanged: (value) {
-                setState(() {
-                });
+                setState(() {});
               },
             )),
         Expanded(
@@ -89,92 +89,117 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                     developer.log('snapshot connection done');
                     if (snapshot.hasData) {
                       List<Article> articles = snapshot.data;
-                      return ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: articles.length,
-                          itemBuilder: (context, index) {
-                            return articles[index]
-                                    .source
-                                    .name
-                                    .toLowerCase()
-                                    .contains(searchController.text)
-                                ? Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Column(children: [
-                                      Card(
-                                          child: Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 200,
-                                            child: snapshot
-                                                        .data[index].imageURL ==
-                                                    null
-                                                ? Column(children: [
-                                                    const SizedBox(height: 40),
-                                                    Center(
-                                                      child: Image.asset('assets/diamond_hands_logo.png', height: 100, width: 100)),
-                                                    const SizedBox(height: 10),
-                                                    const Text(
-                                                      "Article image placeholder",
-                                                      style: TextStyle(
-                                                          color: Color.fromRGBO(56, 182, 255, 1.0)),
-                                                    )
-                                                  ])
-                                                : CachedNetworkImage(
-                                                    imageUrl: snapshot
-                                                        .data[index].imageURL,
-                                                    fit: BoxFit.fill,
-                                                    placeholder: (context,
-                                                            url) =>
+                      final filteredArticles = articles.where((article) {
+                        return article.source.name
+                            .toLowerCase()
+                            .contains(searchController.text.toLowerCase());
+                      }).toList();
+                      return filteredArticles.isEmpty
+                          ? const Center(
+                              child: Text(
+                                "No results found",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            )
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: articles.length,
+                              itemBuilder: (context, index) {
+                                return articles[index]
+                                        .source
+                                        .name
+                                        .toLowerCase()
+                                        .contains(searchController.text)
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(5),
+                                        child: Column(children: [
+                                          Card(
+                                              child: Column(
+                                            children: [
+                                              SizedBox(
+                                                height: 200,
+                                                child: snapshot.data[index]
+                                                            .imageURL ==
+                                                        null
+                                                    ? Column(children: [
+                                                        const SizedBox(
+                                                            height: 40),
                                                         Center(
-                                                            child:
-                                                                buildLoadingIcon(
-                                                                    context)),
-                                                    errorWidget:
-                                                        (context, url, error) =>
+                                                            child: Image.asset(
+                                                                'assets/diamond_hands_logo.png',
+                                                                height: 100,
+                                                                width: 100)),
+                                                        const SizedBox(
+                                                            height: 10),
+                                                        const Text(
+                                                          "Article image placeholder",
+                                                          style: TextStyle(
+                                                              color: Color
+                                                                  .fromRGBO(
+                                                                      56,
+                                                                      182,
+                                                                      255,
+                                                                      1.0)),
+                                                        )
+                                                      ])
+                                                    : CachedNetworkImage(
+                                                        imageUrl: snapshot
+                                                            .data[index]
+                                                            .imageURL,
+                                                        fit: BoxFit.fill,
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            Center(
+                                                                child:
+                                                                    buildLoadingIcon(
+                                                                        context)),
+                                                        errorWidget: (context,
+                                                                url, error) =>
                                                             const Center(
                                                                 child: Icon(
-                                                      Icons.error_rounded,
-                                                      size: 75,
-                                                      color: Colors.red,
-                                                    )),
-                                                  ),
-                                          ),
-                                          ListTile(
-                                            title: Text(
-                                                snapshot.data[index].title,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium),
-                                            subtitle: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                      snapshot.data[index]
-                                                          .source.name,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodySmall),
-                                                ]),
-                                            trailing: const Icon(
-                                                Icons.arrow_forward_rounded),
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          ReadNewsArticle(
-                                                              article:
-                                                                  snapshot.data[
+                                                          Icons.error_rounded,
+                                                          size: 75,
+                                                          color: Colors.red,
+                                                        )),
+                                                      ),
+                                              ),
+                                              ListTile(
+                                                title: Text(
+                                                    snapshot.data[index].title,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium),
+                                                subtitle: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                          snapshot.data[index]
+                                                              .source.name,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodySmall),
+                                                    ]),
+                                                trailing: const Icon(Icons
+                                                    .arrow_forward_rounded),
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ReadNewsArticle(
+                                                                  article: snapshot
+                                                                          .data[
                                                                       index])));
-                                            },
-                                          )
-                                        ],
-                                      ))
-                                    ]))
-                                : Container();
-                          });
+                                                },
+                                              )
+                                            ],
+                                          ))
+                                        ]))
+                                    : Container();
+                              });
                     } else if (snapshot.hasError || snapshot.data == null) {
                       developer.log('no data in snapshot');
                       developer.log(snapshot.error.toString());

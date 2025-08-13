@@ -8,6 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:developer' as developer;
 import 'package:provider/provider.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_and_store_price_data.dart';
+import 'package:diamond_hands_crypto_tracker/api_functions/get_and_store_exchange_data.dart';
 
 bool onboarded = true;
 
@@ -36,6 +37,7 @@ Future<void> main() async {
   developer.log('Should onboarding be shown? ' "$showOnboarding");
   developer.log('Should app be in dark mode? ' "$isDarkMode");
 
+  ExchangesService.startPolling();
   CoinService.startPolling();
   runApp(ChangeNotifierProvider(create: (context) => ThemeProvider(),
     child: const MainApp(

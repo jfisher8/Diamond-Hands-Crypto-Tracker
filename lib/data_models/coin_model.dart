@@ -2,9 +2,9 @@ class Coin {
   String name;
   String? symbol;
   String imageURL;
-  num price;
+  num? price;
   num? change;
-  num changePercentage;
+  num? changePercentage;
   //dynamic reference;
 
   Coin({
