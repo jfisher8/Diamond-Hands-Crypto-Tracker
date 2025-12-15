@@ -72,7 +72,7 @@ Widget build(BuildContext context) {
 
             return Card(
               child: ListTile(
-                leading: article.imageURL!.isNotEmpty
+                leading: article.imageURL.isNotEmpty
                     ? CachedNetworkImage(
                       imageUrl: article.imageURL,
                         width: 60,
