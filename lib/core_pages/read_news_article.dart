@@ -11,7 +11,6 @@ import 'package:diamond_hands_crypto_tracker/widgets/save_for_later_widget.dart'
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer' as developer;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class ReadNewsArticle extends StatelessWidget {
   ReadNewsArticle({super.key, required this.article});
@@ -23,15 +22,22 @@ Future<void> saveArticle(Article article) async {
 
   final docRef = FirebaseFirestore.instance
       .collection('users')
-      .doc(article.url.hashCode.toString());
+      .doc(uid)
+      .collection('saved_articles')
+      .doc();
 
   await docRef.set({
     'articleTitle': article.title,
+    
     'url': article.url,
     'imageUrl': article.imageURL,
-        'email': FirebaseAuth.instance.currentUser?.email,
-    //'source': article.source,
+    //'email': FirebaseAuth.instance.currentUser?.email,
     'savedAt': FieldValue.serverTimestamp(),
+    'source': article.source.name,
+    'author': article.author,
+    'publishedAt': article.publishedAt,
+    'content': article.content,
+    'description': article.description
   }, SetOptions(merge: true));
   developer.log('Article saved to Firestore successfully');
 }

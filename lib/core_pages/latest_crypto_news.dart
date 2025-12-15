@@ -90,9 +90,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                     if (snapshot.hasData) {
                       List<Article> articles = snapshot.data;
                       final filteredArticles = articles.where((article) {
-                        return article.source.name
-                            .toLowerCase()
-                            .contains(searchController.text.toLowerCase());
+                        return article.source.name?.toLowerCase().contains(searchController.text.toLowerCase()) ?? false;
                       }).toList();
                       return filteredArticles.isEmpty
                           ? const Center(
@@ -103,14 +101,9 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                             )
                           : ListView.builder(
                               shrinkWrap: true,
-                              itemCount: articles.length,
+                              itemCount: filteredArticles.length,
                               itemBuilder: (context, index) {
-                                return articles[index]
-                                        .source
-                                        .name
-                                        .toLowerCase()
-                                        .contains(searchController.text)
-                                    ? Padding(
+                                return Padding(
                                         padding: const EdgeInsets.all(5),
                                         child: Column(children: [
                                           Card(
@@ -118,7 +111,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                             children: [
                                               SizedBox(
                                                 height: 200,
-                                                child: snapshot.data[index]
+                                                child: filteredArticles[index]
                                                             .imageURL ==
                                                         null
                                                     ? Column(children: [
@@ -143,9 +136,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                         )
                                                       ])
                                                     : CachedNetworkImage(
-                                                        imageUrl: snapshot
-                                                            .data[index]
-                                                            .imageURL,
+                                                        imageUrl: filteredArticles[index]
+                                                            .imageURL!,
                                                         fit: BoxFit.fill,
                                                         placeholder: (context,
                                                                 url) =>
@@ -165,7 +157,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                               ),
                                               ListTile(
                                                 title: Text(
-                                                    snapshot.data[index].title,
+                                                    filteredArticles[index].title,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyMedium),
@@ -175,8 +167,8 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                          snapshot.data[index]
-                                                              .source.name,
+                                                          filteredArticles[index]
+                                                              .source.name ?? 'Unknown',
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
@@ -190,15 +182,13 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                       MaterialPageRoute(
                                                           builder: (context) =>
                                                               ReadNewsArticle(
-                                                                  article: snapshot
-                                                                          .data[
+                                                                  article: filteredArticles[
                                                                       index])));
                                                 },
                                               )
                                             ],
                                           ))
-                                        ]))
-                                    : Container();
+                                        ]));
                               });
                     } else if (snapshot.hasError || snapshot.data == null) {
                       developer.log('no data in snapshot');

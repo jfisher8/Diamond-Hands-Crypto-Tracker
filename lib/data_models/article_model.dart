@@ -1,17 +1,22 @@
-import 'source_model.dart';
+import 'package:diamond_hands_crypto_tracker/data_models/source_model.dart';
 
 class Article {
+  //String id;
+  //String name;
   Source source;
   String? author;
   String title;
   String url;
-  String? imageURL;
+  String imageURL;
   String? publishedAt;
   String? description;
   String content;
 
   Article(
-      {required this.source,
+      {
+      //required this.id,
+      //required this.name,
+      required this.source,
       required this.author,
       required this.title,
       required this.url,
@@ -21,18 +26,38 @@ class Article {
       required this.description
       });
 
-  factory Article.fromJson(Map<String, dynamic> json) {
+  factory Article.fromJson(Map<String, dynamic> map) {
     return Article(
-        source: Source.fromJson(json['source']),
-        author: json['author'],
-        content: json['content'],
-        description: json['description'],
-        title: json['title'],
-        url: json['url'],
-        imageURL: json['urlToImage'],
-        publishedAt: json['publishedAt']
+      source: Source.fromJson(map['source']),
+        //id: map['id'] ?? '',
+        //name: map['name'] ?? '',
+        author: map['author'],
+        content: map['content'],
+        description: map['description'],
+        title: map['title'],
+        url: map['url'],
+        imageURL: map['urlToImage'],
+        publishedAt: map['publishedAt']
       );
   }
+
+  factory Article.fromFirestore(Map<String, dynamic> map) {
+  return Article(
+    source: Source(
+      id: null,
+      name: map['source'] is String
+          ? map['source']
+          : map['source']?['name'],
+    ),
+    author: map['author'],
+    title: map['articleTitle'] ?? map['title'] ?? '',
+    url: map['url'] ?? '',
+    imageURL: map['imageUrl'] ?? map['urlToImage'] ?? '',
+    publishedAt: map['publishedAt'],
+    description: map['description'],
+    content: map['content'] ?? '',
+  );
+}
 
   toLowerCase() {}
 }

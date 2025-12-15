@@ -16,7 +16,7 @@ Future<void> saveArticle(Article article) async {
     'articleTitle': article.title,
     'url': article.url,
     'imageUrl': article.imageURL,
-    'source': article.source,
+    'source': article.source.name,
     'savedAt': FieldValue.serverTimestamp(),
   }, SetOptions(merge: true));
 }
