@@ -25,7 +25,6 @@ Future<List<Article>> getArticleData() async {
       return Article.fromJson(item);
     }).toList();
 
-    // Optionally log the articles if you want to see the data
     // developer.log(response.body);
     return articles;
   } else {
