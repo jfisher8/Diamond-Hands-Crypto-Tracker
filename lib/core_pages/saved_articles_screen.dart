@@ -5,7 +5,6 @@ import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
-import 'dart:developer' as developer;
 
 class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({super.key});
