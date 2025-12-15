@@ -88,6 +88,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                   if (snapshot.connectionState == ConnectionState.done) {
                     developer.log('snapshot connection done');
                     if (snapshot.hasData) {
+                      developer.log(snapshot.data.toString());
                       List<Article> articles = snapshot.data;
                       final filteredArticles = articles.where((article) {
                         return article.source.name?.toLowerCase().contains(searchController.text.toLowerCase()) ?? false;
@@ -112,6 +113,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                               SizedBox(
                                                 height: 200,
                                                 child: filteredArticles[index]
+                                                            // ignore: unnecessary_null_comparison
                                                             .imageURL ==
                                                         null
                                                     ? Column(children: [
@@ -137,7 +139,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                       ])
                                                     : CachedNetworkImage(
                                                         imageUrl: filteredArticles[index]
-                                                            .imageURL!,
+                                                            .imageURL,
                                                         fit: BoxFit.fill,
                                                         placeholder: (context,
                                                                 url) =>
