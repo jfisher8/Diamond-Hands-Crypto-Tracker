@@ -20,28 +20,36 @@ Future<void> saveArticle(Article article) async {
   final uid = FirebaseAuth.instance.currentUser?.uid;
   if (uid == null) throw Exception("User not logged in");
 
-  final docRef = FirebaseFirestore.instance
+  final firestore = FirebaseFirestore.instance;
+  final savedArticlesReference = firestore.collection('users').doc(uid).collection('saved_articles');
+
+  final querySnapshot = await savedArticlesReference.where('url', isEqualTo: article.url).get();
+
+  if (querySnapshot.docs.isEmpty) {
+    final docRef = FirebaseFirestore.instance
       .collection('users')
       .doc(uid)
       .collection('saved_articles')
       .doc();
 
-  await docRef.set({
-    'articleTitle': article.title,
+    await docRef.set({
+      'articleTitle': article.title,
     
-    'url': article.url,
-    'imageUrl': article.imageURL,
-    //'email': FirebaseAuth.instance.currentUser?.email,
-    'savedAt': FieldValue.serverTimestamp(),
-    'source': article.source.name,
-    'author': article.author,
-    'publishedAt': article.publishedAt,
-    'content': article.content,
-    'description': article.description
-  }, SetOptions(merge: true));
-  developer.log('Article saved to Firestore successfully');
+      'url': article.url,
+      'imageUrl': article.imageURL,
+      //'email': FirebaseAuth.instance.currentUser?.email,
+      'savedAt': FieldValue.serverTimestamp(),
+      'source': article.source.name,
+      'author': article.author,
+      'publishedAt': article.publishedAt,
+      'content': article.content,
+      'description': article.description
+    }, SetOptions(merge: true));
+    developer.log('Article saved to Firestore successfully');
+  } else {
+    developer.log('Article has already been saved');
+  }
 }
-
 
   final String? currentSession = FirebaseAuth.instance.currentUser?.email;
 
