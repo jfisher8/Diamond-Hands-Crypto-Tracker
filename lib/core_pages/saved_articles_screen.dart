@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:flutter/widgets.dart';
+import 'dart:developer' as developer;
 
 class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({super.key});
@@ -31,6 +32,22 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               return Article.fromFirestore(doc.data());
             }).toList());
   }
+
+  Future<void> _deleteSavedArticle(Article article) async {
+  final uid = FirebaseAuth.instance.currentUser?.uid;
+  if (uid == null) return;
+
+  final articleDocId = article.url.hashCode.toString();
+  developer.log(articleDocId);
+
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc(uid)
+      .collection('saved_articles')
+      .doc(articleDocId)
+      .delete();
+      developer.log('Article removed from saved list');
+}
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +117,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                     color: Colors.green))),
                                         TextButton(
                                             onPressed: () async {
-                                              //firebase deletion logic here
+                                              await _deleteSavedArticle(article);
                                             },
                                             child: Text(
                                                 'Yes - remove article',
