@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/read_news_article.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,12 +41,7 @@ Widget build(BuildContext context) {
         style: Theme.of(context).textTheme.titleLarge,
       ),
       appBar: AppBar(),
-      widgets: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.delete_rounded, color: Colors.black),
-        )
-      ],
+      widgets: const [],
     ),
     body: StreamBuilder<List<Article>>(
       stream: userSavedArticlesStream(),
@@ -68,7 +64,6 @@ Widget build(BuildContext context) {
           itemCount: articles.length,
           itemBuilder: (context, index) {
             final article = articles[index];
-
             return Card(
               child: ListTile(
                 leading: article.imageURL.isNotEmpty
@@ -80,6 +75,9 @@ Widget build(BuildContext context) {
                     : const SizedBox(width: 60),
                 title: Text(article.title),
                 subtitle: Text(article.source.name ?? ''),
+                trailing: IconButton(onPressed:() {
+                  //deletion logic goes here.
+                }, icon: const Icon(Icons.delete_forever, color: Colors.red,)),
                 onTap: () {
                   Navigator.push(
                     context,

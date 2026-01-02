@@ -147,10 +147,11 @@ Future<void> saveArticle(Article article) async {
                 context, () => launchUrl(Uri.parse(article!.url))),
             //const SizedBox(height: 20),
             const Text("or, if you're short on time..."),
-            currentSession != null
+            currentSession != null 
                 ? saveForLaterButton(context, () {
                     saveArticle(article!);
                     ScaffoldMessenger.of(context)
+                    //TODO: change the UI dependong 
                         .showSnackBar(articleSavedConfirmation);
                   })
                 : loginAndSaveButton(context, () {
