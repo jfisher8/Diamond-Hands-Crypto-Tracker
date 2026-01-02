@@ -150,8 +150,7 @@ Future<void> saveArticle(Article article) async {
             currentSession != null 
                 ? saveForLaterButton(context, () {
                     saveArticle(article!);
-                    ScaffoldMessenger.of(context)
-                    //TODO: change the UI dependong 
+                    ScaffoldMessenger.of(context) 
                         .showSnackBar(articleSavedConfirmation);
                   })
                 : loginAndSaveButton(context, () {

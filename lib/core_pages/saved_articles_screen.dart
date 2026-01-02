@@ -29,25 +29,25 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
         .orderBy('savedAt', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs.map((doc) {
-              return Article.fromFirestore(doc.data());
+              return Article.fromFirestore(doc.data(), doc.id);
             }).toList());
   }
 
   Future<void> _deleteSavedArticle(Article article) async {
-  final uid = FirebaseAuth.instance.currentUser?.uid;
-  if (uid == null) return;
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) return;
 
-  final articleDocId = article.url.hashCode.toString();
-  developer.log(articleDocId);
+    //final articleDocId = article.hashCode.toString();
+    //developer.log(articleDocId.toString());
 
-  await FirebaseFirestore.instance
-      .collection('users')
-      .doc(uid)
-      .collection('saved_articles')
-      .doc(articleDocId)
-      .delete();
-      developer.log('Article removed from saved list');
-}
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('saved_articles')
+        .doc(article.firestoreId)
+        .delete();
+    developer.log('Article removed from saved list');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,46 +95,46 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                   trailing: IconButton(
                       onPressed: () {
                         showDialog(
-                                context: context,
-                                barrierDismissible: true,
-                                builder: (BuildContext context) => AlertDialog(
-                                      actions: [
-                                        const SingleChildScrollView(
-                                          child: Form(
-                                              child: ListBody(
-                                                children: [
-                                                  Text(
-                                                      'Are you sure you want to remove this article from your saved list?')
-                                                ],
-                                              )),
-                                        ),
-                                        TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text('Cancel',
-                                                style: GoogleFonts.questrial(
-                                                    color: Colors.green))),
-                                        TextButton(
-                                            onPressed: () async {
-                                              await _deleteSavedArticle(article);
-                                            },
-                                            child: Text(
-                                                'Yes - remove article',
-                                                style: GoogleFonts.questrial(
-                                                    color: Colors.red)))
-                                      ],
-                                      title: Text(
-                                          'Confirm Deletion of Saved Article',
-                                          style: GoogleFonts.questrial(
-                                              decorationColor:
-                                                  const Color.fromRGBO(
-                                                      56, 182, 255, 1.0),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                              color: const Color.fromRGBO(
-                                                  56, 182, 255, 1.0))),
-                                    ));
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (BuildContext context) => AlertDialog(
+                                  actions: [
+                                    const SingleChildScrollView(
+                                      child: Form(
+                                          child: ListBody(
+                                        children: [
+                                          Text(
+                                              'Are you sure you want to remove this article from your saved list?')
+                                        ],
+                                      )),
+                                    ),
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('Cancel',
+                                            style: GoogleFonts.questrial(
+                                                color: Colors.green))),
+                                    TextButton(
+                                        onPressed: () async {
+                                          await _deleteSavedArticle(article)
+                                              .then((value) =>
+                                                  Navigator.pop(context));
+                                        },
+                                        child: Text('Yes - remove article',
+                                            style: GoogleFonts.questrial(
+                                                color: Colors.red)))
+                                  ],
+                                  title: Text(
+                                      'Confirm Deletion of Saved Article',
+                                      style: GoogleFonts.questrial(
+                                          decorationColor: const Color.fromRGBO(
+                                              56, 182, 255, 1.0),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          color: const Color.fromRGBO(
+                                              56, 182, 255, 1.0))),
+                                ));
                       },
                       icon: const Icon(
                         Icons.delete_forever,

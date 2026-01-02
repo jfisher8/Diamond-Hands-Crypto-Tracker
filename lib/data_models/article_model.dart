@@ -1,6 +1,7 @@
 import 'package:diamond_hands_crypto_tracker/data_models/source_model.dart';
 
 class Article {
+  String? firestoreId;
   Source source;
   String? author;
   String title;
@@ -11,6 +12,7 @@ class Article {
   String content;
 
   Article({
+    this.firestoreId,
     required this.source,
     required this.author,
     required this.title,
@@ -34,12 +36,13 @@ class Article {
     );
   }
 
-  factory Article.fromFirestore(Map<String, dynamic> map) {
+  factory Article.fromFirestore(Map<String, dynamic> map, String docId) {
     return Article(
       source: map['source'] is String
           ? Source(name: map['source'], id: map['id'])
           : Source.fromJson(map['source']),
       author: map['author'],
+      firestoreId: docId,
       title: map['articleTitle'] ?? map['title'] ?? '',
       url: map['url'] ?? '',
       imageURL: map['imageUrl'] ?? map['urlToImage'] ?? '',
