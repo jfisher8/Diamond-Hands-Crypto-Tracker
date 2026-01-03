@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 class Coin {
   String name;
   String? symbol;
@@ -7,7 +5,6 @@ class Coin {
   num? price;
   num? change;
   num? changePercentage;
-  //dynamic reference;
 
   Coin({
     required this.name,
