@@ -6,7 +6,6 @@ import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/saved_articles_screen.dart';
-import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:developer' as developer;
@@ -69,43 +68,37 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
         body: StreamBuilder<List<Exchanges>>(
             stream: _exchangesStream(),
             builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return buildExchangesErrorStatus(context);
+              }
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return buildExchangesLoadingStatus(context);
-              } else if (snapshot.connectionState == ConnectionState.done) {
-                developer
-                    .log('exchangesStream snapshot connection state is done');
-                if (snapshot.hasError) {
-                  developer.log('Exchanges StreamBuilder Snapshot has error');
-                  return buildExchangesErrorStatus(context);
-                } else if (snapshot.hasData) {
-                  final exchanges = snapshot.data!;
-                  developer.log(snapshot.data.toString());
-                  return ListView.separated(
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(width: 10),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: exchanges.length,
-                      itemBuilder: (context, index) {
-                        final exchange = exchanges[index];
-                        return ExchangesCard(
-                            name: exchange.name,
-                            country: exchange.country,
-                            description: exchange.description,
-                            hasTradingIncentive: exchange.hasTradingIncentive,
-                            id: exchange.id,
-                            btc24HRtradeVolume: exchange.btc24HRtradeVolume,
-                            trustScore: exchange.trustScore,
-                            trustScoreRank: exchange.trustScoreRank,
-                            yearEstablished: exchange.yearEstablished,
-                            url: exchange.url,
-                            image: exchange.imageURL);
-                      });
-                } else {
-                  return buildExchangesErrorStatus(context);
-                }
               }
-              return buildExchangesErrorStatus(context);
+              if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return buildExchangesErrorStatus(context);
+              }
+              final exchanges = snapshot.data!;
+              developer.log(snapshot.data.toString());
+              return ListView.separated(
+                itemCount: exchanges.length,
+                separatorBuilder:(context, index) => const SizedBox(width: 10),
+                itemBuilder: (context, index) {
+                  final exchange = exchanges[index];
+                  return ExchangesCard(
+                    name: exchange.name,
+                    country: exchange.country,
+                    description: exchange.description,
+                    hasTradingIncentive: exchange.hasTradingIncentive,
+                    id: exchange.id,
+                    btc24HRtradeVolume: exchange.btc24HRtradeVolume,
+                    trustScore: exchange.trustScore,
+                    trustScoreRank: exchange.trustScoreRank,
+                    yearEstablished: exchange.yearEstablished,
+                    url: exchange.url,
+                    image: exchange.imageURL,
+                  );
+                },
+              );
             }));
   }
 }

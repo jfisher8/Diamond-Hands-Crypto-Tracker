@@ -88,7 +88,7 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                       itemCount: coins.length,
                       itemBuilder: (context, index) {
                         final coin = coins[index];
-                        developer.log('Coins: $coins');
+                        //developer.log('Coins: $coins');
                         return CoinCard(
                             name: coin.name,
                             imageUrl: coin.imageURL,

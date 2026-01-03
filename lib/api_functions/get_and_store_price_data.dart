@@ -17,9 +17,13 @@ class CoinService {
       });
     }
   }
+
   static Future<void> fetchAndUpdateCoins() async {
     final response = await http.get(Uri.parse(
         'https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=20&page=1&sparkline=false'));
+
+    int newlyCreated = 0;
+    int recentlyUpdated = 0;
 
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
@@ -30,23 +34,28 @@ class CoinService {
             .collection('coins')
             .where('name', isEqualTo: coin.name)
             .get();
-            developer.log('Coin data Firestore querySnapshot runs');
-            developer.log("Coin name: ${coin.name}");
+        //developer.log('Coin data Firestore querySnapshot runs');
+        //developer.log("Coin name: ${coin.name}");
 
         if (snapshot.docs.isEmpty) {
           await FirebaseFirestore.instance
               .collection('coins')
               .add(coin.toMap());
-              developer.log('New Coin data added to Firestore');
+          newlyCreated++;
+          //developer.log('New Coin data added to Firestore');
         } else {
           String id = snapshot.docs.first.id;
           await FirebaseFirestore.instance
               .collection('coins')
               .doc(id)
               .update(coin.toMap());
-              developer.log('Existing Coin data updated in Firestore');
+          recentlyUpdated++;
+          //developer.log('Existing Coin data updated in Firestore');
         }
       }
+      developer.log('Firestore Coin data operations completed:');
+      developer.log(
+          '$newlyCreated Coin data entries added, $recentlyUpdated existing entries updated');
     } else {
       throw Exception('Failed to load coins');
     }

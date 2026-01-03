@@ -17,9 +17,13 @@ class ExchangesService {
       });
     }
   }
+
   static Future<void> fetchAndUpdateExchanges() async {
-    final response = await http.get(Uri.parse(
-        'https://api.coingecko.com/api/v3/exchanges'));
+    final response =
+        await http.get(Uri.parse('https://api.coingecko.com/api/v3/exchanges'));
+
+    int newExchangeDataRecordsCreated = 0;
+    int recentlyUpdatedExchangeDataRecords = 0;
 
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
@@ -32,21 +36,26 @@ class ExchangesService {
             .collection('exchanges')
             .where('name', isEqualTo: exchange.name)
             .get();
-            developer.log('Exchanges Firestore querySnapshot runs');
+        //developer.log('Exchanges Firestore querySnapshot runs');
         if (snapshot.docs.isEmpty) {
           await FirebaseFirestore.instance
               .collection('exchanges')
               .add(exchangeData);
-              developer.log('New Exchange data Firestore entry added');
+          newExchangeDataRecordsCreated++;
+          //developer.log('New Exchange data Firestore entry added');
         } else {
           String id = snapshot.docs.first.id;
           await FirebaseFirestore.instance
               .collection('exchanges')
               .doc(id)
               .update(exchangeData);
-              developer.log('Existing Exchange data updated in Firestore');
+          recentlyUpdatedExchangeDataRecords++;
+          //developer.log('Existing Exchange data updated in Firestore');
         }
       }
+      developer.log('Firestore Exchanges data operations complete:');
+      developer.log(
+          '$newExchangeDataRecordsCreated new records created, $recentlyUpdatedExchangeDataRecords existing records updated');
     } else {
       throw Exception('Failed to load coins');
     }

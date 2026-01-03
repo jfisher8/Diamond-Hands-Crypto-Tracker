@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges.dart';
+import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
 
@@ -40,8 +41,8 @@ class ExchangesCard extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const CryptoExchanges()));
             },
             trailing: const Icon(Icons.arrow_forward_rounded),
-            title: yearEstablished != null ? Text(name) : Text("\n$name"),
-            subtitle: yearEstablished != null ? Text(yearEstablished.toString()) : const Text(""),
+            title: Text(name.toString()),
+            subtitle: Text(yearEstablished.toString()),
             leading: SizedBox(
               height: 50,
               width: 50,
