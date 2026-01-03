@@ -31,18 +31,20 @@ class CoinService {
             .where('name', isEqualTo: coin.name)
             .get();
             developer.log('Coin data Firestore querySnapshot runs');
-            //developer.log("Coin name: ${coin.name}");
+            developer.log("Coin name: ${coin.name}");
 
         if (snapshot.docs.isEmpty) {
           await FirebaseFirestore.instance
               .collection('coins')
               .add(coin.toMap());
+              developer.log('New Coin data added to Firestore');
         } else {
           String id = snapshot.docs.first.id;
           await FirebaseFirestore.instance
               .collection('coins')
               .doc(id)
               .update(coin.toMap());
+              developer.log('Existing Coin data updated in Firestore');
         }
       }
     } else {

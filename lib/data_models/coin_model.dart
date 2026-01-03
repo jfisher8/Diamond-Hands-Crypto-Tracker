@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 class Coin {
   String name;
   String? symbol;
@@ -26,7 +28,6 @@ class Coin {
         changePercentage: json['price_change_percentage_24h']);
   }
 
-
   Map<String, dynamic> toMap() {
     return {
       'name': name,
@@ -36,9 +37,9 @@ class Coin {
       'price_change_24h': change,
       'price_change_percentage_24h': changePercentage
     };
-}
+  }
 
-factory Coin.fromFirestore(Map<String, dynamic> json) {
+  factory Coin.fromFirestore(Map<String, dynamic> json) {
     return Coin(
         name: json['name'] ?? '',
         symbol: json['symbol'],
@@ -46,6 +47,11 @@ factory Coin.fromFirestore(Map<String, dynamic> json) {
         price: (json['price'] as num?)?.toDouble() ?? 0.0,
         change: json['price_change_24h'],
         changePercentage: json['price_change_percentage_24h']);
+  }
+
+  @override
+  String toString() {
+    return 'Coin(name: $name, price: $price, symbol: $symbol, change: $change, changePercentage: $changePercentage)';
   }
 }
 

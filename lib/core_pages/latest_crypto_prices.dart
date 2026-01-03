@@ -69,16 +69,15 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                 stream: _coinStream(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    //developer.log('coinStream waits on crypto prices screen');
-                    //developer.log('Crypto prices screen snapshot data: ${snapshot.data}');
+                    developer.log('_coinStream Firestore stream connection state is waiting');
                     return Center(child: buildLoadingCoinsStatus(context));
                   }
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    developer.log('Connection state is done');
-                    developer.log('Snapshot data connection is done: ${snapshot.data.toString()}');
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    developer.log('_coinStream Firestore stream Connection state is ACTIVE');
+                    //developer.log('Snapshot data connection is done: ${snapshot.data.toString()}');
                   }
                   if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    developer.log('Snapshot data:${snapshot.data}');
+                    developer.log('No data in _coinStream Firestore stream. Snapshot data: ${snapshot.data}');
                     return Center(child: buildCoinsErrorStatus(context));
                   }
                   final coins = snapshot.data!;
@@ -89,7 +88,7 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
                       itemCount: coins.length,
                       itemBuilder: (context, index) {
                         final coin = coins[index];
-                        //developer.log('Coins: $coins');
+                        developer.log('Coins: $coins');
                         return CoinCard(
                             name: coin.name,
                             imageUrl: coin.imageURL,
