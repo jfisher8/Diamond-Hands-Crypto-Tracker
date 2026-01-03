@@ -60,7 +60,7 @@ class CryptoExchangesDetails extends StatelessWidget {
               Text(exchanges.name, style: const TextStyle(fontSize: 28)),
             ],
           ),
-          const SizedBox(height: 20),
+          //const SizedBox(height: 20),
           exchanges.yearEstablished == null
               ? const Text("")
               : Text("Established in ${exchanges.yearEstablished}",
@@ -68,16 +68,12 @@ class CryptoExchangesDetails extends StatelessWidget {
           const SizedBox(height: 20),
           exchanges.description == null || exchanges.description!.isEmpty
               ? const Text("")
-              : Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                  child: Card(
+              : Card(
                       elevation: 10,
-                      child: Padding(
-                          padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-                          child: Column(children: [
-                            Text(exchanges.description.toString(),
+                      child: Column(children: [
+                            Text(exchanges.description!.trim().toString(),
                                 textAlign: TextAlign.justify),
-                          ])))),
+                          ])),
                           CryptoExchangesReadMoreButton(name: exchanges.name, url: exchanges.url)])
         )));
   }

@@ -7,6 +7,9 @@ class Exchanges {
   late int? trustScore;
   late String? country;
   late int? trustScoreRank;
+  late bool? hasTradingIncentive;
+  late String id;
+  late int btc24HRtradeVolume;
 
   Exchanges(
       {required this.name,
@@ -27,6 +30,18 @@ class Exchanges {
     trustScore = json['trust_score'];
     country = json['country'];
     trustScoreRank = json['trust_score_rank'];
+  }
+
+  factory Exchanges.fromFirestore(Map<String, dynamic> json) {
+    return Exchanges(
+    name: json['name'],
+    yearEstablished: json['yearEstablished'],
+    url: json['url'],
+    imageURL: json['imageURL'],
+    description: json['description'],
+    trustScore: json['trustScore'],
+    country: json['country'],
+    trustScoreRank: json['country']);
   }
 }
 

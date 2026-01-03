@@ -30,7 +30,7 @@ class CoinService {
             .collection('coins')
             .where('name', isEqualTo: coin.name)
             .get();
-            developer.log('querySnapshot runs');
+            developer.log('Coin data Firestore querySnapshot runs');
             //developer.log("Coin name: ${coin.name}");
 
         if (snapshot.docs.isEmpty) {

@@ -1,14 +1,15 @@
 import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
+import 'package:diamond_hands_crypto_tracker/widgets/exchanges_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/navigation/navigation_drawer.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/saved_articles_screen.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/crypto_exchanges_details.dart';
 import 'package:diamond_hands_crypto_tracker/api_functions/get_exchange_data.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/status_components.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:developer' as developer;
 
 class CryptoExchanges extends StatefulWidget {
   const CryptoExchanges({super.key});
@@ -20,11 +21,18 @@ class CryptoExchanges extends StatefulWidget {
 class _CryptoExchangesState extends State<CryptoExchanges> {
   @override
   void initState() {
-    fetchExchanges();
+    //fetchExchanges();
     setState(() {
       exchangesList;
     });
     super.initState();
+  }
+
+  Stream<List<Exchanges>> _exchangesStream() {
+    return FirebaseFirestore.instance.collection('exchanges').snapshots().map(
+        (snapshot) => snapshot.docs
+            .map((doc) => Exchanges.fromFirestore(doc.data()))
+            .toList());
   }
 
   @override
@@ -44,8 +52,8 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
                             builder: (context) => const FavouritesScreen()),
                       );
                     },
-                    icon:
-                        const Icon(Icons.bookmark_outline_rounded, color: Colors.black))
+                    icon: const Icon(Icons.bookmark_outline_rounded,
+                        color: Colors.black))
                 : IconButton(
                     onPressed: () {
                       Navigator.push(
@@ -58,57 +66,40 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
           ],
         ),
         drawer: const NavigationMenu(),
-        body: FutureBuilder(
-            future: fetchExchanges(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
+        body: StreamBuilder<List<Exchanges>>(
+            stream: _exchangesStream(),
+            builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return buildExchangesLoadingStatus(context);
               } else if (snapshot.connectionState == ConnectionState.done) {
+                developer
+                    .log('exchangesStream snapshot connection state is done');
                 if (snapshot.hasError) {
+                  developer.log('Exchanges StreamBuilder Snapshot has error');
                   return buildExchangesErrorStatus(context);
                 } else if (snapshot.hasData) {
-                  return ListView.builder(
+                  final exchanges = snapshot.data!;
+                  developer.log(snapshot.data.toString());
+                  return ListView.separated(
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 10),
+                      shrinkWrap: true,
                       scrollDirection: Axis.vertical,
-                      itemCount: exchangesList.length,
+                      itemCount: exchanges.length,
                       itemBuilder: (context, index) {
-                        return Padding(
-                            padding: const EdgeInsets.only(
-                                top: 5, left: 10, right: 10),
-                            child: Card(
-                              child: ListTile(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CryptoExchangesDetails(
-                                                exchanges: snapshot.data[index],
-                                              )));
-                                },
-                                trailing:
-                                    const Icon(Icons.arrow_forward_rounded),
-                                leading: ConstrainedBox(
-                                    constraints:
-                                        const BoxConstraints(maxHeight: 100),
-                                    child: CachedNetworkImage(
-                                        imageUrl: snapshot.data[index].imageURL,
-                                        placeholder: (context, url) =>
-                                            buildLoadingIcon(context),
-                                        errorWidget:
-                                            (context, imageUrl, error) =>
-                                                buildErrorIcon(context))),
-                                title:
-                                    snapshot.data[index].yearEstablished == null
-                                        ? Text('\n${snapshot.data[index].name}')
-                                        : Text(snapshot.data[index].name),
-                                subtitle:
-                                    snapshot.data[index].yearEstablished == null
-                                        ? const Text("")
-                                        : Text(snapshot
-                                            .data[index].yearEstablished
-                                            .toString()),
-                              ),
-                            ));
+                        final exchange = exchanges[index];
+                        return ExchangesCard(
+                            name: exchange.name,
+                            country: exchange.country,
+                            description: exchange.description,
+                            hasTradingIncentive: exchange.hasTradingIncentive,
+                            id: exchange.id,
+                            btc24HRtradeVolume: exchange.btc24HRtradeVolume,
+                            trustScore: exchange.trustScore,
+                            trustScoreRank: exchange.trustScoreRank,
+                            yearEstablished: exchange.yearEstablished,
+                            url: exchange.url,
+                            image: exchange.imageURL);
                       });
                 } else {
                   return buildExchangesErrorStatus(context);

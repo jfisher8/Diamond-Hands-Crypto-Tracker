@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:diamond_hands_crypto_tracker/data_models/coin_model.dart';
+import 'package:diamond_hands_crypto_tracker/data_models/exchanges_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,22 +27,24 @@ class ExchangesService {
       for (var exchangeData in data) {
         //TODO: change 'Coin' below so that it's linked to the Exchanges model
         //TODO: Exchanges model likely needs changing so it reflects the same as coin_model
-        Coin exchange = Coin.fromJson(exchangeData);
+        Exchanges exchange = Exchanges.fromJson(exchangeData);
         QuerySnapshot snapshot = await FirebaseFirestore.instance
             .collection('exchanges')
             .where('name', isEqualTo: exchange.name)
             .get();
-            developer.log('querySnapshot runs');
+            developer.log('Exchanges Firestore querySnapshot runs');
         if (snapshot.docs.isEmpty) {
           await FirebaseFirestore.instance
               .collection('exchanges')
-              .add(exchange.toMap());
+              .add(exchangeData);
+              developer.log('New Exchange data Firestore entry added');
         } else {
           String id = snapshot.docs.first.id;
           await FirebaseFirestore.instance
               .collection('exchanges')
               .doc(id)
-              .update(exchange.toMap());
+              .update(exchangeData);
+              developer.log('Existing Exchange data updated in Firestore');
         }
       }
     } else {

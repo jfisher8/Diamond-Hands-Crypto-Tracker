@@ -1,13 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:diamond_hands_crypto_tracker/core_pages/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:diamond_hands_crypto_tracker/core_pages/read_news_article.dart';
 import 'package:diamond_hands_crypto_tracker/data_models/article_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_hands_crypto_tracker/widgets/appbar.dart';
-import 'package:flutter/widgets.dart';
 import 'dart:developer' as developer;
 
 class FavouritesScreen extends StatefulWidget {

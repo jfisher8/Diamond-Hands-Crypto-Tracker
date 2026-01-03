@@ -7,11 +7,25 @@ class ExchangesCard extends StatelessWidget {
   const ExchangesCard(
       {super.key,
       required this.name,
+      required this.country,
+      required this.description,
+      required this.hasTradingIncentive,
+      required this.id,
+      required this.btc24HRtradeVolume,
+      required this.trustScore,
+      required this.trustScoreRank,
       required this.yearEstablished,
       required this.url,
       required this.image});
 
   final String name;
+  final String? country;
+  final String? description;
+  final bool? hasTradingIncentive;
+  final String? id;
+  final int? btc24HRtradeVolume;
+  final int? trustScore;
+  final int? trustScoreRank;
   final int? yearEstablished;
   final String url;
   final String image;
