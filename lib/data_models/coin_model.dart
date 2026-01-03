@@ -44,7 +44,7 @@ class Coin {
         name: json['name'] ?? '',
         symbol: json['symbol'],
         imageURL: json['image'] ?? '',
-        price: (json['price'] as num?)?.toDouble() ?? 0.0,
+        price: (json['current_price'] as num?)?.toDouble() ?? 0.0,
         change: json['price_change_24h'],
         changePercentage: json['price_change_percentage_24h']);
   }
