@@ -35,13 +35,13 @@ class Exchanges {
   factory Exchanges.fromFirestore(Map<String, dynamic> json) {
     return Exchanges(
     name: json['name'],
-    yearEstablished: json['yearEstablished'],
+    yearEstablished: json['year_established'],
     url: json['url'],
-    imageURL: json['imageURL'],
+    imageURL: json['image'],
     description: json['description'],
-    trustScore: json['trustScore'],
+    trustScore: json['trust_score'],
     country: json['country'],
-    trustScoreRank: json['country']);
+    trustScoreRank: json['trust_score_rank']);
   }
 }
 
