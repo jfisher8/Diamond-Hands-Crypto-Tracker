@@ -81,9 +81,9 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               final article = articles[index];
               return Card(
                 child: ListTile(
-                  leading: article.imageURL.isNotEmpty
+                  leading: (article.imageURL?.isNotEmpty ?? false)
                       ? CachedNetworkImage(
-                          imageUrl: article.imageURL,
+                          imageUrl: article.imageURL!,
                           width: 60,
                           fit: BoxFit.cover,
                         )

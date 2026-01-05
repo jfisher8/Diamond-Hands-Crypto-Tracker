@@ -12,7 +12,7 @@ ThemeData lightMode = ThemeData(
     bodyLarge: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
   ),
   colorScheme: const ColorScheme.light(
-    background: Colors.white,
+    surface: Colors.white,
   )
 );
 
@@ -27,6 +27,6 @@ ThemeData darkMode = ThemeData(
     bodyLarge: GoogleFonts.mavenPro(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
   ),
   colorScheme: ColorScheme.dark(
-    background: Colors.grey.shade900
+    surface: Colors.grey.shade900
   )
 );

@@ -6,7 +6,7 @@ class Article {
   String? author;
   String title;
   String url;
-  String imageURL;
+  String? imageURL;
   String? publishedAt;
   String? description;
   String content;

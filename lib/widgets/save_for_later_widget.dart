@@ -12,13 +12,13 @@ Container saveForLaterButton(BuildContext context, Function onTap) {
         onTap();
       },
       style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.pressed)) {
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.pressed)) {
               return const Color.fromRGBO(56, 182, 255, 1.0);
             }
             return const Color.fromRGBO(56, 182, 255, 1.0);
           }),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           )),
       child: Text('Save for Later', style: GoogleFonts.mavenPro(
@@ -38,13 +38,13 @@ Container loginAndSaveButton(BuildContext context, Function onTap) {
         onTap();
       },
       style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.pressed)) {
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.pressed)) {
               return const Color.fromRGBO(56, 182, 255, 1.0);
             }
             return const Color.fromRGBO(56, 182, 255, 1.0);
           }),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           )),
       child: Text('Login and save for later', style: Theme.of(context).textTheme.bodyLarge),

@@ -113,7 +113,6 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                               SizedBox(
                                                 height: 200,
                                                 child: filteredArticles[index]
-                                                            // ignore: unnecessary_null_comparison
                                                             .imageURL ==
                                                         null
                                                     ? Column(children: [
@@ -139,7 +138,7 @@ class _LatestCryptoNewsState extends State<LatestCryptoNews> {
                                                       ])
                                                     : CachedNetworkImage(
                                                         imageUrl: filteredArticles[index]
-                                                            .imageURL,
+                                                            .imageURL ?? '',
                                                         fit: BoxFit.fill,
                                                         placeholder: (context,
                                                                 url) =>

@@ -13,13 +13,13 @@ Container newsArticleReadMoreButton(BuildContext context, Function onTap) {
           onTap();
         },
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.pressed)) {
+            backgroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.pressed)) {
                 return const Color.fromRGBO(56, 182, 255, 1.0);
               }
               return const Color.fromRGBO(56, 182, 255, 1.0);
             }),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             )),
         child: Row(
@@ -58,13 +58,13 @@ class CryptoExchangesReadMoreButton extends StatelessWidget {
             launchUrl(Uri.parse(url.toString()));
           },
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.resolveWith((states) {
-                if (states.contains(MaterialState.pressed)) {
+              backgroundColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.pressed)) {
                   return const Color.fromRGBO(56, 182, 255, 1.0);
                 }
                 return const Color.fromRGBO(56, 182, 255, 1.0);
               }),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)))),
           child: Row(

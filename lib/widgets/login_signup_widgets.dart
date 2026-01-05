@@ -11,13 +11,13 @@ Container primarySignUpButton(BuildContext context, bool isLogin, Function onTap
           onTap();
         },
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.pressed)) {
+            backgroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.pressed)) {
                 return Colors.green[700];
               }
               return Colors.green;
             }),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)))),
         child: Text('Create Account', style: Theme.of(context).textTheme.bodyLarge),
@@ -35,13 +35,13 @@ Container secondarySignUpButton(BuildContext context, bool isLogin, Function onT
           onTap();
         },
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.pressed)) {
+            backgroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.pressed)) {
                 return const Color.fromRGBO(56, 182, 255, 1.0);
               }
               return const Color.fromRGBO(56, 182, 255, 1.0);
             }),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)))),
         child: Text('Sign Up', style: Theme.of(context).textTheme.bodyLarge),
@@ -59,13 +59,13 @@ Container primaryLoginButton(BuildContext context, bool isLogin, Function onTap)
         onTap();
       },
       style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.pressed)) {
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.pressed)) {
               return Colors.green[700];
             }
             return Colors.green;
           }),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           )),
       child: Text('Login', style: Theme.of(context).textTheme.bodyLarge),
@@ -84,13 +84,13 @@ Container secondaryLoginButton(BuildContext context, bool isLogin, Function onTa
         onTap();
       },
       style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.pressed)) {
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.pressed)) {
               return const Color.fromRGBO(56, 182, 255, 1.0);
             }
             return const Color.fromRGBO(56, 182, 255, 1.0);
           }),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           )),
       child: Text('Login', style: Theme.of(context).textTheme.bodyLarge),
