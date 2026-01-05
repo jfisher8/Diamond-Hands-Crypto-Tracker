@@ -51,13 +51,13 @@ class CryptoExchangesDetails extends StatelessWidget {
             children: [
               Center(
                   child: CachedNetworkImage(
-                imageUrl: exchanges.imageURL,
+                imageUrl: exchanges.imageURL.toString(),
                 placeholder: (context, url) => buildLoadingIcon(context),
                 errorWidget: (context, url, error) =>
                     const Icon(Icons.error, color: Colors.red, size: 20),
               )),
               const Padding(padding: EdgeInsets.all(5)),
-              Text(exchanges.name, style: const TextStyle(fontSize: 28)),
+              Text(exchanges.name.toString(), style: const TextStyle(fontSize: 28)),
             ],
           ),
           //const SizedBox(height: 20),
@@ -74,7 +74,7 @@ class CryptoExchangesDetails extends StatelessWidget {
                             Text(exchanges.description!.trim().toString(),
                                 textAlign: TextAlign.justify),
                           ])),
-                          CryptoExchangesReadMoreButton(name: exchanges.name, url: exchanges.url)])
+                          CryptoExchangesReadMoreButton(name: exchanges.name.toString(), url: exchanges.url.toString())])
         )));
   }
 }
