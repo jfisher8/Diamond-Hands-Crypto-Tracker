@@ -18,6 +18,9 @@ class CryptoExchanges extends StatefulWidget {
 }
 
 class _CryptoExchangesState extends State<CryptoExchanges> {
+  //used to ensure logs only fire once for Exchange data monitoring when pulled from Firestore
+  bool _hasLoggedData = false;
+
   @override
   void initState() {
     //fetchExchanges();
@@ -35,7 +38,6 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
           (snapshot) => snapshot.docs
               .map((doc) => Exchanges.fromFirestore(doc.data()))
               .toList(),
-              
         );
   }
 
@@ -81,10 +83,6 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
       body: StreamBuilder<List<Exchanges>>(
         stream: _exchangesStream(),
         builder: (context, snapshot) {
-          developer.log('Exchanges stream connection state: ${snapshot.connectionState}');
-          developer.log('Exchanges stream has data? ${snapshot.hasData}');
-          //developer.log('Exchanges stream data: ${snapshot.data.toString()}');
-          //developer.log('Data length: ${snapshot.data?.length}');
           if (snapshot.hasError) {
             developer.log('Error: ${snapshot.error}');
             return buildExchangesErrorStatus(context);
@@ -95,8 +93,20 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return buildExchangesErrorStatus(context);
           }
+
           final exchanges = snapshot.data!;
-          //developer.log(snapshot.data.toString());
+
+          if (!_hasLoggedData) {
+            developer.log(
+              'Exchanges stream connection state: ${snapshot.connectionState}',
+            );
+            developer.log(
+              'Exchanges data loaded from Firestore: ${exchanges.length} exchanges',
+            );
+            _hasLoggedData =
+                true; //prevents above logs being triggered in console repeatedly
+          }
+
           return ListView.separated(
             itemCount: exchanges.length,
             separatorBuilder: (context, index) => const SizedBox(width: 10),

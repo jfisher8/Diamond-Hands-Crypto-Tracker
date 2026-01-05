@@ -41,16 +41,18 @@ class ExchangesCard extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
       child: Card(
         child: ListTile(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    CryptoExchangesDetails(exchanges: exchange),
-              ),
-            );
-          },
-          trailing: const Icon(Icons.arrow_forward_rounded),
+          trailing: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      CryptoExchangesDetails(exchanges: exchange),
+                ),
+              );
+            },
+            icon: Icon(Icons.arrow_forward_rounded),
+          ),
           title: Text(name.toString()),
           subtitle: Text(yearEstablished.toString()),
           leading: SizedBox(
