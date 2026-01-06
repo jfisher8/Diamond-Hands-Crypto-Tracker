@@ -15,66 +15,102 @@ class CryptoExchangesDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BuildAppBar(
-          title: Text('Diamond Hands Crypto Tracker',
-              style: Theme.of(context).textTheme.titleLarge),
-          appBar: AppBar(),
-          widgets: [
-            FirebaseAuth.instance.currentUser != null
-                ? IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FavouritesScreen()),
-                      );
-                    },
-                    icon:
-                        const Icon(Icons.bookmark_outline_rounded, color: Colors.black))
-                : IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginScreen()),
-                      );
-                    },
-                    icon: const Icon(Icons.login_rounded, color: Colors.black)),
-          ],
+      appBar: BuildAppBar(
+        title: Text(
+          'Diamond Hands Crypto Tracker',
+          style: Theme.of(context).textTheme.titleLarge,
         ),
-        body: SafeArea(
-            child: Center(
-                child: Column(children: [
-          const SizedBox(height: 40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        appBar: AppBar(),
+        widgets: [
+          FirebaseAuth.instance.currentUser != null
+              ? IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FavouritesScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.bookmark_outline_rounded,
+                    color: Colors.black,
+                  ),
+                )
+              : IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.login_rounded, color: Colors.black),
+                ),
+        ],
+      ),
+      body: SafeArea(
+        child: Center(
+          child: Column(
             children: [
-              Center(
-                  child: CachedNetworkImage(
-                imageUrl: exchanges.imageURL.toString(),
-                placeholder: (context, url) => buildLoadingIcon(context),
-                errorWidget: (context, url, error) =>
-                    const Icon(Icons.error, color: Colors.red, size: 20),
-              )),
-              const Padding(padding: EdgeInsets.all(5)),
-              Text(exchanges.name.toString(), style: const TextStyle(fontSize: 28)),
+              const SizedBox(height: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: CachedNetworkImage(
+                      imageUrl: exchanges.imageURL.toString(),
+                      placeholder: (context, url) => buildLoadingIcon(context),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error, color: Colors.red, size: 20),
+                    ),
+                  ),
+                  const Padding(padding: EdgeInsets.all(5)),
+                  Text(
+                    exchanges.name.toString(),
+                    style: const TextStyle(fontSize: 28),
+                  ),
+                ],
+              ),
+              //const SizedBox(height: 20),
+              exchanges.yearEstablished == null
+                  ? const Text("")
+                  : Text(
+                      "Established in ${exchanges.yearEstablished}",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+              const SizedBox(height: 20),
+              exchanges.description == null || exchanges.description!.isEmpty
+                  ? const Text("")
+                  : Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          children: [
+                            Card(
+                              elevation: 10,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    exchanges.description!.trim().toString(),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            CryptoExchangesReadMoreButton(
+                              name: exchanges.name.toString(),
+                              url: exchanges.url.toString(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
             ],
           ),
-          //const SizedBox(height: 20),
-          exchanges.yearEstablished == null
-              ? const Text("")
-              : Text("Established in ${exchanges.yearEstablished}",
-                  style: Theme.of(context).textTheme.bodyLarge),
-          const SizedBox(height: 20),
-          exchanges.description == null || exchanges.description!.isEmpty
-              ? const Text("")
-              : Card(
-                      elevation: 10,
-                      child: Column(children: [
-                            Text(exchanges.description!.trim().toString(),
-                                textAlign: TextAlign.justify),
-                          ])),
-                          CryptoExchangesReadMoreButton(name: exchanges.name.toString(), url: exchanges.url.toString())])
-        )));
+        ),
+      ),
+    );
   }
 }
