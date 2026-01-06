@@ -73,30 +73,34 @@ class CryptoExchangesDetails extends StatelessWidget {
                   ),
                 ],
               ),
-              //const SizedBox(height: 20),
+              const SizedBox(height: 20),
               exchanges.yearEstablished == null
                   ? const Text("")
                   : Text(
                       "Established in ${exchanges.yearEstablished}",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-              const SizedBox(height: 20),
               exchanges.description == null || exchanges.description!.isEmpty
                   ? const Text("")
-                  : Expanded(
+                  : Flexible(
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
                           children: [
                             Card(
                               elevation: 10,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    exchanges.description!.trim().toString(),
-                                    textAlign: TextAlign.justify,
+                              shadowColor: Color.fromARGB(0, 201, 25, 25),
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(maxHeight: 390),
+                                child: SingleChildScrollView(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Text(
+                                      exchanges.description!.trim(),
+                                      textAlign: TextAlign.justify,
+                                    ),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                             CryptoExchangesReadMoreButton(
