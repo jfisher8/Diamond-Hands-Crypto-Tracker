@@ -81,15 +81,59 @@ class CryptoExchangesDetails extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
               exchanges.description == null || exchanges.description!.isEmpty
-                  ? const Text("")
+                  ? Flexible(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 100),
+                          Flexible(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                children: [
+                                  Card(
+                                    color: Color(
+                                      const Color.fromARGB(
+                                        255,
+                                        126,
+                                        8,
+                                        0,
+                                      ).toARGB32(),
+                                    ),
+                                    elevation: 5,
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.error_rounded,
+                                            color: Colors.red,
+                                          ),
+                                          Text(
+                                            "No Exchanges description info available",
+                                          ),
+                                          SizedBox(height: 20),
+                                          CryptoExchangesReadMoreButton(
+                                            name: exchanges.name.toString(),
+                                            url: exchanges.url.toString(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   : Flexible(
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
                           children: [
                             Card(
-                              elevation: 10,
-                              shadowColor: Color.fromARGB(0, 201, 25, 25),
+                              elevation: 5,
                               child: ConstrainedBox(
                                 constraints: BoxConstraints(maxHeight: 390),
                                 child: SingleChildScrollView(
