@@ -29,8 +29,6 @@ class ExchangesService {
       List<dynamic> data = json.decode(response.body);
 
       for (var exchangeData in data) {
-        //TODO: change 'Coin' below so that it's linked to the Exchanges model
-        //TODO: Exchanges model likely needs changing so it reflects the same as coin_model
         Exchanges exchange = Exchanges.fromJson(exchangeData);
         QuerySnapshot snapshot = await FirebaseFirestore.instance
             .collection('exchanges')

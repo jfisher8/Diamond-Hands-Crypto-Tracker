@@ -8,7 +8,7 @@ class ThemeProvider with ChangeNotifier {
     getThemeOnBoot();
   }
 
-  getThemeOnBoot() async {
+ void getThemeOnBoot() async {
     SharedPreferences darkModePreferences =
         await SharedPreferences.getInstance();
     bool? isDarkTheme = darkModePreferences.getBool('darkMode');
