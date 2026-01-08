@@ -26,9 +26,11 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
         .collection('saved_articles')
         .orderBy('savedAt', descending: true)
         .snapshots()
-        .map((snapshot) => snapshot.docs.map((doc) {
-              return Article.fromFirestore(doc.data(), doc.id);
-            }).toList());
+        .map(
+          (snapshot) => snapshot.docs.map((doc) {
+            return Article.fromFirestore(doc.data(), doc.id);
+          }).toList(),
+        );
   }
 
   Future<void> _deleteSavedArticle(Article article) async {
@@ -58,99 +60,115 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
         appBar: AppBar(),
         widgets: const [],
       ),
-      body: StreamBuilder<List<Article>>(
-        stream: userSavedArticlesStream(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: SafeArea(
+        child: StreamBuilder<List<Article>>(
+          stream: userSavedArticlesStream(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          }
+            if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            }
 
-          final articles = snapshot.data ?? [];
+            final articles = snapshot.data ?? [];
 
-          if (articles.isEmpty) {
-            return const Center(child: Text("No saved articles yet."));
-          }
+            if (articles.isEmpty) {
+              return const Center(child: Text("No saved articles yet."));
+            }
 
-          return ListView.builder(
-            itemCount: articles.length,
-            itemBuilder: (context, index) {
-              final article = articles[index];
-              return Card(
-                child: ListTile(
-                  leading: (article.imageURL?.isNotEmpty ?? false)
-                      ? CachedNetworkImage(
-                          imageUrl: article.imageURL!,
-                          width: 60,
-                          fit: BoxFit.cover,
-                        )
-                      : const SizedBox(width: 60),
-                  title: Text(article.title),
-                  subtitle: Text(article.source.name ?? ''),
-                  trailing: IconButton(
+            return ListView.builder(
+              itemCount: articles.length,
+              itemBuilder: (context, index) {
+                final article = articles[index];
+                return Card(
+                  child: ListTile(
+                    leading: (article.imageURL?.isNotEmpty ?? false)
+                        ? CachedNetworkImage(
+                            imageUrl: article.imageURL!,
+                            width: 60,
+                            fit: BoxFit.cover,
+                          )
+                        : const SizedBox(width: 60),
+                    title: Text(article.title),
+                    subtitle: Text(article.source.name ?? ''),
+                    trailing: IconButton(
                       onPressed: () {
                         showDialog(
-                            context: context,
-                            barrierDismissible: true,
-                            builder: (BuildContext context) => AlertDialog(
-                                  actions: [
-                                    const SingleChildScrollView(
-                                      child: Form(
-                                          child: ListBody(
-                                        children: [
-                                          Text(
-                                              'Are you sure you want to remove this article from your saved list?')
-                                        ],
-                                      )),
-                                    ),
-                                    TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text('Cancel',
-                                            style: GoogleFonts.questrial(
-                                                color: Colors.green))),
-                                    TextButton(
-                                        onPressed: () async {
-                                          await _deleteSavedArticle(article)
-                                              .then((value) =>
-                                                  Navigator.pop(context));
-                                        },
-                                        child: Text('Yes - remove article',
-                                            style: GoogleFonts.questrial(
-                                                color: Colors.red)))
-                                  ],
-                                  title: Text(
-                                      'Confirm Deletion of Saved Article',
-                                      style: GoogleFonts.questrial(
-                                          decorationColor: const Color.fromRGBO(
-                                              56, 182, 255, 1.0),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                          color: const Color.fromRGBO(
-                                              56, 182, 255, 1.0))),
-                                ));
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (BuildContext context) => AlertDialog(
+                            actions: [
+                              const SingleChildScrollView(
+                                child: Form(
+                                  child: ListBody(
+                                    children: [
+                                      Text(
+                                        'Are you sure you want to remove this article from your saved list?',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  'Cancel',
+                                  style: GoogleFonts.questrial(
+                                    color: Colors.green,
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () async {
+                                  await _deleteSavedArticle(
+                                    article,
+                                  ).then((value) => Navigator.pop(context));
+                                },
+                                child: Text(
+                                  'Yes - remove article',
+                                  style: GoogleFonts.questrial(
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            title: Text(
+                              'Confirm Deletion of Saved Article',
+                              style: GoogleFonts.questrial(
+                                decorationColor: const Color.fromRGBO(
+                                  56,
+                                  182,
+                                  255,
+                                  1.0,
+                                ),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: const Color.fromRGBO(56, 182, 255, 1.0),
+                              ),
+                            ),
+                          ),
+                        );
                       },
-                      icon: const Icon(
-                        Icons.delete_forever,
-                        color: Colors.red,
-                      )),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ReadNewsArticle(article: article),
-                      ),
-                    );
-                  },
-                ),
-              );
-            },
-          );
-        },
+                      icon: const Icon(Icons.delete_forever, color: Colors.red),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ReadNewsArticle(article: article),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

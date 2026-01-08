@@ -28,75 +28,99 @@ class _LatestCryptoPricesState extends State<LatestCryptoPrices> {
   }
 
   Stream<List<Coin>> _coinStream() {
-    return FirebaseFirestore.instance.collection('coins').snapshots().map(
-        (snapshot) => snapshot.docs
-            .map((doc) => Coin.fromFirestore(doc.data()))
-            .toList());
+    return FirebaseFirestore.instance
+        .collection('coins')
+        .snapshots()
+        .map(
+          (snapshot) => snapshot.docs
+              .map((doc) => Coin.fromFirestore(doc.data()))
+              .toList(),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BuildAppBar(
-          title: Text('Latest Crypto Prices',
-              style: Theme.of(context).textTheme.titleLarge),
-          appBar: AppBar(),
-          widgets: [
-            FirebaseAuth.instance.currentUser != null
-                ? IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FavouritesScreen()),
-                      );
-                    },
-                    icon:
-                        const Icon(Icons.bookmark_outline_rounded, color: Colors.black))
-                : IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginScreen()),
-                      );
-                    },
-                    icon: const Icon(Icons.login_rounded, color: Colors.black)),
-          ],
+      appBar: BuildAppBar(
+        title: Text(
+          'Latest Crypto Prices',
+          style: Theme.of(context).textTheme.titleLarge,
         ),
-        drawer: const NavigationMenu(),
-        body: StreamBuilder<List<Coin>>(
-                stream: _coinStream(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    developer.log('_coinStream Firestore stream connection state is waiting');
-                    return Center(child: buildLoadingCoinsStatus(context));
-                  }
-                  if (snapshot.connectionState == ConnectionState.active) {
-                    developer.log('_coinStream Firestore stream Connection state is ACTIVE');
-                    //developer.log('Snapshot data connection is done: ${snapshot.data.toString()}');
-                  }
-                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    developer.log('No data in _coinStream Firestore stream. Snapshot data: ${snapshot.data}');
-                    return Center(child: buildCoinsErrorStatus(context));
-                  }
-                  final coins = snapshot.data!;
-                  return ListView.separated(
-                    separatorBuilder:(context, index) => const SizedBox(width: 10),
-                    shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: coins.length,
-                      itemBuilder: (context, index) {
-                        final coin = coins[index];
-                        //developer.log('Coins: $coins');
-                        return CoinCard(
-                            name: coin.name,
-                            imageUrl: coin.imageURL,
-                            change: coin.change,
-                            changePercentage: coin.changePercentage,
-                            symbol: coin.symbol.toString(),
-                            price: coin.price);
-                      });
-                }));
+        appBar: AppBar(),
+        widgets: [
+          FirebaseAuth.instance.currentUser != null
+              ? IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FavouritesScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.bookmark_outline_rounded,
+                    color: Colors.black,
+                  ),
+                )
+              : IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.login_rounded, color: Colors.black),
+                ),
+        ],
+      ),
+      drawer: const NavigationMenu(),
+      body: SafeArea(
+        child: StreamBuilder<List<Coin>>(
+          stream: _coinStream(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              developer.log(
+                '_coinStream Firestore stream connection state is waiting',
+              );
+              return Center(child: buildLoadingCoinsStatus(context));
+            }
+            if (snapshot.connectionState == ConnectionState.active) {
+              developer.log(
+                '_coinStream Firestore stream Connection state is ACTIVE',
+              );
+              //developer.log('Snapshot data connection is done: ${snapshot.data.toString()}');
+            }
+            if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              developer.log(
+                'No data in _coinStream Firestore stream. Snapshot data: ${snapshot.data}',
+              );
+              return Center(child: buildCoinsErrorStatus(context));
+            }
+            final coins = snapshot.data!;
+            return ListView.separated(
+              separatorBuilder: (context, index) => const SizedBox(width: 10),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: coins.length,
+              itemBuilder: (context, index) {
+                final coin = coins[index];
+                //developer.log('Coins: $coins');
+                return CoinCard(
+                  name: coin.name,
+                  imageUrl: coin.imageURL,
+                  change: coin.change,
+                  changePercentage: coin.changePercentage,
+                  symbol: coin.symbol.toString(),
+                  price: coin.price,
+                );
+              },
+            );
+          },
+        ),
+      ),
+    );
   }
 }

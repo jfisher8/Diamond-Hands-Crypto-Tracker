@@ -80,55 +80,57 @@ class _CryptoExchangesState extends State<CryptoExchanges> {
         ],
       ),
       drawer: const NavigationMenu(),
-      body: StreamBuilder<List<Exchanges>>(
-        stream: _exchangesStream(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            developer.log('Error: ${snapshot.error}');
-            return buildExchangesErrorStatus(context);
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return buildExchangesLoadingStatus(context);
-          }
-          if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return buildExchangesErrorStatus(context);
-          }
+      body: SafeArea(
+        child: StreamBuilder<List<Exchanges>>(
+          stream: _exchangesStream(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              developer.log('Error: ${snapshot.error}');
+              return buildExchangesErrorStatus(context);
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return buildExchangesLoadingStatus(context);
+            }
+            if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return buildExchangesErrorStatus(context);
+            }
 
-          final exchanges = snapshot.data!;
+            final exchanges = snapshot.data!;
 
-          if (!_hasLoggedData) {
-            developer.log(
-              'Exchanges stream connection state: ${snapshot.connectionState}',
-            );
-            developer.log(
-              'Exchanges data loaded from Firestore: ${exchanges.length} exchanges',
-            );
-            _hasLoggedData =
-                true; //prevents above logs being triggered in console repeatedly
-          }
-
-          return ListView.separated(
-            itemCount: exchanges.length,
-            separatorBuilder: (context, index) => const SizedBox(width: 10),
-            itemBuilder: (context, index) {
-              final exchange = exchanges[index];
-              return ExchangesCard(
-                exchange: exchange,
-                name: exchange.name.toString(),
-                country: exchange.country,
-                description: exchange.description,
-                hasTradingIncentive: exchange.hasTradingIncentive,
-                id: exchange.id,
-                btc24HRtradeVolume: exchange.btc24HRtradeVolume!.toInt(),
-                trustScore: exchange.trustScore,
-                trustScoreRank: exchange.trustScoreRank,
-                yearEstablished: exchange.yearEstablished,
-                url: exchange.url.toString(),
-                image: exchange.imageURL.toString(),
+            if (!_hasLoggedData) {
+              developer.log(
+                'Exchanges stream connection state: ${snapshot.connectionState}',
               );
-            },
-          );
-        },
+              developer.log(
+                'Exchanges data loaded from Firestore: ${exchanges.length} exchanges',
+              );
+              _hasLoggedData =
+                  true; //prevents above logs being triggered in console repeatedly
+            }
+
+            return ListView.separated(
+              itemCount: exchanges.length,
+              separatorBuilder: (context, index) => const SizedBox(width: 10),
+              itemBuilder: (context, index) {
+                final exchange = exchanges[index];
+                return ExchangesCard(
+                  exchange: exchange,
+                  name: exchange.name.toString(),
+                  country: exchange.country,
+                  description: exchange.description,
+                  hasTradingIncentive: exchange.hasTradingIncentive,
+                  id: exchange.id,
+                  btc24HRtradeVolume: exchange.btc24HRtradeVolume!.toInt(),
+                  trustScore: exchange.trustScore,
+                  trustScoreRank: exchange.trustScoreRank,
+                  yearEstablished: exchange.yearEstablished,
+                  url: exchange.url.toString(),
+                  image: exchange.imageURL.toString(),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
