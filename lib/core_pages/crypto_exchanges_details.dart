@@ -101,7 +101,12 @@ class CryptoExchangesDetails extends StatelessWidget {
                                     ),
                                     elevation: 5,
                                     child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                        16.0,
+                                        16.0,
+                                        16.0,
+                                        0.0,
+                                      ),
                                       child: Column(
                                         children: [
                                           Icon(
@@ -147,6 +152,105 @@ class CryptoExchangesDetails extends StatelessWidget {
                                 ),
                               ),
                             ),
+
+                            SizedBox(height: 16),
+
+                            // Grid of 2 square tiles
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              child: Row(
+                                children: [
+                                  // First tile
+                                  Expanded(
+                                    child: AspectRatio(
+                                      aspectRatio: 1, // Makes it square
+                                      child: Card(
+                                        elevation: 3,
+                                        child: InkWell(
+                                          onTap: () {
+                                            // Handle tap
+                                          },
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.handshake_rounded,
+                                                  size: 40,
+                                                  color: Colors.green,
+                                                ),
+                                                SizedBox(height: 8),
+                                                Text(
+                                                  'Trust Score',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 4),
+                                                Text(
+                                                  exchanges.trustScore
+                                                          ?.toString() ??
+                                                      'N/A',
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: AspectRatio(
+                                      aspectRatio: 1,
+                                      child: Card(
+                                        elevation: 3,
+                                        child: InkWell(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.leaderboard_rounded,
+                                                  size: 40,
+                                                  color: Colors.blue,
+                                                ),
+                                                SizedBox(height: 8),
+                                                Text(
+                                                  'Rank',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 4),
+                                                Text(
+                                                  exchanges.trustScoreRank
+                                                          ?.toString() ??
+                                                      'N/A',
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 16),
                             CryptoExchangesReadMoreButton(
                               name: exchanges.name.toString(),
                               url: exchanges.url.toString(),
