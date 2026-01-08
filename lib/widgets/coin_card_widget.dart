@@ -25,13 +25,14 @@ class CoinCard extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
         child: Card(
+          //elevation: 2,
           child: Row(
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20)
                   ),
                   height: 60,
                   width: 60,
